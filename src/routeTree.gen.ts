@@ -10,33 +10,63 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as KuisRouteImport } from './routes/kuis'
+import { Route as MateriRouteImport } from './routes/materi'
+import { Route as SemesterGenapRouteImport } from './routes/semester-genap'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const KuisRoute = KuisRouteImport.update({
+  id: '/kuis',
+  path: '/kuis',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MateriRoute = MateriRouteImport.update({
+  id: '/materi',
+  path: '/materi',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SemesterGenapRoute = SemesterGenapRouteImport.update({
+  id: '/semester-genap',
+  path: '/semester-genap',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/kuis': typeof KuisRoute
+  '/materi': typeof MateriRoute
+  '/semester-genap': typeof SemesterGenapRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/kuis': typeof KuisRoute
+  '/materi': typeof MateriRoute
+  '/semester-genap': typeof SemesterGenapRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/kuis': typeof KuisRoute
+  '/materi': typeof MateriRoute
+  '/semester-genap': typeof SemesterGenapRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/kuis' | '/materi' | '/semester-genap'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/kuis' | '/materi' | '/semester-genap'
+  id: '__root__' | '/' | '/kuis' | '/materi' | '/semester-genap'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  KuisRoute: typeof KuisRoute
+  MateriRoute: typeof MateriRoute
+  SemesterGenapRoute: typeof SemesterGenapRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +78,35 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/kuis': {
+      id: '/kuis'
+      path: '/kuis'
+      fullPath: '/kuis'
+      preLoaderRoute: typeof KuisRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/materi': {
+      id: '/materi'
+      path: '/materi'
+      fullPath: '/materi'
+      preLoaderRoute: typeof MateriRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/semester-genap': {
+      id: '/semester-genap'
+      path: '/semester-genap'
+      fullPath: '/semester-genap'
+      preLoaderRoute: typeof SemesterGenapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  KuisRoute: KuisRoute,
+  MateriRoute: MateriRoute,
+  SemesterGenapRoute: SemesterGenapRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
