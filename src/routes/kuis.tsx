@@ -23,9 +23,9 @@ export const Route = createFileRoute("/kuis")({
   component: KuisPage,
 });
 
-// TEMPELKAN LINK PRE-FILLED DI SINI (untuk isi otomatis Nama/Kelas/Bab/Skor).
-// Jika hanya link pendek (forms.gle/...), kuis akan membuka link tersebut apa adanya.
-const GFORM_PREFILL = "https://forms.gle";
+// Tautan resmi Google Form Pak Wildan. Karena ini link biasa (bukan pre-filled),
+// tombol membuka formulir apa adanya tanpa mengisi otomatis.
+const GFORM_PREFILL = "https://docs.google.com/forms/d/e/1FAIpQLScUDdlP_DH9m0fjFpgoPQNYzDoQ-9C6sAYTWjKBrkUyQXSq2Q/viewform?usp=header";
 
 const buildGformUrl = (nama: string, kelas: string, bab: string, skor: number) => {
   // Tanpa parameter pre-filled, buka link asli langsung.
