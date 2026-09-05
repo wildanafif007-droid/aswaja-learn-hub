@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { BookOpen, Scale, Sparkles } from "lucide-react";
 import banner from "@/assets/banner-islami.jpg";
+import { DeveloperProfile } from "@/components/DeveloperProfile";
 import { IslamicMotion } from "@/components/IslamicMotion";
 
 export const Route = createFileRoute("/")({
@@ -99,6 +100,8 @@ function Index() {
         </div>
         <IslamicMotion label="Ahlussunnah wal Jama'ah An-Nahdliyah" />
       </section>
+
+      <DeveloperProfile />
     </div>
   );
 }
