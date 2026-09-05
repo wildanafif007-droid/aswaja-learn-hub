@@ -12,12 +12,7 @@ import {
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 const FOTO_KEY = "aswaja-foto-pengembang";
 
@@ -120,7 +115,9 @@ export function DeveloperProfile() {
                   <BookOpenCheck className="h-4 w-4" aria-hidden="true" />
                 </span>
                 <div>
-                  <p className="text-xs font-semibold text-muted-foreground uppercase">Fokus Akademik</p>
+                  <p className="text-xs font-semibold text-muted-foreground uppercase">
+                    Fokus Akademik
+                  </p>
                   <p className="mt-1 text-sm leading-6 sm:text-base">
                     Pendidikan, Religi, dan Integrasi Nilai-Nilai Islam
                   </p>
@@ -133,11 +130,19 @@ export function DeveloperProfile() {
             </div>
 
             <TooltipProvider delayDuration={150}>
-              <div className="mt-6 flex justify-center gap-2 md:justify-start" aria-label="Media sosial">
+              <div
+                className="mt-6 flex justify-center gap-2 md:justify-start"
+                aria-label="Media sosial"
+              >
                 {socialLinks.map((social) => (
                   <Tooltip key={social.label}>
                     <TooltipTrigger asChild>
-                      <Button asChild variant="outline" size="icon" className="rounded-full border-primary/25">
+                      <Button
+                        asChild
+                        variant="outline"
+                        size="icon"
+                        className="rounded-full border-primary/25"
+                      >
                         <a
                           href={social.href}
                           target="_blank"
