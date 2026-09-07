@@ -1,8 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
-import { Award, Printer, RotateCcw, Send, UserRoundX } from "lucide-react";
+import { Printer, RotateCcw, Send, UserRoundX } from "lucide-react";
 import { KELAS_LIST, MATERI, SISWA, tingkatOf } from "@/data/aswaja";
 import { buildQuiz, type Question } from "@/data/quiz";
+import { CertificateView } from "@/components/CertificateView";
+
 
 export const Route = createFileRoute("/kuis")({
   head: () => ({
