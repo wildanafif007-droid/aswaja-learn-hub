@@ -263,7 +263,8 @@
     box-shadow: none;
   }
   @page {
-    size: auto;
+    size: A4 landscape;
     margin: 0mm;
   }
+
 }

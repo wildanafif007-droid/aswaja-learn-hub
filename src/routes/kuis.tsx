@@ -1,8 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
-import { Award, Printer, RotateCcw, Send, UserRoundX } from "lucide-react";
+import { Printer, RotateCcw, Send, UserRoundX } from "lucide-react";
 import { KELAS_LIST, MATERI, SISWA, tingkatOf } from "@/data/aswaja";
 import { buildQuiz, type Question } from "@/data/quiz";
+import { CertificateView } from "@/components/CertificateView";
+
 
 export const Route = createFileRoute("/kuis")({
   head: () => ({
@@ -375,62 +377,17 @@ function KuisPage() {
             />
           ))}
 
-          <div
-            id="sertifikat-card"
-            className="relative overflow-hidden rounded-3xl border-4 border-gold bg-card p-6 text-center shadow-gold sm:p-10"
-          >
-            <div className="pointer-events-none absolute inset-3 rounded-2xl border border-primary/30" />
-            <Award className="mx-auto h-12 w-12 text-gold" />
-            <p className="mt-2 text-[11px] tracking-[0.3em] text-muted-foreground uppercase">
-              Sertifikat Resmi
-            </p>
-            <h2 className="mt-1 font-display text-2xl font-bold sm:text-3xl">
-              Pendidikan Aswaja & Ke-NU-an
-            </h2>
-            <div className="mx-auto mt-3 h-1 w-24 rounded-full bg-gold-line" />
+          <CertificateView
+            nama={hasil.nama}
+            kelas={hasil.kelas}
+            babTitle={hasil.babTitle}
+            tanggal={hasil.tanggal}
+            bestSkor={hasil.bestSkor}
+            predikat={predikat(hasil.bestSkor)}
+            noReg={`ALH/${hasil.kelas.replace(/\s+/g, "")}/${hasil.babId}/${hasil.percobaan}`}
+            verifyUrl="https://aswaja-learn-hub.lovable.app/kuis"
+          />
 
-            <p className="mt-6 text-sm text-muted-foreground">Diberikan kepada</p>
-            <p className="font-display text-xl font-bold text-primary sm:text-2xl">{hasil.nama}</p>
-
-            <dl className="mx-auto mt-6 grid max-w-md gap-3 text-left text-sm">
-              <div className="flex justify-between gap-4 border-b border-border pb-2">
-                <dt className="text-muted-foreground">Kelas</dt>
-                <dd className="font-semibold">{hasil.kelas}</dd>
-              </div>
-              <div className="flex justify-between gap-4 border-b border-border pb-2">
-                <dt className="text-muted-foreground">Bab</dt>
-                <dd className="text-right font-semibold">{hasil.babTitle}</dd>
-              </div>
-              <div className="flex justify-between gap-4 border-b border-border pb-2">
-                <dt className="text-muted-foreground">Tanggal</dt>
-                <dd className="font-semibold">{hasil.tanggal}</dd>
-              </div>
-              <div className="flex justify-between gap-4 border-b border-border pb-2">
-                <dt className="text-muted-foreground">Nilai Tertinggi</dt>
-                <dd className="font-display text-2xl font-bold text-primary">{hasil.bestSkor}</dd>
-              </div>
-              <div className="flex justify-between gap-4 border-b border-border pb-2">
-                <dt className="text-muted-foreground">Nilai Percobaan Ini</dt>
-                <dd className="font-semibold">{hasil.skor}</dd>
-              </div>
-              <div className="flex justify-between gap-4 border-b border-border pb-2">
-                <dt className="text-muted-foreground">Percobaan</dt>
-                <dd className="font-semibold">
-                  ke-{hasil.percobaan} dari {MAKS_PERCOBAAN}
-                </dd>
-              </div>
-              <div className="flex justify-between gap-4">
-                <dt className="text-muted-foreground">Predikat</dt>
-                <dd className="rounded-full bg-primary-soft px-3 py-1 text-sm font-bold text-primary-deep">
-                  {predikat(hasil.bestSkor)}
-                </dd>
-              </div>
-            </dl>
-
-            <p className="mt-6 text-xs text-muted-foreground">
-              Referensi LKS TAQWA — CV. Karya Digital Pustaka
-            </p>
-          </div>
 
           <div className="mt-6 grid gap-3 sm:grid-cols-3">
             <button
