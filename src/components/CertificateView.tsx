@@ -246,8 +246,9 @@ export function CertificateView(data: CertificateData) {
               bgColor="transparent"
               fgColor={EMERALD}
               level="M"
-              className="h-20 w-20"
+              className="h-[8cqw] w-[8cqw]"
             />
+
             <span
               className="text-[1.05cqw] font-semibold tracking-[0.24em]"
               style={{ color: "#5b6a63" }}
