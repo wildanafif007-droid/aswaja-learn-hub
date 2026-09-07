@@ -135,7 +135,7 @@ function CornerWave({ position }: { position: "tl" | "br" }) {
   return (
     <svg
       viewBox="0 0 200 200"
-      className={`pointer-events-none absolute h-40 w-40 sm:h-56 sm:w-56 ${
+      className={`pointer-events-none absolute h-[17cqw] w-[17cqw] ${
         position === "tl" ? "top-0 left-0" : "right-0 bottom-0"
       }`}
       aria-hidden="true"
