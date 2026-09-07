@@ -154,7 +154,7 @@ export function CertificateView(data: CertificateData) {
   return (
     <div
       id="sertifikat-card"
-      className="relative isolate mx-auto w-full overflow-hidden rounded-lg shadow-2xl sm:aspect-[297/210]"
+      className="relative isolate mx-auto aspect-[297/210] w-full overflow-hidden rounded-lg shadow-2xl @container"
       style={{ backgroundColor: IVORY }}
     >
       <CornerWave position="tl" />
@@ -162,25 +162,25 @@ export function CertificateView(data: CertificateData) {
 
       {/* Inner border emas tipis */}
       <div
-        className="pointer-events-none absolute inset-4 rounded-sm sm:inset-6"
+        className="pointer-events-none absolute inset-[2.4cqw] rounded-sm"
         style={{ border: `1px solid ${GOLD}` }}
       />
 
       {/* Watermark lambang NU */}
       <NuWatermark className="pointer-events-none absolute top-1/2 left-1/2 h-[70%] w-[70%] -translate-x-1/2 -translate-y-1/2 opacity-[0.06]" />
 
-      <div className="relative z-10 flex h-full flex-col justify-between px-8 py-8 text-center sm:px-16 sm:py-10">
+      <div className="relative z-10 flex h-full flex-col justify-between px-[6cqw] py-[3.6cqw] text-center">
         {/* ATAS */}
         <header className="flex flex-col items-center">
-          <LogoALH className="h-16 w-16 sm:h-20 sm:w-20" />
+          <LogoALH className="h-[8cqw] w-[8cqw]" />
           <h2
-            className="mt-3 font-serif text-2xl font-bold tracking-[0.14em] sm:text-4xl"
+            className="mt-[1cqw] font-serif text-[4.2cqw] leading-none font-bold tracking-[0.14em]"
             style={{ color: EMERALD }}
           >
             SERTIFIKAT PENGHARGAAN
           </h2>
           <div
-            className="mt-3 inline-block px-6 py-1 text-[10px] font-semibold tracking-[0.22em] sm:text-xs"
+            className="mt-[1.2cqw] inline-block px-[3cqw] py-[0.5cqw] text-[1.3cqw] font-semibold tracking-[0.22em]"
             style={{
               background: `linear-gradient(90deg, transparent, ${GOLD} 12%, #fde047 50%, ${GOLD} 88%, transparent)`,
               color: "#3f2d05",
@@ -189,6 +189,8 @@ export function CertificateView(data: CertificateData) {
             NO. REG: {data.noReg}
           </div>
         </header>
+
+
 
         {/* TENGAH */}
         <section className="mt-5 flex flex-col items-center sm:mt-2">
