@@ -272,7 +272,7 @@ export function CertificateView(data: CertificateData) {
             <img
               src={signature.url}
               alt="Tanda tangan Ahmad Wildan Afif, M.Pd."
-              className="h-[100px] w-auto object-contain mix-blend-multiply"
+              className="h-[9cqw] w-auto object-contain"
             />
             <p
               className="font-serif text-[1.7cqw] font-bold"
