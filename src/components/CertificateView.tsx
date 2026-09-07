@@ -234,12 +234,12 @@ export function CertificateView(data: CertificateData) {
 
 
         {/* BAWAH */}
-        <footer className="mt-6 grid grid-cols-1 items-end gap-6 sm:mt-2 sm:grid-cols-3">
-          <div className="flex justify-center sm:justify-start">
+        <footer className="grid grid-cols-3 items-end gap-[3cqw]">
+          <div className="flex justify-start">
             <HologramSeal />
           </div>
 
-          <div className="flex flex-col items-center gap-1">
+          <div className="flex flex-col items-center gap-[0.6cqw]">
             <QRCodeSVG
               value={data.verifyUrl}
               size={80}
@@ -249,7 +249,7 @@ export function CertificateView(data: CertificateData) {
               className="h-20 w-20"
             />
             <span
-              className="text-[8px] font-semibold tracking-[0.24em]"
+              className="text-[1.05cqw] font-semibold tracking-[0.24em]"
               style={{ color: "#5b6a63" }}
             >
               ASWAJA LEARN HUB
@@ -258,15 +258,15 @@ export function CertificateView(data: CertificateData) {
               href={data.verifyUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full px-3 py-1 text-[9px] font-semibold tracking-wide"
+              className="rounded-full px-[1.6cqw] py-[0.4cqw] text-[1.05cqw] font-semibold tracking-wide"
               style={{ border: `1px solid ${GOLD}`, color: EMERALD }}
             >
               Verifikasi Sertifikat
             </a>
           </div>
 
-          <div className="flex flex-col items-center sm:items-end">
-            <p className="text-[10px] sm:text-xs" style={{ color: "#3a4741" }}>
+          <div className="flex flex-col items-end">
+            <p className="text-[1.3cqw]" style={{ color: "#3a4741" }}>
               Malang, {data.tanggal}
             </p>
             <img
@@ -275,18 +275,19 @@ export function CertificateView(data: CertificateData) {
               className="h-[100px] w-auto object-contain mix-blend-multiply"
             />
             <p
-              className="font-serif text-sm font-bold sm:text-base"
+              className="font-serif text-[1.7cqw] font-bold"
               style={{ color: EMERALD, borderTop: `1px solid ${GOLD}` }}
             >
               Ahmad Wildan Afif, M.Pd.
             </p>
-            <p className="text-[10px]" style={{ color: "#6b7770" }}>
+            <p className="text-[1.2cqw]" style={{ color: "#6b7770" }}>
               Guru Pengampu
             </p>
           </div>
         </footer>
       </div>
     </div>
+
   );
 }
 
