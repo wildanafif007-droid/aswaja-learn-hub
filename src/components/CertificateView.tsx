@@ -266,7 +266,7 @@ export function CertificateView(data: CertificateData) {
             </a>
           </div>
 
-          <div className="flex flex-col items-end">
+          <div className="flex flex-col items-end pr-[2cqw]">
             <p className="text-[1.3cqw]" style={{ color: "#3a4741" }}>
               Malang, {data.tanggal}
             </p>
