@@ -193,28 +193,31 @@ export function CertificateView(data: CertificateData) {
 
 
         {/* TENGAH */}
-        <section className="mt-5 flex flex-col items-center sm:mt-2">
+        <section className="flex flex-col items-center">
           <p
-            className="text-[10px] font-semibold tracking-[0.3em] sm:text-xs"
+            className="text-[1.25cqw] font-semibold tracking-[0.3em]"
             style={{ color: "#5b6a63" }}
           >
             DIBERIKAN KEPADA:
           </p>
           <p
-            className="mt-2 font-serif text-3xl font-bold sm:text-5xl"
+            className="mt-[0.8cqw] font-serif text-[4.6cqw] leading-tight font-bold"
             style={{ color: EMERALD }}
           >
             {data.nama}
           </p>
-          <div className="mx-auto mt-2 h-px w-2/3" style={{ backgroundColor: GOLD }} />
-          <p className="mt-3 max-w-2xl text-xs leading-relaxed sm:text-sm" style={{ color: "#3a4741" }}>
+          <div className="mx-auto mt-[0.8cqw] h-px w-2/3" style={{ backgroundColor: GOLD }} />
+          <p
+            className="mt-[1.2cqw] max-w-[70cqw] text-[1.7cqw] leading-relaxed"
+            style={{ color: "#3a4741" }}
+          >
             Kelas <strong>{data.kelas}</strong> — telah menuntaskan modul kuis{" "}
             <strong>{data.babTitle}</strong> dengan predikat{" "}
             <strong style={{ color: EMERALD }}>{data.predikat}</strong> dan skor tertinggi{" "}
             <strong style={{ color: EMERALD }}>{data.bestSkor}</strong>.
           </p>
           <p
-            className="mx-auto mt-3 max-w-3xl text-[10px] leading-relaxed italic sm:text-[11px]"
+            className="mx-auto mt-[1.2cqw] max-w-[76cqw] text-[1.3cqw] leading-relaxed italic"
             style={{ color: "#6b7770" }}
           >
             E-Sertifikat ini diterbitkan secara sah oleh sistem e-learning berdasarkan pemenuhan
@@ -222,12 +225,13 @@ export function CertificateView(data: CertificateData) {
             penguatan akidah, fikih ibadah, serta implementasi amaliyah Ahlussunnah wal Jamaah.
           </p>
           <p
-            className="mt-2 text-[9px] font-semibold tracking-[0.22em] sm:text-[10px]"
+            className="mt-[1cqw] text-[1.1cqw] font-semibold tracking-[0.22em]"
             style={{ color: "#8a9490" }}
           >
             LKS TAQWA — CV. KARYA DIGITAL PUSTAKA
           </p>
         </section>
+
 
         {/* BAWAH */}
         <footer className="mt-6 grid grid-cols-1 items-end gap-6 sm:mt-2 sm:grid-cols-3">
