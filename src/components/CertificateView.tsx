@@ -8,7 +8,8 @@ const GOLD = "#eab308";
 export type CertificateData = {
   nama: string;
   kelas: string;
-  babTitle: string;
+  babNumber: string;
+  babName: string;
   tanggal: string;
   bestSkor: number;
   predikat: string;
@@ -45,6 +46,25 @@ function Star({ x, y, s, rot = 0 }: { x: number; y: number; s: number; rot?: num
     })
     .join(" ");
   return <polygon points={pts} transform={`rotate(${rot} ${x} ${y})`} />;
+}
+
+/** Kisi pengaman emas samar di latar belakang. */
+function SecurityGrid({ className }: { className?: string }) {
+  return (
+    <svg className={className} aria-hidden="true">
+      <defs>
+        <pattern id="security-grid" width="18" height="18" patternUnits="userSpaceOnUse">
+          <path
+            d="M0 18L18 0M-3 3L3 -3M15 21L21 15"
+            stroke={GOLD}
+            strokeWidth="0.6"
+            fill="none"
+          />
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#security-grid)" />
+    </svg>
+  );
 }
 
 /** Lambang ALH: lingkaran emas, sembilan bintang, pena hijau. */
@@ -150,6 +170,29 @@ function CornerWave({ position }: { position: "tl" | "br" }) {
   );
 }
 
+/** Pita emas dengan ujung lancip sebagai latar nomor registrasi. */
+function GoldRibbon({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="relative mt-[1.2cqw] inline-flex items-center justify-center">
+      <svg
+        viewBox="0 0 220 44"
+        preserveAspectRatio="none"
+        className="pointer-events-none absolute inset-0 h-full w-full"
+        aria-hidden="true"
+      >
+        <path d="M10 0 H210 L220 22 L210 44 H10 L0 22 Z" fill={GOLD} />
+        <path d="M10 0 L0 22 L10 44" fill="#ca8a04" opacity="0.35" />
+        <path d="M210 0 L220 22 L210 44" fill="#fde047" opacity="0.45" />
+      </svg>
+      <span className="relative z-10 px-[3cqw] py-[0.5cqw] text-[1.3cqw] font-semibold tracking-[0.22em]"
+        style={{ color: "#3f2d05" }}
+      >
+        {children}
+      </span>
+    </div>
+  );
+}
+
 export function CertificateView(data: CertificateData) {
   return (
     <div
@@ -160,14 +203,15 @@ export function CertificateView(data: CertificateData) {
       <CornerWave position="tl" />
       <CornerWave position="br" />
 
-      {/* Inner border emas tipis */}
+      {/* Latar: kisi pengaman emas samar + watermark NU besar */}
+      <SecurityGrid className="pointer-events-none absolute inset-0 z-0 h-full w-full opacity-[0.04]" />
+      <NuWatermark className="pointer-events-none absolute top-1/2 left-1/2 z-0 h-[70%] w-[70%] -translate-x-1/2 -translate-y-1/2 opacity-[0.06]" />
+
+      {/* Inner border emas tipis keliling sisi dalam */}
       <div
-        className="pointer-events-none absolute inset-[2.4cqw] rounded-sm"
+        className="pointer-events-none absolute inset-[2.4cqw] z-0 rounded-sm"
         style={{ border: `1px solid ${GOLD}` }}
       />
-
-      {/* Watermark lambang NU */}
-      <NuWatermark className="pointer-events-none absolute top-1/2 left-1/2 h-[70%] w-[70%] -translate-x-1/2 -translate-y-1/2 opacity-[0.06]" />
 
       <div className="relative z-10 flex h-full flex-col justify-between px-[6cqw] py-[3.6cqw] text-center">
         {/* ATAS */}
@@ -179,18 +223,8 @@ export function CertificateView(data: CertificateData) {
           >
             SERTIFIKAT PENGHARGAAN
           </h2>
-          <div
-            className="mt-[1.2cqw] inline-block px-[3cqw] py-[0.5cqw] text-[1.3cqw] font-semibold tracking-[0.22em]"
-            style={{
-              background: `linear-gradient(90deg, transparent, ${GOLD} 12%, #fde047 50%, ${GOLD} 88%, transparent)`,
-              color: "#3f2d05",
-            }}
-          >
-            NO. REG: {data.noReg}
-          </div>
+          <GoldRibbon>NO. REG: {data.noReg}</GoldRibbon>
         </header>
-
-
 
         {/* TENGAH */}
         <section className="flex flex-col items-center">
@@ -208,11 +242,15 @@ export function CertificateView(data: CertificateData) {
           </p>
           <div className="mx-auto mt-[0.8cqw] h-px w-2/3" style={{ backgroundColor: GOLD }} />
           <p
-            className="mt-[1.2cqw] max-w-[70cqw] text-[1.7cqw] leading-relaxed"
+            className="mt-[1.2cqw] max-w-[74cqw] text-[1.7cqw] leading-relaxed"
             style={{ color: "#3a4741" }}
           >
-            Kelas <strong>{data.kelas}</strong> — telah menuntaskan modul kuis{" "}
-            <strong>{data.babTitle}</strong> dengan predikat{" "}
+            Atas keberhasilannya dalam memenuhi standar kelulusan evaluasi capaian belajar
+            Pendidikan Aswaja & Ke-NU-an pada{" "}
+            <strong style={{ color: EMERALD }}>
+              MODUL {data.babNumber} — {data.babName}
+            </strong>{" "}
+            dengan predikat{" "}
             <strong style={{ color: EMERALD }}>{data.predikat}</strong> dan skor tertinggi{" "}
             <strong style={{ color: EMERALD }}>{data.bestSkor}</strong>.
           </p>
@@ -231,7 +269,6 @@ export function CertificateView(data: CertificateData) {
             LKS TAQWA — CV. KARYA DIGITAL PUSTAKA
           </p>
         </section>
-
 
         {/* BAWAH */}
         <footer className="grid grid-cols-3 items-end gap-[3cqw]">
@@ -259,8 +296,8 @@ export function CertificateView(data: CertificateData) {
               href={data.verifyUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full px-[1.6cqw] py-[0.4cqw] text-[1.05cqw] font-semibold tracking-wide"
-              style={{ border: `1px solid ${GOLD}`, color: EMERALD }}
+              className="rounded-full border border-gray-300 px-[1.6cqw] py-[0.4cqw] text-[1.05cqw] font-semibold tracking-wide transition-colors hover:border-gray-400"
+              style={{ color: EMERALD }}
             >
               Verifikasi Sertifikat
             </a>
@@ -288,7 +325,6 @@ export function CertificateView(data: CertificateData) {
         </footer>
       </div>
     </div>
-
   );
 }
 

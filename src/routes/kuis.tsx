@@ -380,7 +380,8 @@ function KuisPage() {
           <CertificateView
             nama={hasil.nama}
             kelas={hasil.kelas}
-            babTitle={hasil.babTitle}
+            babNumber={hasil.babId.split("-")[1] ?? ""}
+            babName={hasil.babTitle.replace(/^Bab \d+ /, "")}
             tanggal={hasil.tanggal}
             bestSkor={hasil.bestSkor}
             predikat={predikat(hasil.bestSkor)}
