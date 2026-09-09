@@ -384,7 +384,6 @@ function KuisPage() {
             babName={hasil.babTitle.replace(/^Bab \d+ /, "")}
             tanggal={hasil.tanggal}
             bestSkor={hasil.bestSkor}
-            predikat={predikat(hasil.bestSkor)}
             noReg={`ALH/${hasil.kelas.replace(/\s+/g, "")}/${hasil.babId}/${hasil.percobaan}`}
             verifyUrl="https://aswaja-learn-hub.lovable.app/kuis"
           />
