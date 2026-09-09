@@ -169,7 +169,7 @@ function HologramSeal() {
         {/* Orbit bintang sembilan tipis */}
         <circle cx="60" cy="60" r="30" fill="none" stroke={GOLD} strokeWidth="0.7" opacity="0.85" />
         <g fill={GOLD} opacity="0.95">
-          <NineStars cx={60} cy={60} r="30" size="3.4" />
+          <NineStars cx={60} cy={60} r={30} size={3.4} />
         </g>
 
         {/* Bintang pusat + monogram */}
