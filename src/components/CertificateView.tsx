@@ -67,6 +67,29 @@ function SecurityGrid({ className }: { className?: string }) {
   );
 }
 
+/** Garis guilloché transparan untuk memberi tekstur dokumen resmi. */
+function GuillocheLines({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 1200 850" preserveAspectRatio="none" aria-hidden="true">
+      <g fill="none" stroke={EMERALD} strokeWidth="1.1">
+        <ellipse cx="600" cy="425" rx="470" ry="310" />
+        <ellipse cx="600" cy="425" rx="430" ry="278" />
+        <ellipse cx="600" cy="425" rx="390" ry="246" />
+        <ellipse cx="0" cy="425" rx="310" ry="220" />
+        <ellipse cx="1200" cy="425" rx="310" ry="220" />
+        <path d="M-60 425 Q90 350 240 425 T540 425 T840 425 T1140 425 T1440 425" />
+        <path d="M-60 438 Q90 363 240 438 T540 438 T840 438 T1140 438 T1440 438" />
+        <path d="M-60 412 Q90 337 240 412 T540 412 T840 412 T1140 412 T1440 412" />
+      </g>
+      <g fill="none" stroke={GOLD} strokeWidth="0.8">
+        <path d="M-40 210 Q160 120 360 210 T760 210 T1160 210 T1560 210" />
+        <path d="M-40 640 Q160 730 360 640 T760 640 T1160 640 T1560 640" />
+        <ellipse cx="600" cy="425" rx="505" ry="342" />
+      </g>
+    </svg>
+  );
+}
+
 /** Lambang ALH: lingkaran emas, sembilan bintang, pena hijau. */
 function LogoALH({ className }: { className?: string }) {
   return (
@@ -115,7 +138,7 @@ function NuWatermark({ className }: { className?: string }) {
 /** Segel hologram emas bermotif bintang sembilan. */
 function HologramSeal() {
   return (
-    <div className="relative h-28 w-28 shrink-0">
+    <div className="relative h-[18cqw] w-[18cqw] shrink-0 drop-shadow-[0_0.7cqw_0.8cqw_rgba(120,84,5,0.2)]">
       <svg viewBox="0 0 120 120" className="h-full w-full">
         <defs>
           <radialGradient id="seal-holo" cx="35%" cy="30%">
@@ -205,6 +228,7 @@ export function CertificateView(data: CertificateData) {
 
       {/* Latar: kisi pengaman emas samar + watermark NU besar */}
       <SecurityGrid className="pointer-events-none absolute inset-0 z-0 h-full w-full opacity-[0.04]" />
+      <GuillocheLines className="pointer-events-none absolute inset-0 z-0 h-full w-full opacity-[0.055]" />
       <NuWatermark className="pointer-events-none absolute top-1/2 left-1/2 z-0 h-[70%] w-[70%] -translate-x-1/2 -translate-y-1/2 opacity-[0.06]" />
 
       {/* Inner border emas tipis keliling sisi dalam */}
@@ -271,8 +295,8 @@ export function CertificateView(data: CertificateData) {
         </section>
 
         {/* BAWAH */}
-        <footer className="grid grid-cols-3 items-end gap-[3cqw]">
-          <div className="flex justify-start">
+        <footer className="grid grid-cols-[1fr_1fr_1.15fr] items-end gap-[2.5cqw]">
+          <div className="flex items-end justify-start pl-[1.2cqw]">
             <HologramSeal />
           </div>
 
@@ -303,17 +327,17 @@ export function CertificateView(data: CertificateData) {
             </a>
           </div>
 
-          <div className="flex flex-col items-end pr-[2cqw]">
+          <div className="flex min-w-[24cqw] flex-col items-center pr-[1.2cqw]">
             <p className="text-[1.3cqw]" style={{ color: "#3a4741" }}>
               Malang, {data.tanggal}
             </p>
             <img
               src={signature.url}
               alt="Tanda tangan Ahmad Wildan Afif, M.Pd."
-              className="h-[9cqw] w-auto object-contain"
+              className="-mb-[0.8cqw] h-[12.5cqw] w-[22cqw] object-contain"
             />
             <p
-              className="font-serif text-[1.7cqw] font-bold"
+              className="w-full pt-[0.45cqw] text-center font-serif text-[1.7cqw] font-bold"
               style={{ color: EMERALD, borderTop: `1px solid ${GOLD}` }}
             >
               Ahmad Wildan Afif, M.Pd.
