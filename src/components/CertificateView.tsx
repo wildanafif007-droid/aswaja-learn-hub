@@ -12,7 +12,6 @@ export type CertificateData = {
   babName: string;
   tanggal: string;
   bestSkor: number;
-  predikat: string;
   noReg: string;
   verifyUrl: string;
 };
@@ -272,17 +271,17 @@ export function CertificateView(data: CertificateData) {
       <GuillocheLines className="pointer-events-none absolute inset-0 z-0 h-full w-full opacity-[0.05]" />
       <NuWatermark className="pointer-events-none absolute top-1/2 left-1/2 z-0 h-[70%] w-[70%] -translate-x-1/2 -translate-y-1/2 opacity-[0.06]" />
 
-      {/* Bingkai emas ganda di sisi dalam, aman dari teks (padding konten 6cqw) */}
+      {/* Bingkai emas ganda di sisi dalam, berjarak dari tepi dan konten */}
       <div
-        className="pointer-events-none absolute inset-[2.4cqw] z-0 rounded-sm"
+        className="pointer-events-none absolute inset-[3.2cqw] z-0 rounded-sm"
         style={{ border: `1px solid ${GOLD}` }}
       />
       <div
-        className="pointer-events-none absolute inset-[3.1cqw] z-0 rounded-sm"
+        className="pointer-events-none absolute inset-[3.9cqw] z-0 rounded-sm"
         style={{ border: `1px solid ${GOLD}`, opacity: 0.6 }}
       />
 
-      <div className="relative z-10 flex h-full flex-col justify-between px-[6cqw] py-[3.6cqw] text-center">
+      <div className="relative z-10 flex h-full flex-col justify-between px-[7cqw] py-[5.5cqw] text-center">
         {/* ATAS */}
         <header className="flex flex-col items-center">
           <LogoALH className="h-[8cqw] w-[8cqw]" />
@@ -317,10 +316,9 @@ export function CertificateView(data: CertificateData) {
             Atas keberhasilannya dalam memenuhi standar kelulusan evaluasi capaian belajar
             Pendidikan Aswaja & Ke-NU-an pada{" "}
             <strong style={{ color: EMERALD }}>
-              MODUL {data.babNumber} — {data.babName}
+              MODUL {data.babNumber} {data.babName}
             </strong>{" "}
-            dengan predikat{" "}
-            <strong style={{ color: EMERALD }}>{data.predikat}</strong> dan skor tertinggi{" "}
+            dengan skor{" "}
             <strong style={{ color: EMERALD }}>{data.bestSkor}</strong>.
           </p>
           <p
