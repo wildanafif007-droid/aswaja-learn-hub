@@ -135,40 +135,80 @@ function NuWatermark({ className }: { className?: string }) {
   );
 }
 
-/** Segel hologram emas bermotif bintang sembilan. */
+/** Segel hologram modern: cincin emas tipis berkilau, inti kaca emerald, satu bintang pusat. */
 function HologramSeal() {
   return (
-    <div className="relative h-[18cqw] w-[18cqw] shrink-0 drop-shadow-[0_0.7cqw_0.8cqw_rgba(120,84,5,0.2)]">
+    <div className="relative h-[18cqw] w-[18cqw] shrink-0 drop-shadow-[0_0.5cqw_1cqw_rgba(120,84,5,0.28)]">
       <svg viewBox="0 0 120 120" className="h-full w-full">
         <defs>
-          <radialGradient id="seal-holo" cx="35%" cy="30%">
-            <stop offset="0%" stopColor="#fff8dc" />
+          <linearGradient id="seal-ring" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#fde68a" />
             <stop offset="45%" stopColor={GOLD} />
-            <stop offset="100%" stopColor="#a16207" />
+            <stop offset="100%" stopColor="#92610a" />
+          </linearGradient>
+          <radialGradient id="seal-glass" cx="38%" cy="32%" r="75%">
+            <stop offset="0%" stopColor="#0d6b4f" />
+            <stop offset="70%" stopColor={EMERALD} />
+            <stop offset="100%" stopColor="#032e22" />
           </radialGradient>
+          <linearGradient id="seal-sheen" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#ffffff" stopOpacity="0.55" />
+            <stop offset="45%" stopColor="#ffffff" stopOpacity="0.08" />
+            <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
+          </linearGradient>
         </defs>
-        <circle cx="60" cy="60" r="56" fill="url(#seal-holo)" />
-        <circle cx="60" cy="60" r="47" fill="none" stroke={IVORY} strokeWidth="1.5" opacity="0.8" />
-        <circle cx="60" cy="60" r="30" fill={EMERALD} opacity="0.92" />
-        <g fill={GOLD}>
-          <NineStars cx={60} cy={60} r={39} size={5} />
+
+        {/* Cincin luar emas ganda */}
+        <circle cx="60" cy="60" r="56" fill="url(#seal-ring)" />
+        <circle cx="60" cy="60" r="52" fill="none" stroke="#92610a" strokeWidth="0.8" opacity="0.7" />
+        <circle cx="60" cy="60" r="48.5" fill={IVORY} />
+
+        {/* Inti kaca emerald */}
+        <circle cx="60" cy="60" r="42" fill="url(#seal-glass)" />
+
+        {/* Orbit bintang sembilan tipis */}
+        <circle cx="60" cy="60" r="30" fill="none" stroke={GOLD} strokeWidth="0.7" opacity="0.85" />
+        <g fill={GOLD} opacity="0.95">
+          <NineStars cx={60} cy={60} r="30" size="3.4" />
         </g>
-        <g fill={IVORY}>
-          <NineStars cx={60} cy={60} r={19} size={3.6} />
+
+        {/* Bintang pusat + monogram */}
+        <g fill={GOLD}>
+          <Star x={60} y={50} s={7.5} />
         </g>
         <text
           x="60"
-          y="64"
+          y="76"
           textAnchor="middle"
-          fontSize="11"
+          fontSize="12"
           fontWeight="700"
-          fill={GOLD}
+          letterSpacing="2"
+          fill="#fde68a"
           fontFamily="serif"
         >
           ALH
         </text>
+
+        {/* Kilau kaca diagonal */}
+        <path d="M18 60 A42 42 0 0 1 60 18 L60 34 A26 26 0 0 0 34 60 Z" fill="url(#seal-sheen)" />
       </svg>
     </div>
+  );
+}
+
+/** Garis-garis diagonal emas transparan yang menyelimuti seluruh sertifikat. */
+function GoldVeil({ className }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 1200 850" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <pattern id="gold-veil" width="90" height="90" patternUnits="userSpaceOnUse" patternTransform="rotate(28)">
+          <line x1="0" y1="0" x2="0" y2="90" stroke={GOLD} strokeWidth="1" />
+          <line x1="30" y1="0" x2="30" y2="90" stroke={GOLD} strokeWidth="0.4" />
+          <line x1="64" y1="0" x2="64" y2="90" stroke={GOLD} strokeWidth="0.4" />
+        </pattern>
+      </defs>
+      <rect width="1200" height="850" fill="url(#gold-veil)" />
+    </svg>
   );
 }
 
