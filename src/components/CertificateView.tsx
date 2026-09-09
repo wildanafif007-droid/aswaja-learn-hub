@@ -266,15 +266,20 @@ export function CertificateView(data: CertificateData) {
       <CornerWave position="tl" />
       <CornerWave position="br" />
 
-      {/* Latar: kisi pengaman emas samar + watermark NU besar */}
+      {/* Latar: kisi pengaman emas samar + watermark NU besar + selubung garis emas */}
       <SecurityGrid className="pointer-events-none absolute inset-0 z-0 h-full w-full opacity-[0.04]" />
-      <GuillocheLines className="pointer-events-none absolute inset-0 z-0 h-full w-full opacity-[0.055]" />
+      <GoldVeil className="pointer-events-none absolute inset-0 z-0 h-full w-full opacity-[0.05]" />
+      <GuillocheLines className="pointer-events-none absolute inset-0 z-0 h-full w-full opacity-[0.05]" />
       <NuWatermark className="pointer-events-none absolute top-1/2 left-1/2 z-0 h-[70%] w-[70%] -translate-x-1/2 -translate-y-1/2 opacity-[0.06]" />
 
-      {/* Inner border emas tipis keliling sisi dalam */}
+      {/* Bingkai emas ganda di sisi dalam, aman dari teks (padding konten 6cqw) */}
       <div
         className="pointer-events-none absolute inset-[2.4cqw] z-0 rounded-sm"
         style={{ border: `1px solid ${GOLD}` }}
+      />
+      <div
+        className="pointer-events-none absolute inset-[3.1cqw] z-0 rounded-sm"
+        style={{ border: `1px solid ${GOLD}`, opacity: 0.6 }}
       />
 
       <div className="relative z-10 flex h-full flex-col justify-between px-[6cqw] py-[3.6cqw] text-center">
