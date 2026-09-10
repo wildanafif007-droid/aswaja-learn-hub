@@ -1,4 +1,6 @@
 import { QRCodeSVG } from "qrcode.react";
+// Pastikan baris import tanda tangan ini ada di paling atas
+import signature from "@/assets/signature.png.asset.json";
 
 const IVORY = "#fdfbf7";
 const EMERALD = "#064e3b";
@@ -73,8 +75,7 @@ function SecurityGrid({ className }: { className?: string }) {
 }
 
 /**
- * Ombak latar belakang berwarna Champagne Gold (Mewah & Elegan).
- * Hilang di tengah agar logo NU rapi.
+ * Ombak latar belakang berwarna Champagne Gold.
  */
 function YellowWaves({ className }: { className?: string }) {
   return (
@@ -104,12 +105,11 @@ function YellowWaves({ className }: { className?: string }) {
   );
 }
 
-/** Logo ALH (Atas): Efek Gold Foil Metalik. */
+/** Logo ALH (Atas): Ukuran Teks dan Logo diperbesar. */
 function LogoALH({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 120 120" className={className} aria-hidden="true">
       <defs>
-        {/* Gradasi Emas Metalik */}
         <linearGradient id="alh-gold" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#fef08a" />
           <stop offset="40%" stopColor="#d4af37" />
@@ -124,12 +124,13 @@ function LogoALH({ className }: { className?: string }) {
         <path d="M60 34 L68 52 L64 88 L60 96 L56 88 L52 52 Z" />
         <path d="M60 34 L64 44 L56 44 Z" fill="url(#alh-gold)" />
       </g>
+      {/* Font Size diperbesar menjadi 19 agar terlihat sangat jelas */}
       <text
         x="60"
-        y="70"
+        y="67"
         textAnchor="middle"
-        fontSize="13"
-        fontWeight="700"
+        fontSize="19"
+        fontWeight="800"
         fill="url(#alh-gold)"
         fontFamily="serif"
       >
@@ -139,7 +140,7 @@ function LogoALH({ className }: { className?: string }) {
   );
 }
 
-/** Watermark lambang NU (bola dunia bertali + sembilan bintang). */
+/** Watermark lambang NU. */
 function NuWatermark({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 200 200" className={className} aria-hidden="true">
@@ -156,32 +157,28 @@ function NuWatermark({ className }: { className?: string }) {
   );
 }
 
-/** Segel Hologram Modern (Kiri Bawah): Ukuran seimbang dengan Tanda Tangan. */
+/** Segel Hologram Modern. */
 function HologramSeal() {
   return (
     <div className="relative h-[12cqw] w-[12cqw] shrink-0 drop-shadow-[0_0.5cqw_1cqw_rgba(120,84,5,0.3)]">
       <svg viewBox="0 0 120 120" className="h-full w-full">
         <defs>
-          {/* Cincin Emas Hologram */}
           <linearGradient id="holo-ring" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stopColor="#fef08a" />
             <stop offset="50%" stopColor="#ca8a04" />
             <stop offset="100%" stopColor="#713f12" />
           </linearGradient>
-          {/* Dasar Kaca Zamrud */}
           <radialGradient id="holo-glass" cx="35%" cy="35%" r="65%">
             <stop offset="0%" stopColor="#059669" />
             <stop offset="60%" stopColor={EMERALD} />
             <stop offset="100%" stopColor="#022c22" />
           </radialGradient>
-          {/* Efek Kilau Pelangi (Iridescent) khas Hologram */}
           <linearGradient id="holo-rainbow" x1="0%" y1="100%" x2="100%" y2="0%">
             <stop offset="0%" stopColor="#fbcfe8" stopOpacity="0.4" />
             <stop offset="35%" stopColor="#a7f3d0" stopOpacity="0.2" />
             <stop offset="65%" stopColor="#fef08a" stopOpacity="0.3" />
             <stop offset="100%" stopColor="#bae6fd" stopOpacity="0.5" />
           </linearGradient>
-          {/* Pantulan Cahaya Putih Cembung */}
           <linearGradient id="holo-sheen" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stopColor="#ffffff" stopOpacity="0.6" />
             <stop offset="30%" stopColor="#ffffff" stopOpacity="0.1" />
@@ -189,7 +186,6 @@ function HologramSeal() {
           </linearGradient>
         </defs>
 
-        {/* Lapis 1: Cincin Luar */}
         <circle cx="60" cy="60" r="56" fill="url(#holo-ring)" />
         <circle
           cx="60"
@@ -201,11 +197,8 @@ function HologramSeal() {
           opacity="0.8"
         />
         <circle cx="60" cy="60" r="48.5" fill={IVORY} />
-
-        {/* Lapis 2: Kaca Dalam & Pelangi */}
         <circle cx="60" cy="60" r="42" fill="url(#holo-glass)" />
         <circle cx="60" cy="60" r="42" fill="url(#holo-rainbow)" />
-
         <circle
           cx="60"
           cy="60"
@@ -232,8 +225,6 @@ function HologramSeal() {
         >
           ALH
         </text>
-
-        {/* Lapis 3: Efek Kaca Melengkung di atas segalanya */}
         <path d="M18 60 A42 42 0 0 1 60 18 L60 34 A26 26 0 0 0 34 60 Z" fill="url(#holo-sheen)" />
       </svg>
     </div>
@@ -284,6 +275,10 @@ function GoldRibbon({ children }: { children: React.ReactNode }) {
 }
 
 export function CertificateView(data: CertificateData) {
+  // Pembersihan dinamis untuk menghapus tanda strip (-) dari nama bab/modul
+  const cleanBabNumber = data.babNumber.replace(/[-—–\s]+/g, "");
+  const cleanBabName = data.babName.replace(/^[-—–\s]+/, "").trim();
+
   return (
     <div
       id="sertifikat-card"
@@ -293,7 +288,6 @@ export function CertificateView(data: CertificateData) {
       <CornerWave position="tl" />
       <CornerWave position="br" />
 
-      {/* Latar Belakang Keamanan & Estetika */}
       <SecurityGrid className="pointer-events-none absolute inset-0 z-0 h-full w-full opacity-[0.03]" />
       <YellowWaves className="pointer-events-none absolute inset-0 z-0 h-full w-full" />
       <NuWatermark className="pointer-events-none absolute top-1/2 left-1/2 z-0 h-[70%] w-[70%] -translate-x-1/2 -translate-y-1/2 opacity-[0.1]" />
@@ -307,10 +301,12 @@ export function CertificateView(data: CertificateData) {
         style={{ border: `1px solid ${GOLD}`, opacity: 0.6 }}
       />
 
-      <div className="relative z-10 flex h-full flex-col justify-between px-[8cqw] py-[7.5cqw] text-center">
+      {/* Jarak padding bawah (pb) dikurangi agar footer turun merenggang dari teks tengah */}
+      <div className="relative z-10 flex h-full flex-col justify-between px-[8cqw] pt-[7.5cqw] pb-[5.5cqw] text-center">
         {/* ATAS */}
         <header className="flex flex-col items-center">
-          <LogoALH className="h-[7.5cqw] w-[7.5cqw]" />
+          {/* Logo ALH diperbesar menjadi 10cqw */}
+          <LogoALH className="h-[10cqw] w-[10cqw]" />
           <h2
             className="mt-[1cqw] font-serif text-[4.2cqw] leading-none font-bold tracking-[0.14em]"
             style={{ color: EMERALD }}
@@ -338,13 +334,9 @@ export function CertificateView(data: CertificateData) {
             style={{ color: "#3a4741" }}
           >
             Atas keberhasilannya dalam memenuhi standar kelulusan evaluasi capaian belajar
-            Pendidikan Aswaja & Ke-NU-an pada{" "}
+            Pendidikan Aswaja & Ke-NU-an pada {/* Format Kurung Dinamis */}
             <strong style={{ color: EMERALD }}>
-              MODUL {data.babNumber}{" "}
-              {data.babName
-                .replace(/^-?\s*/, "")
-                .replace(/--/g, "")
-                .trim()}
+              MODUL {cleanBabNumber} ({cleanBabName})
             </strong>{" "}
             dengan skor <strong style={{ color: EMERALD }}>{data.bestSkor}</strong>.
           </p>
@@ -402,8 +394,12 @@ export function CertificateView(data: CertificateData) {
             <p className="text-[1.3cqw]" style={{ color: "#3a4741" }}>
               Malang, {data.tanggal}
             </p>
-            {/* Tempat kosong untuk tanda tangan seimbang dengan tinggi hologram di kiri */}
-            <div className="h-[4.5cqw] w-full"></div>
+            {/* Tanda tangan asli dikembalikan */}
+            <img
+              src={signature.url}
+              alt="Tanda tangan Ahmad Wildan Afif, M.Pd."
+              className="h-[8cqw] w-[18cqw] object-contain my-[0.5cqw]"
+            />
             <p
               className="w-full pt-[0.45cqw] text-center font-serif text-[1.7cqw] font-bold"
               style={{ color: EMERALD, borderTop: `1px solid ${GOLD}` }}
