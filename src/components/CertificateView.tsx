@@ -1,5 +1,4 @@
 import { QRCodeSVG } from "qrcode.react";
-import signature from "@/assets/signature.png.asset.json";
 
 const IVORY = "#fdfbf7";
 const EMERALD = "#064e3b";
@@ -17,9 +16,21 @@ export type CertificateData = {
 };
 
 /** Sembilan bintang khas ALH/NU pada lingkaran. */
-function NineStars({ r, size, cx, cy }: { r: number; size: number; cx: number; cy: number }) {
+function NineStars({
+  r,
+  size,
+  cx,
+  cy,
+  fill,
+}: {
+  r: number;
+  size: number;
+  cx: number;
+  cy: number;
+  fill?: string;
+}) {
   return (
-    <>
+    <g fill={fill}>
       {Array.from({ length: 9 }).map((_, i) => {
         const a = (i / 9) * Math.PI * 2 - Math.PI / 2;
         return (
@@ -32,7 +43,7 @@ function NineStars({ r, size, cx, cy }: { r: number; size: number; cx: number; c
           />
         );
       })}
-    </>
+    </g>
   );
 }
 
@@ -47,7 +58,7 @@ function Star({ x, y, s, rot = 0 }: { x: number; y: number; s: number; rot?: num
   return <polygon points={pts} transform={`rotate(${rot} ${x} ${y})`} />;
 }
 
-/** Kisi pengaman emas samar di latar belakang. */
+/** Kisi pengaman samar di latar belakang. */
 function SecurityGrid({ className }: { className?: string }) {
   return (
     <svg className={className} aria-hidden="true">
@@ -61,41 +72,57 @@ function SecurityGrid({ className }: { className?: string }) {
   );
 }
 
-/** Garis guilloché transparan untuk memberi tekstur dokumen resmi. */
-function GuillocheLines({ className }: { className?: string }) {
+/**
+ * Ombak latar belakang berwarna Champagne Gold (Mewah & Elegan).
+ * Hilang di tengah agar logo NU rapi.
+ */
+function YellowWaves({ className }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 1200 850" preserveAspectRatio="none" aria-hidden="true">
-      <g fill="none" stroke={EMERALD} strokeWidth="1.1">
-        <ellipse cx="600" cy="425" rx="470" ry="310" />
-        <ellipse cx="600" cy="425" rx="430" ry="278" />
-        <ellipse cx="600" cy="425" rx="390" ry="246" />
-        <ellipse cx="0" cy="425" rx="310" ry="220" />
-        <ellipse cx="1200" cy="425" rx="310" ry="220" />
-        <path d="M-60 425 Q90 350 240 425 T540 425 T840 425 T1140 425 T1440 425" />
-        <path d="M-60 438 Q90 363 240 438 T540 438 T840 438 T1140 438 T1440 438" />
-        <path d="M-60 412 Q90 337 240 412 T540 412 T840 412 T1140 412 T1440 412" />
-      </g>
-      <g fill="none" stroke={GOLD} strokeWidth="0.8">
-        <path d="M-40 210 Q160 120 360 210 T760 210 T1160 210 T1560 210" />
-        <path d="M-40 640 Q160 730 360 640 T760 640 T1160 640 T1560 640" />
-        <ellipse cx="600" cy="425" rx="505" ry="342" />
+      <defs>
+        <radialGradient id="center-fade">
+          <stop offset="30%" stopColor="white" stopOpacity="0" />
+          <stop offset="70%" stopColor="white" stopOpacity="1" />
+        </radialGradient>
+        <mask id="fade-mask">
+          <rect width="100%" height="100%" fill="url(#center-fade)" />
+        </mask>
+      </defs>
+      <g mask="url(#fade-mask)">
+        {Array.from({ length: 50 }).map((_, i) => (
+          <path
+            key={i}
+            d={`M -100 ${i * 20 - 100} Q 300 ${i * 25 + 150} 600 ${i * 20} T 1300 ${i * 20}`}
+            fill="none"
+            stroke="#d4c391"
+            strokeWidth={i % 3 === 0 ? "2" : "1"}
+            opacity={i % 2 === 0 ? "0.4" : "0.2"}
+          />
+        ))}
       </g>
     </svg>
   );
 }
 
-/** Lambang ALH: lingkaran emas, sembilan bintang, pena hijau. */
+/** Logo ALH (Atas): Efek Gold Foil Metalik. */
 function LogoALH({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 120 120" className={className} aria-hidden="true">
-      <circle cx="60" cy="60" r="56" fill="none" stroke={GOLD} strokeWidth="3" />
+      <defs>
+        {/* Gradasi Emas Metalik */}
+        <linearGradient id="alh-gold" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#fef08a" />
+          <stop offset="40%" stopColor="#d4af37" />
+          <stop offset="100%" stopColor="#856514" />
+        </linearGradient>
+      </defs>
+      <circle cx="60" cy="60" r="56" fill="none" stroke="url(#alh-gold)" strokeWidth="3" />
       <circle cx="60" cy="60" r="48" fill="none" stroke={EMERALD} strokeWidth="1.2" />
-      <g fill={GOLD}>
-        <NineStars cx={60} cy={60} r={41} size={5.4} />
-      </g>
+      <NineStars cx={60} cy={60} r={41} size={5.4} fill="url(#alh-gold)" />
+
       <g fill={EMERALD}>
         <path d="M60 34 L68 52 L64 88 L60 96 L56 88 L52 52 Z" />
-        <path d="M60 34 L64 44 L56 44 Z" fill={GOLD} />
+        <path d="M60 34 L64 44 L56 44 Z" fill="url(#alh-gold)" />
       </g>
       <text
         x="60"
@@ -103,7 +130,7 @@ function LogoALH({ className }: { className?: string }) {
         textAnchor="middle"
         fontSize="13"
         fontWeight="700"
-        fill={IVORY}
+        fill="url(#alh-gold)"
         fontFamily="serif"
       >
         ALH
@@ -129,49 +156,68 @@ function NuWatermark({ className }: { className?: string }) {
   );
 }
 
-/** Segel hologram modern: cincin emas tipis berkilau, inti kaca emerald, satu bintang pusat. */
+/** Segel Hologram Modern (Kiri Bawah): Ukuran seimbang dengan Tanda Tangan. */
 function HologramSeal() {
   return (
-    <div className="relative h-[18cqw] w-[18cqw] shrink-0 drop-shadow-[0_0.5cqw_1cqw_rgba(120,84,5,0.28)]">
+    <div className="relative h-[12cqw] w-[12cqw] shrink-0 drop-shadow-[0_0.5cqw_1cqw_rgba(120,84,5,0.3)]">
       <svg viewBox="0 0 120 120" className="h-full w-full">
         <defs>
-          <linearGradient id="seal-ring" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#fde68a" />
-            <stop offset="45%" stopColor={GOLD} />
-            <stop offset="100%" stopColor="#92610a" />
+          {/* Cincin Emas Hologram */}
+          <linearGradient id="holo-ring" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#fef08a" />
+            <stop offset="50%" stopColor="#ca8a04" />
+            <stop offset="100%" stopColor="#713f12" />
           </linearGradient>
-          <radialGradient id="seal-glass" cx="38%" cy="32%" r="75%">
-            <stop offset="0%" stopColor="#0d6b4f" />
-            <stop offset="70%" stopColor={EMERALD} />
-            <stop offset="100%" stopColor="#032e22" />
+          {/* Dasar Kaca Zamrud */}
+          <radialGradient id="holo-glass" cx="35%" cy="35%" r="65%">
+            <stop offset="0%" stopColor="#059669" />
+            <stop offset="60%" stopColor={EMERALD} />
+            <stop offset="100%" stopColor="#022c22" />
           </radialGradient>
-          <linearGradient id="seal-sheen" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#ffffff" stopOpacity="0.55" />
-            <stop offset="45%" stopColor="#ffffff" stopOpacity="0.08" />
+          {/* Efek Kilau Pelangi (Iridescent) khas Hologram */}
+          <linearGradient id="holo-rainbow" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#fbcfe8" stopOpacity="0.4" />
+            <stop offset="35%" stopColor="#a7f3d0" stopOpacity="0.2" />
+            <stop offset="65%" stopColor="#fef08a" stopOpacity="0.3" />
+            <stop offset="100%" stopColor="#bae6fd" stopOpacity="0.5" />
+          </linearGradient>
+          {/* Pantulan Cahaya Putih Cembung */}
+          <linearGradient id="holo-sheen" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#ffffff" stopOpacity="0.6" />
+            <stop offset="30%" stopColor="#ffffff" stopOpacity="0.1" />
             <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
           </linearGradient>
         </defs>
 
-        <circle cx="60" cy="60" r="56" fill="url(#seal-ring)" />
+        {/* Lapis 1: Cincin Luar */}
+        <circle cx="60" cy="60" r="56" fill="url(#holo-ring)" />
         <circle
           cx="60"
           cy="60"
           r="52"
           fill="none"
-          stroke="#92610a"
+          stroke="#713f12"
           strokeWidth="0.8"
-          opacity="0.7"
+          opacity="0.8"
         />
         <circle cx="60" cy="60" r="48.5" fill={IVORY} />
 
-        <circle cx="60" cy="60" r="42" fill="url(#seal-glass)" />
+        {/* Lapis 2: Kaca Dalam & Pelangi */}
+        <circle cx="60" cy="60" r="42" fill="url(#holo-glass)" />
+        <circle cx="60" cy="60" r="42" fill="url(#holo-rainbow)" />
 
-        <circle cx="60" cy="60" r="30" fill="none" stroke={GOLD} strokeWidth="0.7" opacity="0.85" />
-        <g fill={GOLD} opacity="0.95">
-          <NineStars cx={60} cy={60} r={30} size={3.4} />
-        </g>
+        <circle
+          cx="60"
+          cy="60"
+          r="30"
+          fill="none"
+          stroke="url(#holo-ring)"
+          strokeWidth="1"
+          opacity="0.9"
+        />
+        <NineStars cx={60} cy={60} r={30} size={3.4} fill="url(#holo-ring)" />
 
-        <g fill={GOLD}>
+        <g fill="url(#holo-ring)">
           <Star x={60} y={50} s={7.5} />
         </g>
         <text
@@ -181,36 +227,16 @@ function HologramSeal() {
           fontSize="12"
           fontWeight="700"
           letterSpacing="2"
-          fill="#fde68a"
+          fill="#fef08a"
           fontFamily="serif"
         >
           ALH
         </text>
 
-        <path d="M18 60 A42 42 0 0 1 60 18 L60 34 A26 26 0 0 0 34 60 Z" fill="url(#seal-sheen)" />
+        {/* Lapis 3: Efek Kaca Melengkung di atas segalanya */}
+        <path d="M18 60 A42 42 0 0 1 60 18 L60 34 A26 26 0 0 0 34 60 Z" fill="url(#holo-sheen)" />
       </svg>
     </div>
-  );
-}
-
-function GoldVeil({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 1200 850" preserveAspectRatio="none" aria-hidden="true">
-      <defs>
-        <pattern
-          id="gold-veil"
-          width="90"
-          height="90"
-          patternUnits="userSpaceOnUse"
-          patternTransform="rotate(28)"
-        >
-          <line x1="0" y1="0" x2="0" y2="90" stroke={GOLD} strokeWidth="1" />
-          <line x1="30" y1="0" x2="30" y2="90" stroke={GOLD} strokeWidth="0.4" />
-          <line x1="64" y1="0" x2="64" y2="90" stroke={GOLD} strokeWidth="0.4" />
-        </pattern>
-      </defs>
-      <rect width="1200" height="850" fill="url(#gold-veil)" />
-    </svg>
   );
 }
 
@@ -267,12 +293,11 @@ export function CertificateView(data: CertificateData) {
       <CornerWave position="tl" />
       <CornerWave position="br" />
 
-      <SecurityGrid className="pointer-events-none absolute inset-0 z-0 h-full w-full opacity-[0.04]" />
-      <GoldVeil className="pointer-events-none absolute inset-0 z-0 h-full w-full opacity-[0.05]" />
-      <GuillocheLines className="pointer-events-none absolute inset-0 z-0 h-full w-full opacity-[0.05]" />
-      <NuWatermark className="pointer-events-none absolute top-1/2 left-1/2 z-0 h-[70%] w-[70%] -translate-x-1/2 -translate-y-1/2 opacity-[0.06]" />
+      {/* Latar Belakang Keamanan & Estetika */}
+      <SecurityGrid className="pointer-events-none absolute inset-0 z-0 h-full w-full opacity-[0.03]" />
+      <YellowWaves className="pointer-events-none absolute inset-0 z-0 h-full w-full" />
+      <NuWatermark className="pointer-events-none absolute top-1/2 left-1/2 z-0 h-[70%] w-[70%] -translate-x-1/2 -translate-y-1/2 opacity-[0.1]" />
 
-      {/* SOLUSI 1: Bingkai Emas didorong lebih mendekati batas kertas */}
       <div
         className="pointer-events-none absolute inset-[2.5cqw] z-0 rounded-sm"
         style={{ border: `1px solid ${GOLD}` }}
@@ -282,11 +307,10 @@ export function CertificateView(data: CertificateData) {
         style={{ border: `1px solid ${GOLD}`, opacity: 0.6 }}
       />
 
-      {/* SOLUSI 2: Bantalan Atas-Bawah (py) ditambah dari 5.5cqw menjadi 6.5cqw agar elemen footer naik */}
-      <div className="relative z-10 flex h-full flex-col justify-between px-[7cqw] py-[6.5cqw] text-center">
+      <div className="relative z-10 flex h-full flex-col justify-between px-[8cqw] py-[7.5cqw] text-center">
         {/* ATAS */}
         <header className="flex flex-col items-center">
-          <LogoALH className="h-[8cqw] w-[8cqw]" />
+          <LogoALH className="h-[7.5cqw] w-[7.5cqw]" />
           <h2
             className="mt-[1cqw] font-serif text-[4.2cqw] leading-none font-bold tracking-[0.14em]"
             style={{ color: EMERALD }}
@@ -316,7 +340,11 @@ export function CertificateView(data: CertificateData) {
             Atas keberhasilannya dalam memenuhi standar kelulusan evaluasi capaian belajar
             Pendidikan Aswaja & Ke-NU-an pada{" "}
             <strong style={{ color: EMERALD }}>
-              MODUL {data.babNumber} {data.babName.replace(/--/g, "").trim()}
+              MODUL {data.babNumber}{" "}
+              {data.babName
+                .replace(/^-?\s*/, "")
+                .replace(/--/g, "")
+                .trim()}
             </strong>{" "}
             dengan skor <strong style={{ color: EMERALD }}>{data.bestSkor}</strong>.
           </p>
@@ -338,8 +366,8 @@ export function CertificateView(data: CertificateData) {
         </section>
 
         {/* BAWAH */}
-        <footer className="grid grid-cols-[1fr_1fr_1.15fr] items-end gap-[2.5cqw]">
-          <div className="flex items-end justify-start pl-[1.2cqw]">
+        <footer className="grid grid-cols-3 items-end gap-[2cqw]">
+          <div className="flex items-end justify-start pl-[1cqw]">
             <HologramSeal />
           </div>
 
@@ -350,7 +378,7 @@ export function CertificateView(data: CertificateData) {
               bgColor="transparent"
               fgColor={EMERALD}
               level="M"
-              className="h-[8cqw] w-[8cqw]"
+              className="h-[7cqw] w-[7cqw]"
             />
 
             <span
@@ -370,16 +398,12 @@ export function CertificateView(data: CertificateData) {
             </a>
           </div>
 
-          <div className="flex min-w-[24cqw] flex-col items-center pr-[1.2cqw]">
+          <div className="flex flex-col items-center pr-[1cqw]">
             <p className="text-[1.3cqw]" style={{ color: "#3a4741" }}>
               Malang, {data.tanggal}
             </p>
-            {/* Margin minus (-mb) pada gambar tanda tangan dihapus agar tidak melorot nabrak bingkai */}
-            <img
-              src={signature.url}
-              alt="Tanda tangan Ahmad Wildan Afif, M.Pd."
-              className="h-[12.5cqw] w-[22cqw] object-contain"
-            />
+            {/* Tempat kosong untuk tanda tangan seimbang dengan tinggi hologram di kiri */}
+            <div className="h-[4.5cqw] w-full"></div>
             <p
               className="w-full pt-[0.45cqw] text-center font-serif text-[1.7cqw] font-bold"
               style={{ color: EMERALD, borderTop: `1px solid ${GOLD}` }}
