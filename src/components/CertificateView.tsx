@@ -53,12 +53,7 @@ function SecurityGrid({ className }: { className?: string }) {
     <svg className={className} aria-hidden="true">
       <defs>
         <pattern id="security-grid" width="18" height="18" patternUnits="userSpaceOnUse">
-          <path
-            d="M0 18L18 0M-3 3L3 -3M15 21L21 15"
-            stroke={GOLD}
-            strokeWidth="0.6"
-            fill="none"
-          />
+          <path d="M0 18L18 0M-3 3L3 -3M15 21L21 15" stroke={GOLD} strokeWidth="0.6" fill="none" />
         </pattern>
       </defs>
       <rect width="100%" height="100%" fill="url(#security-grid)" />
@@ -157,21 +152,25 @@ function HologramSeal() {
           </linearGradient>
         </defs>
 
-        {/* Cincin luar emas ganda */}
         <circle cx="60" cy="60" r="56" fill="url(#seal-ring)" />
-        <circle cx="60" cy="60" r="52" fill="none" stroke="#92610a" strokeWidth="0.8" opacity="0.7" />
+        <circle
+          cx="60"
+          cy="60"
+          r="52"
+          fill="none"
+          stroke="#92610a"
+          strokeWidth="0.8"
+          opacity="0.7"
+        />
         <circle cx="60" cy="60" r="48.5" fill={IVORY} />
 
-        {/* Inti kaca emerald */}
         <circle cx="60" cy="60" r="42" fill="url(#seal-glass)" />
 
-        {/* Orbit bintang sembilan tipis */}
         <circle cx="60" cy="60" r="30" fill="none" stroke={GOLD} strokeWidth="0.7" opacity="0.85" />
         <g fill={GOLD} opacity="0.95">
           <NineStars cx={60} cy={60} r={30} size={3.4} />
         </g>
 
-        {/* Bintang pusat + monogram */}
         <g fill={GOLD}>
           <Star x={60} y={50} s={7.5} />
         </g>
@@ -188,19 +187,23 @@ function HologramSeal() {
           ALH
         </text>
 
-        {/* Kilau kaca diagonal */}
         <path d="M18 60 A42 42 0 0 1 60 18 L60 34 A26 26 0 0 0 34 60 Z" fill="url(#seal-sheen)" />
       </svg>
     </div>
   );
 }
 
-/** Garis-garis diagonal emas transparan yang menyelimuti seluruh sertifikat. */
 function GoldVeil({ className }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 1200 850" preserveAspectRatio="none" aria-hidden="true">
       <defs>
-        <pattern id="gold-veil" width="90" height="90" patternUnits="userSpaceOnUse" patternTransform="rotate(28)">
+        <pattern
+          id="gold-veil"
+          width="90"
+          height="90"
+          patternUnits="userSpaceOnUse"
+          patternTransform="rotate(28)"
+        >
           <line x1="0" y1="0" x2="0" y2="90" stroke={GOLD} strokeWidth="1" />
           <line x1="30" y1="0" x2="30" y2="90" stroke={GOLD} strokeWidth="0.4" />
           <line x1="64" y1="0" x2="64" y2="90" stroke={GOLD} strokeWidth="0.4" />
@@ -211,7 +214,6 @@ function GoldVeil({ className }: { className?: string }) {
   );
 }
 
-/** Aksen gelombang lengkung emerald + emas pada sudut. */
 function CornerWave({ position }: { position: "tl" | "br" }) {
   const flip = position === "br" ? "rotate(180 100 100)" : undefined;
   return (
@@ -232,7 +234,6 @@ function CornerWave({ position }: { position: "tl" | "br" }) {
   );
 }
 
-/** Pita emas dengan ujung lancip sebagai latar nomor registrasi. */
 function GoldRibbon({ children }: { children: React.ReactNode }) {
   return (
     <div className="relative mt-[1.2cqw] inline-flex items-center justify-center">
@@ -246,7 +247,8 @@ function GoldRibbon({ children }: { children: React.ReactNode }) {
         <path d="M10 0 L0 22 L10 44" fill="#ca8a04" opacity="0.35" />
         <path d="M210 0 L220 22 L210 44" fill="#fde047" opacity="0.45" />
       </svg>
-      <span className="relative z-10 px-[3cqw] py-[0.5cqw] text-[1.3cqw] font-semibold tracking-[0.22em]"
+      <span
+        className="relative z-10 px-[3cqw] py-[0.5cqw] text-[1.3cqw] font-semibold tracking-[0.22em]"
         style={{ color: "#3f2d05" }}
       >
         {children}
@@ -265,23 +267,23 @@ export function CertificateView(data: CertificateData) {
       <CornerWave position="tl" />
       <CornerWave position="br" />
 
-      {/* Latar: kisi pengaman emas samar + watermark NU besar + selubung garis emas */}
       <SecurityGrid className="pointer-events-none absolute inset-0 z-0 h-full w-full opacity-[0.04]" />
       <GoldVeil className="pointer-events-none absolute inset-0 z-0 h-full w-full opacity-[0.05]" />
       <GuillocheLines className="pointer-events-none absolute inset-0 z-0 h-full w-full opacity-[0.05]" />
       <NuWatermark className="pointer-events-none absolute top-1/2 left-1/2 z-0 h-[70%] w-[70%] -translate-x-1/2 -translate-y-1/2 opacity-[0.06]" />
 
-      {/* Bingkai emas ganda di sisi dalam, berjarak dari tepi dan konten */}
+      {/* SOLUSI 1: Bingkai Emas didorong lebih mendekati batas kertas */}
       <div
-        className="pointer-events-none absolute inset-[3.2cqw] z-0 rounded-sm"
+        className="pointer-events-none absolute inset-[2.5cqw] z-0 rounded-sm"
         style={{ border: `1px solid ${GOLD}` }}
       />
       <div
-        className="pointer-events-none absolute inset-[3.9cqw] z-0 rounded-sm"
+        className="pointer-events-none absolute inset-[3.2cqw] z-0 rounded-sm"
         style={{ border: `1px solid ${GOLD}`, opacity: 0.6 }}
       />
 
-      <div className="relative z-10 flex h-full flex-col justify-between px-[7cqw] py-[5.5cqw] text-center">
+      {/* SOLUSI 2: Bantalan Atas-Bawah (py) ditambah dari 5.5cqw menjadi 6.5cqw agar elemen footer naik */}
+      <div className="relative z-10 flex h-full flex-col justify-between px-[7cqw] py-[6.5cqw] text-center">
         {/* ATAS */}
         <header className="flex flex-col items-center">
           <LogoALH className="h-[8cqw] w-[8cqw]" />
@@ -296,10 +298,7 @@ export function CertificateView(data: CertificateData) {
 
         {/* TENGAH */}
         <section className="flex flex-col items-center">
-          <p
-            className="text-[1.25cqw] font-semibold tracking-[0.3em]"
-            style={{ color: "#5b6a63" }}
-          >
+          <p className="text-[1.25cqw] font-semibold tracking-[0.3em]" style={{ color: "#5b6a63" }}>
             DIBERIKAN KEPADA:
           </p>
           <p
@@ -309,6 +308,7 @@ export function CertificateView(data: CertificateData) {
             {data.nama}
           </p>
           <div className="mx-auto mt-[0.8cqw] h-px w-2/3" style={{ backgroundColor: GOLD }} />
+
           <p
             className="mt-[1.2cqw] max-w-[74cqw] text-[1.7cqw] leading-relaxed"
             style={{ color: "#3a4741" }}
@@ -316,11 +316,11 @@ export function CertificateView(data: CertificateData) {
             Atas keberhasilannya dalam memenuhi standar kelulusan evaluasi capaian belajar
             Pendidikan Aswaja & Ke-NU-an pada{" "}
             <strong style={{ color: EMERALD }}>
-              MODUL {data.babNumber} {data.babName}
+              MODUL {data.babNumber} {data.babName.replace(/--/g, "").trim()}
             </strong>{" "}
-            dengan skor{" "}
-            <strong style={{ color: EMERALD }}>{data.bestSkor}</strong>.
+            dengan skor <strong style={{ color: EMERALD }}>{data.bestSkor}</strong>.
           </p>
+
           <p
             className="mx-auto mt-[1.2cqw] max-w-[76cqw] text-[1.3cqw] leading-relaxed italic"
             style={{ color: "#6b7770" }}
@@ -374,10 +374,11 @@ export function CertificateView(data: CertificateData) {
             <p className="text-[1.3cqw]" style={{ color: "#3a4741" }}>
               Malang, {data.tanggal}
             </p>
+            {/* Margin minus (-mb) pada gambar tanda tangan dihapus agar tidak melorot nabrak bingkai */}
             <img
               src={signature.url}
               alt="Tanda tangan Ahmad Wildan Afif, M.Pd."
-              className="-mb-[0.8cqw] h-[12.5cqw] w-[22cqw] object-contain"
+              className="h-[12.5cqw] w-[22cqw] object-contain"
             />
             <p
               className="w-full pt-[0.45cqw] text-center font-serif text-[1.7cqw] font-bold"

@@ -119,6 +119,12 @@ function RootShell({ children }: { children: ReactNode }) {
         <HeadContent />
       </head>
       <body>
+        <img
+          src="/nu.png"
+          alt=""
+          aria-hidden="true"
+          className="pointer-events-none fixed inset-0 z-[-1] h-full w-full object-contain opacity-5 animate-pulse"
+        />
         {children}
         <Scripts />
       </body>

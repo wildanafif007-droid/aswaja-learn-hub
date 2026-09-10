@@ -118,7 +118,7 @@
   }
 
   body {
-    background-color: var(--color-background);
+    @apply bg-gradient-to-br from-emerald-50 to-white;
     color: var(--color-foreground);
     font-family: var(--font-sans);
   }
