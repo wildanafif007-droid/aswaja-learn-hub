@@ -1,8 +1,7 @@
 import React from "react";
-
 import signature from "@/assets/signature.png";
 
-export default function CertificateView({
+export function CertificateView({
   studentName = "Nama Siswa",
   moduleName = "MODUL 1 (Proses Perkembangan Islam di Indonesia)",
   score = 100,
