@@ -176,7 +176,6 @@ function HologramSeal({ className }: { className?: string }) {
             <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
           </linearGradient>
         </defs>
-
         <circle cx="60" cy="60" r="56" fill="url(#holo-ring)" />
         <circle
           cx="60"
@@ -200,7 +199,6 @@ function HologramSeal({ className }: { className?: string }) {
           opacity="0.9"
         />
         <NineStars cx={60} cy={60} r={30} size={3.4} fill="url(#holo-ring)" />
-
         <g fill="url(#holo-ring)">
           <Star x={60} y={50} s={7.5} />
         </g>
@@ -284,8 +282,7 @@ export function CertificateView(data: CertificateData) {
         style={{ border: `1px solid ${GOLD}`, opacity: 0.6 }}
       />
 
-      {/* pb-[4cqw] memastikan footer tidak membentur bingkai emas bawah */}
-      <div className="relative z-10 flex h-full flex-col justify-between px-[8cqw] pt-[4.5cqw] pb-[4cqw] text-center">
+      <div className="relative z-10 flex h-full flex-col justify-between px-[8cqw] pt-[4.5cqw] pb-[4.5cqw] text-center">
         {/* ================= HEADER ATAS ================= */}
         <header className="flex flex-col items-center">
           <LogoALH className="h-[8.5cqw] w-[8.5cqw]" />
@@ -298,10 +295,8 @@ export function CertificateView(data: CertificateData) {
           <GoldRibbon>NO. REG: {data.noReg}</GoldRibbon>
         </header>
 
-        {/* ================= KONTEN TENGAH ================= 
-            Menggunakan flex-1 dan gap dinamis agar otomatis mendistribusikan ruang 
-            tanpa terlihat kosong melompong. Ruang nafas terisi rapi. */}
-        <section className="flex flex-col items-center justify-center flex-1 my-[1.5cqw] gap-[0.8cqw]">
+        {/* ================= KONTEN TENGAH ================= */}
+        <section className="flex flex-col items-center justify-center flex-1 my-[1cqw] gap-[1cqw]">
           <div>
             <p
               className="text-[1.05cqw] font-semibold tracking-[0.3em]"
@@ -340,24 +335,20 @@ export function CertificateView(data: CertificateData) {
           </p>
         </section>
 
-        {/* ================= FOOTER BAWAH ================= 
-            Menggunakan items-end, namun margin-bottom (mb) pada Hologram dan QR Code 
-            dihitung matematis agar ketiga intinya SEJAJAR ditarik lurus dari kiri ke kanan. */}
-        <footer className="grid grid-cols-3 items-end w-full">
-          {/* KIRI: Hologram (14cqw). mb-[2.5cqw] menaikkannya agar persis sejajar dengan tengah TTD & QR */}
-          <div className="flex items-end justify-start pl-[1cqw] mb-[2.5cqw]">
+        {/* ================= FOOTER BAWAH ================= */}
+        <footer className="grid grid-cols-3 items-end w-full gap-[2cqw]">
+          <div className="flex items-end justify-start pl-[1cqw] pb-[1cqw]">
             <HologramSeal className="h-[14cqw] w-[14cqw]" />
           </div>
 
-          {/* TENGAH: QR Code (12cqw - diperbesar drastis). mb-[1.5cqw] meratakannya ke tengah. */}
-          <div className="flex flex-col items-center gap-[0.4cqw] mb-[1.5cqw]">
+          <div className="flex flex-col items-center justify-end pb-[1cqw] gap-[0.4cqw]">
             <QRCodeSVG
               value={data.verifyUrl}
               size={130}
               bgColor="transparent"
               fgColor={EMERALD}
               level="M"
-              className="h-[12cqw] w-[12cqw]"
+              className="h-[12cqw] w-[12cqw] mb-[0.2cqw]"
             />
             <span
               className="text-[0.95cqw] font-semibold tracking-[0.24em]"
@@ -373,23 +364,21 @@ export function CertificateView(data: CertificateData) {
             </span>
           </div>
 
-          {/* KANAN: Tanda Tangan Besar (15cqw). Mix-blend diletakkan MUTLAK agar background putih hilang 100% */}
-          <div className="flex flex-col items-center pr-[1cqw]">
+          <div className="flex flex-col items-center justify-end pr-[1cqw]">
             <p className="text-[1.1cqw]" style={{ color: "#3a4741" }}>
               Malang, {data.tanggal}
             </p>
 
-            {/* Tanda Tangan sangat besar & transparan (sesuai referensi PDF) */}
             <img
               src={signature}
               alt="Tanda tangan Ahmad Wildan Afif, M.Pd."
-              className="h-[15cqw] w-[28cqw] object-contain my-[-0.5cqw] contrast-125 brightness-95"
+              className="h-[15cqw] w-[28cqw] object-contain my-[-0.5cqw] contrast-125 brightness-95 mix-blend-multiply"
               style={{ mixBlendMode: "multiply" }}
             />
 
             <div
               className="w-full text-center pt-[0.3cqw]"
-              style={{ borderTop: `1.2px solid ${GOLD}` }}
+              style={{ borderTop: `1.5px solid ${GOLD}` }}
             >
               <p className="font-serif text-[1.4cqw] font-bold" style={{ color: EMERALD }}>
                 Ahmad Wildan Afif, M.Pd.
