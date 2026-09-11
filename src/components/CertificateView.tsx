@@ -147,9 +147,10 @@ function NuWatermark({ className }: { className?: string }) {
   );
 }
 
+/** Hologram Seal (Ukuran dan posisi dipertahankan murni tanpa dirusak) */
 function HologramSeal() {
   return (
-    <div className="relative h-[13cqw] w-[13cqw] shrink-0 drop-shadow-[0_0.5cqw_1cqw_rgba(120,84,5,0.3)]">
+    <div className="relative h-[14cqw] w-[14cqw] shrink-0 drop-shadow-[0_0.5cqw_1cqw_rgba(120,84,5,0.3)]">
       <svg viewBox="0 0 120 120" className="h-full w-full">
         <defs>
           <linearGradient id="holo-ring" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -282,9 +283,10 @@ export function CertificateView(data: CertificateData) {
         style={{ border: `1px solid ${GOLD}`, opacity: 0.6 }}
       />
 
-      {/* Padding Bawah (pb) ditambahkan (pb-[4cqw]) agar footer terdorong ke atas dan tidak menempel di bingkai */}
-      <div className="relative z-10 flex h-full flex-col justify-between px-[7cqw] pt-[4cqw] pb-[4cqw] text-center">
-        {/* ATAS */}
+      {/* Padding atas-bawah diseimbangkan (pt-5, pb-4.5) agar isi sertifikat memiliki batas lega, 
+          sehingga elemen dalam otomatis merapat namun proporsional. */}
+      <div className="relative z-10 flex h-full flex-col justify-between px-[8cqw] pt-[5cqw] pb-[4.5cqw] text-center">
+        {/* ================= ATAS ================= */}
         <header className="flex flex-col items-center">
           <LogoALH className="h-[8.5cqw] w-[8.5cqw]" />
           <h2
@@ -296,21 +298,23 @@ export function CertificateView(data: CertificateData) {
           <GoldRibbon>NO. REG: {data.noReg}</GoldRibbon>
         </header>
 
-        {/* TENGAH: Jarak antar paragraf (mt) dirapatkan sedikit agar menyisakan ruang nafas (breathing room) untuk footer */}
-        <section className="flex flex-col items-center my-auto">
+        {/* ================= TENGAH ================= 
+            Menggunakan flex-1 dan justify-center untuk mengisi ruang secara merata.
+            Spasi antar paragraf dinaikkan sedikit untuk mengisi "kekosongan" tanpa terlihat berjarak ekstrem. */}
+        <section className="flex flex-col items-center justify-center flex-1 my-[1.5cqw]">
           <p className="text-[1.05cqw] font-semibold tracking-[0.3em]" style={{ color: "#5b6a63" }}>
             DIBERIKAN KEPADA:
           </p>
           <p
-            className="mt-[0.2cqw] font-serif text-[4cqw] leading-tight font-bold"
+            className="mt-[0.5cqw] font-serif text-[4.2cqw] leading-tight font-bold"
             style={{ color: EMERALD }}
           >
             {data.nama}
           </p>
-          <div className="mx-auto mt-[0.2cqw] h-px w-1/2" style={{ backgroundColor: GOLD }} />
+          <div className="mx-auto mt-[0.6cqw] h-px w-3/5" style={{ backgroundColor: GOLD }} />
 
           <p
-            className="mt-[0.4cqw] max-w-[72cqw] text-[1.4cqw] leading-relaxed"
+            className="mt-[1cqw] max-w-[72cqw] text-[1.45cqw] leading-relaxed"
             style={{ color: "#3a4741" }}
           >
             Atas keberhasilannya dalam memenuhi standar kelulusan evaluasi capaian belajar
@@ -322,7 +326,7 @@ export function CertificateView(data: CertificateData) {
           </p>
 
           <p
-            className="mx-auto mt-[0.4cqw] max-w-[74cqw] text-[1.05cqw] leading-relaxed italic"
+            className="mx-auto mt-[1cqw] max-w-[74cqw] text-[1.1cqw] leading-relaxed italic"
             style={{ color: "#6b7770" }}
           >
             E-Sertifikat ini diterbitkan secara sah oleh sistem e-learning berdasarkan pemenuhan
@@ -330,29 +334,31 @@ export function CertificateView(data: CertificateData) {
             penguatan akidah, fikih ibadah, serta implementasi amaliyah Ahlussunnah wal Jamaah.
           </p>
           <p
-            className="mt-[0.3cqw] text-[0.9cqw] font-semibold tracking-[0.22em]"
+            className="mt-[0.8cqw] text-[0.95cqw] font-semibold tracking-[0.22em]"
             style={{ color: "#8a9490" }}
           >
             LKS TAQWA — CV. KARYA DIGITAL PUSTAKA
           </p>
         </section>
 
-        {/* BAWAH: Ukuran ketiga elemen (Hologram, QR, TTD) diseimbangkan (diperbesar setara) & sejajar rata bawah (items-end) */}
-        <footer className="grid grid-cols-3 items-end gap-[2cqw]">
-          {/* KIRI: Hologram diseimbangkan ukurannya menjadi 13cqw */}
-          <div className="flex items-end justify-start pl-[0.5cqw]">
+        {/* ================= BAWAH ================= 
+            Ketiga elemen diseimbangkan. Ukuran QR dan TTD diperbesar secara signifikan.
+            Semua disejajarkan dengan rapi di bawah (items-end). */}
+        <footer className="grid grid-cols-3 items-end w-full">
+          {/* KIRI: Hologram dipertahankan pada 14cqw dan diberi sedikit padding agar center visual */}
+          <div className="flex items-end justify-start pl-[1cqw] pb-[0.5cqw]">
             <HologramSeal />
           </div>
 
-          {/* TENGAH: QR diperbesar menjadi 9cqw agar setara keseimbangannya dengan Hologram */}
-          <div className="flex flex-col items-center gap-[0.4cqw] pb-[0.2cqw]">
+          {/* TENGAH: QR Code diperbesar drastis (size 120, w-10 h-10) mengisi kekosongan tengah */}
+          <div className="flex flex-col items-center gap-[0.5cqw] pb-[0.5cqw]">
             <QRCodeSVG
               value={data.verifyUrl}
-              size={110}
+              size={120}
               bgColor="transparent"
               fgColor={EMERALD}
               level="M"
-              className="h-[9cqw] w-[9cqw]"
+              className="h-[10cqw] w-[10cqw]"
             />
             <span
               className="text-[0.95cqw] font-semibold tracking-[0.24em]"
@@ -361,32 +367,36 @@ export function CertificateView(data: CertificateData) {
               ASWAJA LEARN HUB
             </span>
             <span
-              className="rounded-full border border-gray-300 px-[1.4cqw] py-[0.15cqw] text-[0.9cqw] font-semibold tracking-wide"
+              className="rounded-full border border-gray-300 px-[1.5cqw] py-[0.2cqw] text-[0.9cqw] font-semibold tracking-wide"
               style={{ color: EMERALD }}
             >
               Verifikasi Sertifikat
             </span>
           </div>
 
-          {/* KANAN: Tanda tangan diseimbangkan lebarnya agar tidak memakan tinggi, my diatur agar pas rata */}
-          <div className="flex flex-col items-center pr-[0.5cqw]">
-            <p className="text-[1.05cqw]" style={{ color: "#3a4741" }}>
+          {/* KANAN: Tanda tangan diperbesar (h-16 w-28).
+              Menggunakan negatif margin (-my-2.5) agar area gambar yang besar (namun isinya kosong di pinggir) 
+              tidak merusak/mendorong teks. Hasilnya padat dan pas! */}
+          <div className="flex flex-col items-center pr-[1cqw]">
+            <p className="text-[1.1cqw] relative z-10" style={{ color: "#3a4741" }}>
               Malang, {data.tanggal}
             </p>
             <img
               src={signature}
               alt="Tanda tangan Ahmad Wildan Afif, M.Pd."
-              className="h-[12cqw] w-[26cqw] object-contain my-[-0.5cqw] mix-blend-multiply contrast-125 brightness-90"
+              className="h-[16cqw] w-[28cqw] object-contain -my-[2.5cqw] mix-blend-multiply contrast-125 brightness-95 relative z-0"
             />
-            <p
-              className="w-full pt-[0.2cqw] text-center font-serif text-[1.4cqw] font-bold"
-              style={{ color: EMERALD, borderTop: `1px solid ${GOLD}` }}
+            <div
+              className="w-full text-center relative z-10 pt-[0.4cqw]"
+              style={{ borderTop: `1.5px solid ${GOLD}` }}
             >
-              Ahmad Wildan Afif, M.Pd.
-            </p>
-            <p className="text-[1cqw]" style={{ color: "#6b7770" }}>
-              Guru Pengampu
-            </p>
+              <p className="font-serif text-[1.4cqw] font-bold" style={{ color: EMERALD }}>
+                Ahmad Wildan Afif, M.Pd.
+              </p>
+              <p className="text-[1cqw]" style={{ color: "#6b7770" }}>
+                Guru Pengampu
+              </p>
+            </div>
           </div>
         </footer>
       </div>
