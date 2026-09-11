@@ -141,7 +141,7 @@ function NuWatermark({ className }: { className?: string }) {
         <path d="M42 105 q58 34 116 0" />
       </g>
       <g fill={EMERALD}>
-        <NineStars cx={100} cy={100} r={80} size={9} />
+        <NineStars cx="100" cy="100" r={80} size={9} />
       </g>
     </svg>
   );
@@ -284,9 +284,7 @@ export function CertificateView(data: CertificateData) {
         style={{ border: `1px solid ${GOLD}`, opacity: 0.6 }}
       />
 
-      {/* Kontainer utama dengan distribusi ruang vertikal yang seimbang (atas ke bawah) */}
       <div className="relative z-10 flex h-full flex-col justify-between px-[8cqw] pt-[4cqw] pb-[3cqw] text-center">
-        {/* HEADER: Diturunkan posisinya secara ideal agar ada jarak elegan dari bingkai atas */}
         <header className="flex flex-col items-center pt-[1.2cqw]">
           <LogoALH className="h-[7cqw] w-[7cqw]" />
           <h2
@@ -298,7 +296,6 @@ export function CertificateView(data: CertificateData) {
           <GoldRibbon>NO. REG: {data.noReg}</GoldRibbon>
         </header>
 
-        {/* TENGAH: Diatur proporsional mengisi ruang tengah tanpa celah kosong berlebih */}
         <section className="flex flex-col items-center justify-center flex-1 my-[1.2cqw] gap-[0.8cqw]">
           <div>
             <p
@@ -341,7 +338,6 @@ export function CertificateView(data: CertificateData) {
           </p>
         </section>
 
-        {/* FOOTER: Hologram, QR Code, dan Tanda Tangan Besar Tebal Sejajar Presisi */}
         <footer className="grid grid-cols-3 items-end w-full pt-[0.5cqw]">
           <div className="flex items-end justify-start pl-[0.5cqw]">
             <HologramSeal className="h-[13cqw] w-[13cqw]" />
@@ -375,7 +371,6 @@ export function CertificateView(data: CertificateData) {
               Malang, {data.tanggal}
             </p>
 
-            {/* Tanda tangan diperbesar selebar ukuran hologram (h-[13cqw] w-[18cqw]) dan dipertebal kontrasnya */}
             <div className="relative my-[-1.8cqw] flex justify-center items-center">
               <img
                 src={signature}
