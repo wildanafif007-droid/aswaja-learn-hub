@@ -150,7 +150,7 @@ function NuWatermark({ className }: { className?: string }) {
 function HologramSeal({ className }: { className?: string }) {
   return (
     <div
-      className={`relative shrink-0 drop-shadow-[0_0.5cqw_1cqw_rgba(120,84,5,0.3)] ${className || "h-[13cqw] w-[13cqw]"}`}
+      className={`relative shrink-0 drop-shadow-[0_0.5cqw_1cqw_rgba(120,84,5,0.3)] ${className || "h-[12cqw] w-[12cqw]"}`}
     >
       <svg viewBox="0 0 120 120" className="h-full w-full">
         <defs>
@@ -240,7 +240,7 @@ function CornerWave({ position }: { position: "tl" | "br" }) {
 
 function GoldRibbon({ children }: { children: React.ReactNode }) {
   return (
-    <div className="relative mt-[0.6cqw] inline-flex items-center justify-center">
+    <div className="relative mt-[0.5cqw] inline-flex items-center justify-center">
       <svg
         viewBox="0 0 220 44"
         preserveAspectRatio="none"
@@ -250,7 +250,7 @@ function GoldRibbon({ children }: { children: React.ReactNode }) {
         <path d="M10 0 H210 L220 22 L210 44 H10 L0 22 Z" fill={GOLD} />
       </svg>
       <span
-        className="relative z-10 px-[3cqw] py-[0.3cqw] text-[1.1cqw] font-semibold tracking-[0.22em]"
+        className="relative z-10 px-[3cqw] py-[0.2cqw] text-[1.05cqw] font-semibold tracking-[0.22em]"
         style={{ color: "#3f2d05" }}
       >
         {children}
@@ -284,12 +284,13 @@ export function CertificateView(data: CertificateData) {
         style={{ border: `1px solid ${GOLD}`, opacity: 0.6 }}
       />
 
-      <div className="relative z-10 flex h-full flex-col justify-between px-[8cqw] pt-[4cqw] pb-[3.5cqw] text-center">
+      {/* Padding dan tata letak utama dioptimalkan agar tidak ada elemen keluar batas */}
+      <div className="relative z-10 flex h-full flex-col justify-between px-[7.5cqw] pt-[3.5cqw] pb-[3cqw] text-center">
         {/* HEADER */}
         <header className="flex flex-col items-center">
-          <LogoALH className="h-[8cqw] w-[8cqw]" />
+          <LogoALH className="h-[7.2cqw] w-[7.2cqw]" />
           <h2
-            className="mt-[0.2cqw] font-serif text-[3.4cqw] leading-none font-bold tracking-[0.14em]"
+            className="mt-[0.2cqw] font-serif text-[3.2cqw] leading-none font-bold tracking-[0.14em]"
             style={{ color: EMERALD }}
           >
             SERTIFIKAT PENGHARGAAN
@@ -297,10 +298,13 @@ export function CertificateView(data: CertificateData) {
           <GoldRibbon>NO. REG: {data.noReg}</GoldRibbon>
         </header>
 
-        {/* TENGAH */}
-        <section className="flex flex-col items-center justify-center flex-1 my-[1cqw] gap-[0.6cqw]">
+        {/* TENGAH: Jarak vertikal dirapatkan proporsional untuk mengisi kekosongan ruang secara elegan */}
+        <section className="flex flex-col items-center justify-center flex-1 my-[0.8cqw] gap-[0.7cqw]">
           <div>
-            <p className="text-[1cqw] font-semibold tracking-[0.3em]" style={{ color: "#5b6a63" }}>
+            <p
+              className="text-[0.95cqw] font-semibold tracking-[0.3em]"
+              style={{ color: "#5b6a63" }}
+            >
               DIBERIKAN KEPADA:
             </p>
             <p
@@ -322,7 +326,7 @@ export function CertificateView(data: CertificateData) {
           </p>
 
           <p
-            className="max-w-[72cqw] text-[1cqw] leading-relaxed italic"
+            className="max-w-[72cqw] text-[1.02cqw] leading-relaxed italic"
             style={{ color: "#6b7770" }}
           >
             E-Sertifikat ini diterbitkan secara sah oleh sistem e-learning berdasarkan pemenuhan
@@ -337,50 +341,51 @@ export function CertificateView(data: CertificateData) {
           </p>
         </section>
 
-        {/* FOOTER */}
-        <footer className="grid grid-cols-3 items-end w-full pt-[0.5cqw]">
-          <div className="flex items-end justify-start pl-[1cqw]">
-            <HologramSeal className="h-[13cqw] w-[13cqw]" />
+        {/* FOOTER: Proporsional di dalam batas bingkai, TTD besar, background putih lenyap */}
+        <footer className="grid grid-cols-3 items-end w-full pt-[0.2cqw]">
+          <div className="flex items-end justify-start pl-[0.5cqw]">
+            <HologramSeal className="h-[12cqw] w-[12cqw]" />
           </div>
 
-          <div className="flex flex-col items-center gap-[0.3cqw]">
+          <div className="flex flex-col items-center gap-[0.2cqw]">
             <QRCodeSVG
               value={data.verifyUrl}
-              size={120}
+              size={110}
               bgColor="transparent"
               fgColor={EMERALD}
               level="M"
-              className="h-[11cqw] w-[11cqw]"
+              className="h-[10.5cqw] w-[10.5cqw]"
             />
             <span
-              className="text-[0.95cqw] font-semibold tracking-[0.24em]"
+              className="text-[0.9cqw] font-semibold tracking-[0.24em]"
               style={{ color: "#5b6a63" }}
             >
               ASWAJA LEARN HUB
             </span>
             <span
-              className="rounded-full border border-gray-300 px-[1.3cqw] py-[0.1cqw] text-[0.8cqw] font-semibold tracking-wide"
+              className="rounded-full border border-gray-300 px-[1.2cqw] py-[0.1cqw] text-[0.78cqw] font-semibold tracking-wide"
               style={{ color: EMERALD }}
             >
               Verifikasi Sertifikat
             </span>
           </div>
 
-          <div className="flex flex-col items-center pr-[1cqw]">
-            <p className="text-[1.05cqw]" style={{ color: "#3a4741" }}>
+          <div className="flex flex-col items-center pr-[0.5cqw]">
+            <p className="text-[1.02cqw]" style={{ color: "#3a4741" }}>
               Malang, {data.tanggal}
             </p>
 
+            {/* TTD Diperbesar ideal (15cqw x 26cqw) dengan mix-blend-mode multiply & contrast murni untuk hilangkan kotak abu-abu */}
             <div className="relative my-[-1.5cqw] flex justify-center items-center">
               <img
                 src={signature}
                 alt="Tanda tangan Ahmad Wildan Afif, M.Pd."
                 className="object-contain"
                 style={{
-                  height: "13.5cqw",
-                  width: "24cqw",
+                  height: "15cqw",
+                  width: "26cqw",
                   mixBlendMode: "multiply",
-                  filter: "contrast(180%) brightness(95%)",
+                  filter: "contrast(200%) brightness(95%)",
                 }}
               />
             </div>
