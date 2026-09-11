@@ -147,10 +147,10 @@ function NuWatermark({ className }: { className?: string }) {
   );
 }
 
-/** Segel Hologram Asli Sempurna dengan 9 Bintang & Lingkaran Elegan */
+/** Hologram 100% dikembalikan ke versi otentik asli milik Anda + ukurannya diperbesar */
 function HologramSeal() {
   return (
-    <div className="relative h-[14cqw] w-[14cqw] shrink-0 drop-shadow-[0_0.5cqw_1cqw_rgba(120,84,5,0.3)]">
+    <div className="relative h-[13.5cqw] w-[13.5cqw] shrink-0 drop-shadow-[0_0.5cqw_1cqw_rgba(120,84,5,0.3)]">
       <svg viewBox="0 0 120 120" className="h-full w-full">
         <defs>
           <linearGradient id="holo-ring" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -198,8 +198,6 @@ function HologramSeal() {
           strokeWidth="1"
           opacity="0.9"
         />
-
-        {/* 9 Bintang Khas Hologram Asli */}
         <NineStars cx={60} cy={60} r={30} size={3.4} fill="url(#holo-ring)" />
 
         <g fill="url(#holo-ring)">
@@ -241,7 +239,7 @@ function CornerWave({ position }: { position: "tl" | "br" }) {
 
 function GoldRibbon({ children }: { children: React.ReactNode }) {
   return (
-    <div className="relative mt-[0.8cqw] inline-flex items-center justify-center">
+    <div className="relative mt-[0.6cqw] inline-flex items-center justify-center">
       <svg
         viewBox="0 0 220 44"
         preserveAspectRatio="none"
@@ -251,7 +249,7 @@ function GoldRibbon({ children }: { children: React.ReactNode }) {
         <path d="M10 0 H210 L220 22 L210 44 H10 L0 22 Z" fill={GOLD} />
       </svg>
       <span
-        className="relative z-10 px-[3cqw] py-[0.4cqw] text-[1.2cqw] font-semibold tracking-[0.22em]"
+        className="relative z-10 px-[3cqw] py-[0.3cqw] text-[1.1cqw] font-semibold tracking-[0.22em]"
         style={{ color: "#3f2d05" }}
       >
         {children}
@@ -285,12 +283,13 @@ export function CertificateView(data: CertificateData) {
         style={{ border: `1px solid ${GOLD}`, opacity: 0.6 }}
       />
 
-      <div className="relative z-10 flex h-full flex-col justify-between px-[7cqw] pt-[4.5cqw] pb-[2.8cqw] text-center">
+      {/* Jarak atas & bawah ditarik agar elemen proporsional dan tidak menyentuh bingkai emas */}
+      <div className="relative z-10 flex h-full flex-col justify-between px-[7cqw] pt-[4.2cqw] pb-[2.4cqw] text-center">
         {/* ATAS */}
         <header className="flex flex-col items-center">
-          <LogoALH className="h-[9cqw] w-[9cqw]" />
+          <LogoALH className="h-[8.5cqw] w-[8.5cqw]" />
           <h2
-            className="mt-[0.4cqw] font-serif text-[3.8cqw] leading-none font-bold tracking-[0.14em]"
+            className="mt-[0.3cqw] font-serif text-[3.6cqw] leading-none font-bold tracking-[0.14em]"
             style={{ color: EMERALD }}
           >
             SERTIFIKAT PENGHARGAAN
@@ -300,11 +299,11 @@ export function CertificateView(data: CertificateData) {
 
         {/* TENGAH */}
         <section className="flex flex-col items-center my-auto">
-          <p className="text-[1.1cqw] font-semibold tracking-[0.3em]" style={{ color: "#5b6a63" }}>
+          <p className="text-[1.05cqw] font-semibold tracking-[0.3em]" style={{ color: "#5b6a63" }}>
             DIBERIKAN KEPADA:
           </p>
           <p
-            className="mt-[0.3cqw] font-serif text-[4.2cqw] leading-tight font-bold"
+            className="mt-[0.3cqw] font-serif text-[4cqw] leading-tight font-bold"
             style={{ color: EMERALD }}
           >
             {data.nama}
@@ -312,7 +311,7 @@ export function CertificateView(data: CertificateData) {
           <div className="mx-auto mt-[0.3cqw] h-px w-1/2" style={{ backgroundColor: GOLD }} />
 
           <p
-            className="mt-[0.6cqw] max-w-[72cqw] text-[1.5cqw] leading-relaxed"
+            className="mt-[0.5cqw] max-w-[72cqw] text-[1.4cqw] leading-relaxed"
             style={{ color: "#3a4741" }}
           >
             Atas keberhasilannya dalam memenuhi standar kelulusan evaluasi capaian belajar
@@ -324,7 +323,7 @@ export function CertificateView(data: CertificateData) {
           </p>
 
           <p
-            className="mx-auto mt-[0.6cqw] max-w-[74cqw] text-[1.1cqw] leading-relaxed italic"
+            className="mx-auto mt-[0.5cqw] max-w-[74cqw] text-[1.05cqw] leading-relaxed italic"
             style={{ color: "#6b7770" }}
           >
             E-Sertifikat ini diterbitkan secara sah oleh sistem e-learning berdasarkan pemenuhan
@@ -332,36 +331,38 @@ export function CertificateView(data: CertificateData) {
             penguatan akidah, fikih ibadah, serta implementasi amaliyah Ahlussunnah wal Jamaah.
           </p>
           <p
-            className="mt-[0.4cqw] text-[0.95cqw] font-semibold tracking-[0.22em]"
+            className="mt-[0.4cqw] text-[0.9cqw] font-semibold tracking-[0.22em]"
             style={{ color: "#8a9490" }}
           >
             LKS TAQWA — CV. KARYA DIGITAL PUSTAKA
           </p>
         </section>
 
-        {/* BAWAH: Hologram Asli Bermain Bintang, QR & Tanda Tangan Besar Transparan, Posisi Ditarik Naik Pas */}
-        <footer className="grid grid-cols-3 items-end gap-[2cqw] pb-[0.5cqw]">
+        {/* BAWAH */}
+        <footer className="grid grid-cols-3 items-end gap-[2cqw] pb-[0.2cqw]">
+          {/* Hologram: Desain asli dikembalikan, ukuran diperbesar */}
           <div className="flex items-end justify-start pl-[0.5cqw]">
             <HologramSeal />
           </div>
 
           <div className="flex flex-col items-center gap-[0.3cqw]">
+            {/* QR Code diperbesar */}
             <QRCodeSVG
               value={data.verifyUrl}
-              size={95}
+              size={100}
               bgColor="transparent"
               fgColor={EMERALD}
               level="M"
-              className="h-[7.5cqw] w-[7.5cqw]"
+              className="h-[8cqw] w-[8cqw]"
             />
             <span
-              className="text-[0.95cqw] font-semibold tracking-[0.24em]"
+              className="text-[0.9cqw] font-semibold tracking-[0.24em]"
               style={{ color: "#5b6a63" }}
             >
               ASWAJA LEARN HUB
             </span>
             <span
-              className="rounded-full border border-gray-300 px-[1.4cqw] py-[0.2cqw] text-[0.95cqw] font-semibold tracking-wide"
+              className="rounded-full border border-gray-300 px-[1.4cqw] py-[0.15cqw] text-[0.9cqw] font-semibold tracking-wide"
               style={{ color: EMERALD }}
             >
               Verifikasi Sertifikat
@@ -369,21 +370,22 @@ export function CertificateView(data: CertificateData) {
           </div>
 
           <div className="flex flex-col items-center pr-[0.5cqw]">
-            <p className="text-[1.1cqw]" style={{ color: "#3a4741" }}>
+            <p className="text-[1.05cqw]" style={{ color: "#3a4741" }}>
               Malang, {data.tanggal}
             </p>
+            {/* Tanda Tangan: Ukuran besar (h-14, w-28), dipotong margin atasnya agar lebih naik, kontras tinggi & blend untuk hapus bg putih total */}
             <img
               src={signature}
               alt="Tanda tangan Ahmad Wildan Afif, M.Pd."
-              className="h-[12cqw] w-[26cqw] object-contain my-[-0.8cqw] mix-blend-multiply"
+              className="h-[14cqw] w-[28cqw] object-contain my-[-1cqw] mix-blend-multiply contrast-125 brightness-90"
             />
             <p
-              className="w-full pt-[0.3cqw] text-center font-serif text-[1.5cqw] font-bold"
+              className="w-full pt-[0.2cqw] text-center font-serif text-[1.4cqw] font-bold"
               style={{ color: EMERALD, borderTop: `1px solid ${GOLD}` }}
             >
               Ahmad Wildan Afif, M.Pd.
             </p>
-            <p className="text-[1.05cqw]" style={{ color: "#6b7770" }}>
+            <p className="text-[1cqw]" style={{ color: "#6b7770" }}>
               Guru Pengampu
             </p>
           </div>
