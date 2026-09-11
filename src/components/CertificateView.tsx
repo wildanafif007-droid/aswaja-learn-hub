@@ -1,5 +1,4 @@
 import { QRCodeSVG } from "qrcode.react";
-// Pastikan baris import tanda tangan ini ada di paling atas
 import signature from "@/assets/signature.png";
 
 const IVORY = "#fdfbf7";
@@ -17,7 +16,6 @@ export type CertificateData = {
   verifyUrl: string;
 };
 
-/** Sembilan bintang khas ALH/NU pada lingkaran. */
 function NineStars({
   r,
   size,
@@ -60,7 +58,6 @@ function Star({ x, y, s, rot = 0 }: { x: number; y: number; s: number; rot?: num
   return <polygon points={pts} transform={`rotate(${rot} ${x} ${y})`} />;
 }
 
-/** Kisi pengaman samar di latar belakang. */
 function SecurityGrid({ className }: { className?: string }) {
   return (
     <svg className={className} aria-hidden="true">
@@ -74,9 +71,6 @@ function SecurityGrid({ className }: { className?: string }) {
   );
 }
 
-/**
- * Ombak latar belakang berwarna Champagne Gold.
- */
 function YellowWaves({ className }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 1200 850" preserveAspectRatio="none" aria-hidden="true">
@@ -105,7 +99,6 @@ function YellowWaves({ className }: { className?: string }) {
   );
 }
 
-/** Logo ALH (Atas): Ukuran Teks dan Logo diperbesar. */
 function LogoALH({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 120 120" className={className} aria-hidden="true">
@@ -119,12 +112,10 @@ function LogoALH({ className }: { className?: string }) {
       <circle cx="60" cy="60" r="56" fill="none" stroke="url(#alh-gold)" strokeWidth="3" />
       <circle cx="60" cy="60" r="48" fill="none" stroke={EMERALD} strokeWidth="1.2" />
       <NineStars cx={60} cy={60} r={41} size={5.4} fill="url(#alh-gold)" />
-
       <g fill={EMERALD}>
         <path d="M60 34 L68 52 L64 88 L60 96 L56 88 L52 52 Z" />
         <path d="M60 34 L64 44 L56 44 Z" fill="url(#alh-gold)" />
       </g>
-      {/* Font Size diperbesar menjadi 19 agar terlihat sangat jelas */}
       <text
         x="60"
         y="67"
@@ -140,7 +131,6 @@ function LogoALH({ className }: { className?: string }) {
   );
 }
 
-/** Watermark lambang NU. */
 function NuWatermark({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 200 200" className={className} aria-hidden="true">
@@ -157,10 +147,9 @@ function NuWatermark({ className }: { className?: string }) {
   );
 }
 
-/** Segel Hologram Modern. */
 function HologramSeal() {
   return (
-    <div className="relative h-[12cqw] w-[12cqw] shrink-0 drop-shadow-[0_0.5cqw_1cqw_rgba(120,84,5,0.3)]">
+    <div className="relative h-[11cqw] w-[11cqw] shrink-0 drop-shadow-[0_0.5cqw_1cqw_rgba(120,84,5,0.3)]">
       <svg viewBox="0 0 120 120" className="h-full w-full">
         <defs>
           <linearGradient id="holo-ring" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -173,46 +162,10 @@ function HologramSeal() {
             <stop offset="60%" stopColor={EMERALD} />
             <stop offset="100%" stopColor="#022c22" />
           </radialGradient>
-          <linearGradient id="holo-rainbow" x1="0%" y1="100%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#fbcfe8" stopOpacity="0.4" />
-            <stop offset="35%" stopColor="#a7f3d0" stopOpacity="0.2" />
-            <stop offset="65%" stopColor="#fef08a" stopOpacity="0.3" />
-            <stop offset="100%" stopColor="#bae6fd" stopOpacity="0.5" />
-          </linearGradient>
-          <linearGradient id="holo-sheen" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#ffffff" stopOpacity="0.6" />
-            <stop offset="30%" stopColor="#ffffff" stopOpacity="0.1" />
-            <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
-          </linearGradient>
         </defs>
-
         <circle cx="60" cy="60" r="56" fill="url(#holo-ring)" />
-        <circle
-          cx="60"
-          cy="60"
-          r="52"
-          fill="none"
-          stroke="#713f12"
-          strokeWidth="0.8"
-          opacity="0.8"
-        />
         <circle cx="60" cy="60" r="48.5" fill={IVORY} />
         <circle cx="60" cy="60" r="42" fill="url(#holo-glass)" />
-        <circle cx="60" cy="60" r="42" fill="url(#holo-rainbow)" />
-        <circle
-          cx="60"
-          cy="60"
-          r="30"
-          fill="none"
-          stroke="url(#holo-ring)"
-          strokeWidth="1"
-          opacity="0.9"
-        />
-        <NineStars cx={60} cy={60} r={30} size={3.4} fill="url(#holo-ring)" />
-
-        <g fill="url(#holo-ring)">
-          <Star x={60} y={50} s={7.5} />
-        </g>
         <text
           x="60"
           y="76"
@@ -225,7 +178,6 @@ function HologramSeal() {
         >
           ALH
         </text>
-        <path d="M18 60 A42 42 0 0 1 60 18 L60 34 A26 26 0 0 0 34 60 Z" fill="url(#holo-sheen)" />
       </svg>
     </div>
   );
@@ -236,16 +188,12 @@ function CornerWave({ position }: { position: "tl" | "br" }) {
   return (
     <svg
       viewBox="0 0 200 200"
-      className={`pointer-events-none absolute h-[13cqw] w-[13cqw] ${
-        position === "tl" ? "top-0 left-0" : "right-0 bottom-0"
-      }`}
+      className={`pointer-events-none absolute h-[12cqw] w-[12cqw] ${position === "tl" ? "top-0 left-0" : "right-0 bottom-0"}`}
       aria-hidden="true"
     >
       <g transform={flip}>
         <path d="M0 0 H140 Q60 20 44 130 Q30 176 0 200 Z" fill={EMERALD} />
-        <path d="M0 0 H92 Q34 26 24 132 Q16 172 0 190 Z" fill="#065f46" opacity="0.55" />
         <path d="M150 0 Q66 26 52 140 Q40 186 6 200" fill="none" stroke={GOLD} strokeWidth="4" />
-        <path d="M172 0 Q84 30 70 148 Q58 190 26 200" fill="none" stroke={GOLD} strokeWidth="1.6" />
       </g>
     </svg>
   );
@@ -253,7 +201,7 @@ function CornerWave({ position }: { position: "tl" | "br" }) {
 
 function GoldRibbon({ children }: { children: React.ReactNode }) {
   return (
-    <div className="relative mt-[1.2cqw] inline-flex items-center justify-center">
+    <div className="relative mt-[0.8cqw] inline-flex items-center justify-center">
       <svg
         viewBox="0 0 220 44"
         preserveAspectRatio="none"
@@ -261,11 +209,9 @@ function GoldRibbon({ children }: { children: React.ReactNode }) {
         aria-hidden="true"
       >
         <path d="M10 0 H210 L220 22 L210 44 H10 L0 22 Z" fill={GOLD} />
-        <path d="M10 0 L0 22 L10 44" fill="#ca8a04" opacity="0.35" />
-        <path d="M210 0 L220 22 L210 44" fill="#fde047" opacity="0.45" />
       </svg>
       <span
-        className="relative z-10 px-[3cqw] py-[0.5cqw] text-[1.3cqw] font-semibold tracking-[0.22em]"
+        className="relative z-10 px-[3cqw] py-[0.4cqw] text-[1.2cqw] font-semibold tracking-[0.22em]"
         style={{ color: "#3f2d05" }}
       >
         {children}
@@ -275,7 +221,6 @@ function GoldRibbon({ children }: { children: React.ReactNode }) {
 }
 
 export function CertificateView(data: CertificateData) {
-  // Pembersihan dinamis untuk menghapus tanda strip (-) dari nama bab/modul
   const cleanBabNumber = data.babNumber.replace(/[-—–\s]+/g, "");
   const cleanBabName = data.babName.replace(/^[-—–\s]+/, "").trim();
 
@@ -287,28 +232,25 @@ export function CertificateView(data: CertificateData) {
     >
       <CornerWave position="tl" />
       <CornerWave position="br" />
-
       <SecurityGrid className="pointer-events-none absolute inset-0 z-0 h-full w-full opacity-[0.03]" />
       <YellowWaves className="pointer-events-none absolute inset-0 z-0 h-full w-full" />
-      <NuWatermark className="pointer-events-none absolute top-1/2 left-1/2 z-0 h-[70%] w-[70%] -translate-x-1/2 -translate-y-1/2 opacity-[0.1]" />
+      <NuWatermark className="pointer-events-none absolute top-1/2 left-1/2 z-0 h-[60%] w-[60%] -translate-x-1/2 -translate-y-1/2 opacity-[0.08]" />
 
       <div
-        className="pointer-events-none absolute inset-[2.5cqw] z-0 rounded-sm"
+        className="pointer-events-none absolute inset-[2.2cqw] z-0 rounded-sm"
         style={{ border: `1px solid ${GOLD}` }}
       />
       <div
-        className="pointer-events-none absolute inset-[3.2cqw] z-0 rounded-sm"
+        className="pointer-events-none absolute inset-[2.8cqw] z-0 rounded-sm"
         style={{ border: `1px solid ${GOLD}`, opacity: 0.6 }}
       />
 
-      {/* Jarak padding bawah (pb) dikurangi agar footer turun merenggang dari teks tengah */}
-      <div className="relative z-10 flex h-full flex-col justify-between px-[8cqw] pt-[7.5cqw] pb-[5.5cqw] text-center">
+      <div className="relative z-10 flex h-full flex-col justify-between px-[7cqw] pt-[5cqw] pb-[3.5cqw] text-center">
         {/* ATAS */}
         <header className="flex flex-col items-center">
-          {/* Logo ALH diperbesar menjadi 10cqw */}
-          <LogoALH className="h-[10cqw] w-[10cqw]" />
+          <LogoALH className="h-[9cqw] w-[9cqw]" />
           <h2
-            className="mt-[1cqw] font-serif text-[4.2cqw] leading-none font-bold tracking-[0.14em]"
+            className="mt-[0.5cqw] font-serif text-[3.8cqw] leading-none font-bold tracking-[0.14em]"
             style={{ color: EMERALD }}
           >
             SERTIFIKAT PENGHARGAAN
@@ -317,24 +259,24 @@ export function CertificateView(data: CertificateData) {
         </header>
 
         {/* TENGAH */}
-        <section className="flex flex-col items-center">
-          <p className="text-[1.25cqw] font-semibold tracking-[0.3em]" style={{ color: "#5b6a63" }}>
+        <section className="flex flex-col items-center my-auto">
+          <p className="text-[1.1cqw] font-semibold tracking-[0.3em]" style={{ color: "#5b6a63" }}>
             DIBERIKAN KEPADA:
           </p>
           <p
-            className="mt-[0.8cqw] font-serif text-[4.6cqw] leading-tight font-bold"
+            className="mt-[0.4cqw] font-serif text-[4.2cqw] leading-tight font-bold"
             style={{ color: EMERALD }}
           >
             {data.nama}
           </p>
-          <div className="mx-auto mt-[0.8cqw] h-px w-2/3" style={{ backgroundColor: GOLD }} />
+          <div className="mx-auto mt-[0.4cqw] h-px w-1/2" style={{ backgroundColor: GOLD }} />
 
           <p
-            className="mt-[1.2cqw] max-w-[74cqw] text-[1.7cqw] leading-relaxed"
+            className="mt-[0.7cqw] max-w-[72cqw] text-[1.5cqw] leading-relaxed"
             style={{ color: "#3a4741" }}
           >
             Atas keberhasilannya dalam memenuhi standar kelulusan evaluasi capaian belajar
-            Pendidikan Aswaja & Ke-NU-an pada {/* Format Kurung Dinamis */}
+            Pendidikan Aswaja & Ke-NU-an pada{" "}
             <strong style={{ color: EMERALD }}>
               MODUL {cleanBabNumber} ({cleanBabName})
             </strong>{" "}
@@ -342,7 +284,7 @@ export function CertificateView(data: CertificateData) {
           </p>
 
           <p
-            className="mx-auto mt-[1.2cqw] max-w-[76cqw] text-[1.3cqw] leading-relaxed italic"
+            className="mx-auto mt-[0.7cqw] max-w-[74cqw] text-[1.1cqw] leading-relaxed italic"
             style={{ color: "#6b7770" }}
           >
             E-Sertifikat ini diterbitkan secara sah oleh sistem e-learning berdasarkan pemenuhan
@@ -350,7 +292,7 @@ export function CertificateView(data: CertificateData) {
             penguatan akidah, fikih ibadah, serta implementasi amaliyah Ahlussunnah wal Jamaah.
           </p>
           <p
-            className="mt-[1cqw] text-[1.1cqw] font-semibold tracking-[0.22em]"
+            className="mt-[0.5cqw] text-[0.95cqw] font-semibold tracking-[0.22em]"
             style={{ color: "#8a9490" }}
           >
             LKS TAQWA — CV. KARYA DIGITAL PUSTAKA
@@ -359,54 +301,49 @@ export function CertificateView(data: CertificateData) {
 
         {/* BAWAH */}
         <footer className="grid grid-cols-3 items-end gap-[2cqw]">
-          <div className="flex items-end justify-start pl-[1cqw]">
+          <div className="flex items-end justify-start pl-[0.5cqw]">
             <HologramSeal />
           </div>
 
-          <div className="flex flex-col items-center gap-[0.6cqw]">
+          <div className="flex flex-col items-center gap-[0.3cqw]">
             <QRCodeSVG
               value={data.verifyUrl}
-              size={80}
+              size={70}
               bgColor="transparent"
               fgColor={EMERALD}
               level="M"
-              className="h-[7cqw] w-[7cqw]"
+              className="h-[6cqw] w-[6cqw]"
             />
-
             <span
-              className="text-[1.05cqw] font-semibold tracking-[0.24em]"
+              className="text-[0.95cqw] font-semibold tracking-[0.24em]"
               style={{ color: "#5b6a63" }}
             >
               ASWAJA LEARN HUB
             </span>
-            <a
-              href={data.verifyUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-full border border-gray-300 px-[1.6cqw] py-[0.4cqw] text-[1.05cqw] font-semibold tracking-wide transition-colors hover:border-gray-400"
+            <span
+              className="rounded-full border border-gray-300 px-[1.4cqw] py-[0.2cqw] text-[0.95cqw] font-semibold tracking-wide"
               style={{ color: EMERALD }}
             >
               Verifikasi Sertifikat
-            </a>
+            </span>
           </div>
 
-          <div className="flex flex-col items-center pr-[1cqw]">
-            <p className="text-[1.3cqw]" style={{ color: "#3a4741" }}>
+          <div className="flex flex-col items-center pr-[0.5cqw]">
+            <p className="text-[1.1cqw]" style={{ color: "#3a4741" }}>
               Malang, {data.tanggal}
             </p>
-            {/* Tanda tangan asli diperbaiki menjadi `signature` langsung */}
             <img
               src={signature}
               alt="Tanda tangan Ahmad Wildan Afif, M.Pd."
-              className="h-[8cqw] w-[18cqw] object-contain my-[0.5cqw]"
+              className="h-[10cqw] w-[22cqw] object-contain my-[-0.6cqw] mix-blend-multiply"
             />
             <p
-              className="w-full pt-[0.45cqw] text-center font-serif text-[1.7cqw] font-bold"
+              className="w-full pt-[0.3cqw] text-center font-serif text-[1.5cqw] font-bold"
               style={{ color: EMERALD, borderTop: `1px solid ${GOLD}` }}
             >
               Ahmad Wildan Afif, M.Pd.
             </p>
-            <p className="text-[1.2cqw]" style={{ color: "#6b7770" }}>
+            <p className="text-[1.05cqw]" style={{ color: "#6b7770" }}>
               Guru Pengampu
             </p>
           </div>
