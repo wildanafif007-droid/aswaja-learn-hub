@@ -147,9 +147,10 @@ function NuWatermark({ className }: { className?: string }) {
   );
 }
 
+/** Segel Hologram Asli Sempurna dengan 9 Bintang & Lingkaran Elegan */
 function HologramSeal() {
   return (
-    <div className="relative h-[11cqw] w-[11cqw] shrink-0 drop-shadow-[0_0.5cqw_1cqw_rgba(120,84,5,0.3)]">
+    <div className="relative h-[14cqw] w-[14cqw] shrink-0 drop-shadow-[0_0.5cqw_1cqw_rgba(120,84,5,0.3)]">
       <svg viewBox="0 0 120 120" className="h-full w-full">
         <defs>
           <linearGradient id="holo-ring" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -162,10 +163,48 @@ function HologramSeal() {
             <stop offset="60%" stopColor={EMERALD} />
             <stop offset="100%" stopColor="#022c22" />
           </radialGradient>
+          <linearGradient id="holo-rainbow" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#fbcfe8" stopOpacity="0.4" />
+            <stop offset="35%" stopColor="#a7f3d0" stopOpacity="0.2" />
+            <stop offset="65%" stopColor="#fef08a" stopOpacity="0.3" />
+            <stop offset="100%" stopColor="#bae6fd" stopOpacity="0.5" />
+          </linearGradient>
+          <linearGradient id="holo-sheen" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#ffffff" stopOpacity="0.6" />
+            <stop offset="30%" stopColor="#ffffff" stopOpacity="0.1" />
+            <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
+          </linearGradient>
         </defs>
+
         <circle cx="60" cy="60" r="56" fill="url(#holo-ring)" />
+        <circle
+          cx="60"
+          cy="60"
+          r="52"
+          fill="none"
+          stroke="#713f12"
+          strokeWidth="0.8"
+          opacity="0.8"
+        />
         <circle cx="60" cy="60" r="48.5" fill={IVORY} />
         <circle cx="60" cy="60" r="42" fill="url(#holo-glass)" />
+        <circle cx="60" cy="60" r="42" fill="url(#holo-rainbow)" />
+        <circle
+          cx="60"
+          cy="60"
+          r="30"
+          fill="none"
+          stroke="url(#holo-ring)"
+          strokeWidth="1"
+          opacity="0.9"
+        />
+
+        {/* 9 Bintang Khas Hologram Asli */}
+        <NineStars cx={60} cy={60} r={30} size={3.4} fill="url(#holo-ring)" />
+
+        <g fill="url(#holo-ring)">
+          <Star x={60} y={50} s={7.5} />
+        </g>
         <text
           x="60"
           y="76"
@@ -178,6 +217,7 @@ function HologramSeal() {
         >
           ALH
         </text>
+        <path d="M18 60 A42 42 0 0 1 60 18 L60 34 A26 26 0 0 0 34 60 Z" fill="url(#holo-sheen)" />
       </svg>
     </div>
   );
@@ -245,12 +285,12 @@ export function CertificateView(data: CertificateData) {
         style={{ border: `1px solid ${GOLD}`, opacity: 0.6 }}
       />
 
-      <div className="relative z-10 flex h-full flex-col justify-between px-[7cqw] pt-[5cqw] pb-[3.5cqw] text-center">
+      <div className="relative z-10 flex h-full flex-col justify-between px-[7cqw] pt-[4.5cqw] pb-[2.8cqw] text-center">
         {/* ATAS */}
         <header className="flex flex-col items-center">
           <LogoALH className="h-[9cqw] w-[9cqw]" />
           <h2
-            className="mt-[0.5cqw] font-serif text-[3.8cqw] leading-none font-bold tracking-[0.14em]"
+            className="mt-[0.4cqw] font-serif text-[3.8cqw] leading-none font-bold tracking-[0.14em]"
             style={{ color: EMERALD }}
           >
             SERTIFIKAT PENGHARGAAN
@@ -264,15 +304,15 @@ export function CertificateView(data: CertificateData) {
             DIBERIKAN KEPADA:
           </p>
           <p
-            className="mt-[0.4cqw] font-serif text-[4.2cqw] leading-tight font-bold"
+            className="mt-[0.3cqw] font-serif text-[4.2cqw] leading-tight font-bold"
             style={{ color: EMERALD }}
           >
             {data.nama}
           </p>
-          <div className="mx-auto mt-[0.4cqw] h-px w-1/2" style={{ backgroundColor: GOLD }} />
+          <div className="mx-auto mt-[0.3cqw] h-px w-1/2" style={{ backgroundColor: GOLD }} />
 
           <p
-            className="mt-[0.7cqw] max-w-[72cqw] text-[1.5cqw] leading-relaxed"
+            className="mt-[0.6cqw] max-w-[72cqw] text-[1.5cqw] leading-relaxed"
             style={{ color: "#3a4741" }}
           >
             Atas keberhasilannya dalam memenuhi standar kelulusan evaluasi capaian belajar
@@ -284,7 +324,7 @@ export function CertificateView(data: CertificateData) {
           </p>
 
           <p
-            className="mx-auto mt-[0.7cqw] max-w-[74cqw] text-[1.1cqw] leading-relaxed italic"
+            className="mx-auto mt-[0.6cqw] max-w-[74cqw] text-[1.1cqw] leading-relaxed italic"
             style={{ color: "#6b7770" }}
           >
             E-Sertifikat ini diterbitkan secara sah oleh sistem e-learning berdasarkan pemenuhan
@@ -292,15 +332,15 @@ export function CertificateView(data: CertificateData) {
             penguatan akidah, fikih ibadah, serta implementasi amaliyah Ahlussunnah wal Jamaah.
           </p>
           <p
-            className="mt-[0.5cqw] text-[0.95cqw] font-semibold tracking-[0.22em]"
+            className="mt-[0.4cqw] text-[0.95cqw] font-semibold tracking-[0.22em]"
             style={{ color: "#8a9490" }}
           >
             LKS TAQWA — CV. KARYA DIGITAL PUSTAKA
           </p>
         </section>
 
-        {/* BAWAH */}
-        <footer className="grid grid-cols-3 items-end gap-[2cqw]">
+        {/* BAWAH: Hologram Asli Bermain Bintang, QR & Tanda Tangan Besar Transparan, Posisi Ditarik Naik Pas */}
+        <footer className="grid grid-cols-3 items-end gap-[2cqw] pb-[0.5cqw]">
           <div className="flex items-end justify-start pl-[0.5cqw]">
             <HologramSeal />
           </div>
@@ -308,11 +348,11 @@ export function CertificateView(data: CertificateData) {
           <div className="flex flex-col items-center gap-[0.3cqw]">
             <QRCodeSVG
               value={data.verifyUrl}
-              size={70}
+              size={95}
               bgColor="transparent"
               fgColor={EMERALD}
               level="M"
-              className="h-[6cqw] w-[6cqw]"
+              className="h-[7.5cqw] w-[7.5cqw]"
             />
             <span
               className="text-[0.95cqw] font-semibold tracking-[0.24em]"
@@ -335,7 +375,7 @@ export function CertificateView(data: CertificateData) {
             <img
               src={signature}
               alt="Tanda tangan Ahmad Wildan Afif, M.Pd."
-              className="h-[10cqw] w-[22cqw] object-contain my-[-0.6cqw] mix-blend-multiply"
+              className="h-[12cqw] w-[26cqw] object-contain my-[-0.8cqw] mix-blend-multiply"
             />
             <p
               className="w-full pt-[0.3cqw] text-center font-serif text-[1.5cqw] font-bold"
