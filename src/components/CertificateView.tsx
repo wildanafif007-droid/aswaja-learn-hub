@@ -150,7 +150,7 @@ function NuWatermark({ className }: { className?: string }) {
 function HologramSeal({ className }: { className?: string }) {
   return (
     <div
-      className={`relative shrink-0 drop-shadow-[0_0.5cqw_1cqw_rgba(120,84,5,0.3)] ${className || "h-[14cqw] w-[14cqw]"}`}
+      className={`relative shrink-0 drop-shadow-[0_0.5cqw_1cqw_rgba(120,84,5,0.3)] ${className || "h-[13cqw] w-[13cqw]"}`}
     >
       <svg viewBox="0 0 120 120" className="h-full w-full">
         <defs>
@@ -284,12 +284,12 @@ export function CertificateView(data: CertificateData) {
         style={{ border: `1px solid ${GOLD}`, opacity: 0.6 }}
       />
 
-      <div className="relative z-10 flex h-full flex-col justify-between px-[8cqw] pt-[4.5cqw] pb-[4cqw] text-center">
+      <div className="relative z-10 flex h-full flex-col justify-between px-[8cqw] pt-[4cqw] pb-[3.5cqw] text-center">
         {/* HEADER */}
         <header className="flex flex-col items-center">
-          <LogoALH className="h-[8.5cqw] w-[8.5cqw]" />
+          <LogoALH className="h-[8cqw] w-[8cqw]" />
           <h2
-            className="mt-[0.3cqw] font-serif text-[3.6cqw] leading-none font-bold tracking-[0.14em]"
+            className="mt-[0.2cqw] font-serif text-[3.4cqw] leading-none font-bold tracking-[0.14em]"
             style={{ color: EMERALD }}
           >
             SERTIFIKAT PENGHARGAAN
@@ -298,24 +298,21 @@ export function CertificateView(data: CertificateData) {
         </header>
 
         {/* TENGAH */}
-        <section className="flex flex-col items-center justify-center flex-1 my-[1.5cqw] gap-[0.8cqw]">
+        <section className="flex flex-col items-center justify-center flex-1 my-[1cqw] gap-[0.6cqw]">
           <div>
-            <p
-              className="text-[1.05cqw] font-semibold tracking-[0.3em]"
-              style={{ color: "#5b6a63" }}
-            >
+            <p className="text-[1cqw] font-semibold tracking-[0.3em]" style={{ color: "#5b6a63" }}>
               DIBERIKAN KEPADA:
             </p>
             <p
-              className="mt-[0.2cqw] font-serif text-[4.2cqw] leading-tight font-bold"
+              className="mt-[0.15cqw] font-serif text-[3.8cqw] leading-tight font-bold"
               style={{ color: EMERALD }}
             >
               {data.nama}
             </p>
-            <div className="mx-auto mt-[0.2cqw] h-px w-4/5" style={{ backgroundColor: GOLD }} />
+            <div className="mx-auto mt-[0.15cqw] h-px w-4/5" style={{ backgroundColor: GOLD }} />
           </div>
 
-          <p className="max-w-[72cqw] text-[1.4cqw] leading-relaxed" style={{ color: "#3a4741" }}>
+          <p className="max-w-[70cqw] text-[1.3cqw] leading-relaxed" style={{ color: "#3a4741" }}>
             Atas keberhasilannya dalam memenuhi standar kelulusan evaluasi capaian belajar
             Pendidikan Aswaja & Ke-NU-an pada{" "}
             <strong style={{ color: EMERALD }}>
@@ -325,32 +322,35 @@ export function CertificateView(data: CertificateData) {
           </p>
 
           <p
-            className="max-w-[74cqw] text-[1.05cqw] leading-relaxed italic"
+            className="max-w-[72cqw] text-[1cqw] leading-relaxed italic"
             style={{ color: "#6b7770" }}
           >
             E-Sertifikat ini diterbitkan secara sah oleh sistem e-learning berdasarkan pemenuhan
             standar kompetensi dasar kurikulum Pendidikan Aswaja An-Nahdliyah, yang meliputi aspek
             penguatan akidah, fikih ibadah, serta implementasi amaliyah Ahlussunnah wal Jamaah.
           </p>
-          <p className="text-[0.9cqw] font-semibold tracking-[0.22em]" style={{ color: "#8a9490" }}>
+          <p
+            className="text-[0.85cqw] font-semibold tracking-[0.22em]"
+            style={{ color: "#8a9490" }}
+          >
             LKS TAQWA — CV. KARYA DIGITAL PUSTAKA
           </p>
         </section>
 
         {/* FOOTER */}
-        <footer className="grid grid-cols-3 items-end w-full">
-          <div className="flex items-end justify-start pl-[1cqw] mb-[2.5cqw]">
-            <HologramSeal className="h-[14cqw] w-[14cqw]" />
+        <footer className="grid grid-cols-3 items-end w-full pt-[0.5cqw]">
+          <div className="flex items-end justify-start pl-[1cqw]">
+            <HologramSeal className="h-[13cqw] w-[13cqw]" />
           </div>
 
-          <div className="flex flex-col items-center gap-[0.4cqw] mb-[1.5cqw]">
+          <div className="flex flex-col items-center gap-[0.3cqw]">
             <QRCodeSVG
               value={data.verifyUrl}
-              size={130}
+              size={120}
               bgColor="transparent"
               fgColor={EMERALD}
               level="M"
-              className="h-[12cqw] w-[12cqw]"
+              className="h-[11cqw] w-[11cqw]"
             />
             <span
               className="text-[0.95cqw] font-semibold tracking-[0.24em]"
@@ -359,7 +359,7 @@ export function CertificateView(data: CertificateData) {
               ASWAJA LEARN HUB
             </span>
             <span
-              className="rounded-full border border-gray-300 px-[1.5cqw] py-[0.15cqw] text-[0.85cqw] font-semibold tracking-wide"
+              className="rounded-full border border-gray-300 px-[1.3cqw] py-[0.1cqw] text-[0.8cqw] font-semibold tracking-wide"
               style={{ color: EMERALD }}
             >
               Verifikasi Sertifikat
@@ -367,32 +367,32 @@ export function CertificateView(data: CertificateData) {
           </div>
 
           <div className="flex flex-col items-center pr-[1cqw]">
-            <p className="text-[1.1cqw]" style={{ color: "#3a4741" }}>
+            <p className="text-[1.05cqw]" style={{ color: "#3a4741" }}>
               Malang, {data.tanggal}
             </p>
 
-            {/* INI KODE TTD RAKSASA & BG TEMBUS PANDANG MUTLAK */}
-            <img
-              src={signature}
-              alt="Tanda tangan Ahmad Wildan Afif, M.Pd."
-              className="object-contain relative z-10"
-              style={{
-                height: "24cqw",
-                width: "40cqw",
-                margin: "-2cqw 0",
-                mixBlendMode: "multiply",
-                filter: "contrast(120%)",
-              }}
-            />
+            <div className="relative my-[-1.5cqw] flex justify-center items-center">
+              <img
+                src={signature}
+                alt="Tanda tangan Ahmad Wildan Afif, M.Pd."
+                className="object-contain"
+                style={{
+                  height: "13.5cqw",
+                  width: "24cqw",
+                  mixBlendMode: "multiply",
+                  filter: "contrast(180%) brightness(95%)",
+                }}
+              />
+            </div>
 
             <div
-              className="w-full text-center pt-[0.3cqw]"
+              className="w-full text-center pt-[0.2cqw]"
               style={{ borderTop: `1.2px solid ${GOLD}` }}
             >
-              <p className="font-serif text-[1.4cqw] font-bold" style={{ color: EMERALD }}>
+              <p className="font-serif text-[1.3cqw] font-bold" style={{ color: EMERALD }}>
                 Ahmad Wildan Afif, M.Pd.
               </p>
-              <p className="text-[1cqw]" style={{ color: "#6b7770" }}>
+              <p className="text-[0.95cqw]" style={{ color: "#6b7770" }}>
                 Guru Pengampu
               </p>
             </div>
