@@ -150,7 +150,7 @@ function NuWatermark({ className }: { className?: string }) {
 function HologramSeal({ className }: { className?: string }) {
   return (
     <div
-      className={`relative shrink-0 drop-shadow-[0_0.5cqw_1cqw_rgba(120,84,5,0.3)] ${className || "h-[12cqw] w-[12cqw]"}`}
+      className={`relative shrink-0 drop-shadow-[0_0.5cqw_1cqw_rgba(120,84,5,0.3)] ${className || "h-[13cqw] w-[13cqw]"}`}
     >
       <svg viewBox="0 0 120 120" className="h-full w-full">
         <defs>
@@ -240,7 +240,7 @@ function CornerWave({ position }: { position: "tl" | "br" }) {
 
 function GoldRibbon({ children }: { children: React.ReactNode }) {
   return (
-    <div className="relative mt-[0.9cqw] inline-flex items-center justify-center">
+    <div className="relative mt-[0.6cqw] inline-flex items-center justify-center">
       <svg
         viewBox="0 0 220 44"
         preserveAspectRatio="none"
@@ -250,7 +250,7 @@ function GoldRibbon({ children }: { children: React.ReactNode }) {
         <path d="M10 0 H210 L220 22 L210 44 H10 L0 22 Z" fill={GOLD} />
       </svg>
       <span
-        className="relative z-10 px-[3cqw] py-[0.25cqw] text-[1.1cqw] font-semibold tracking-[0.22em]"
+        className="relative z-10 px-[3cqw] py-[0.25cqw] text-[1.05cqw] font-semibold tracking-[0.22em]"
         style={{ color: "#3f2d05" }}
       >
         {children}
@@ -284,13 +284,13 @@ export function CertificateView(data: CertificateData) {
         style={{ border: `1px solid ${GOLD}`, opacity: 0.6 }}
       />
 
-      {/* Padding atas diturunkan jauh lebih longgar (pt-[6.2cqw]) agar judul turun ke bawah */}
-      <div className="relative z-10 flex h-full flex-col justify-between px-[8cqw] pt-[6.2cqw] pb-[3.2cqw] text-center">
-        {/* HEADER: Jarak logo dan judul diturunkan secara proporsional */}
-        <header className="flex flex-col items-center">
+      {/* Kontainer utama dengan distribusi ruang vertikal yang seimbang (atas ke bawah) */}
+      <div className="relative z-10 flex h-full flex-col justify-between px-[8cqw] pt-[4cqw] pb-[3cqw] text-center">
+        {/* HEADER: Diturunkan posisinya secara ideal agar ada jarak elegan dari bingkai atas */}
+        <header className="flex flex-col items-center pt-[1.2cqw]">
           <LogoALH className="h-[7cqw] w-[7cqw]" />
           <h2
-            className="mt-[1.2cqw] font-serif text-[3.2cqw] leading-none font-bold tracking-[0.14em]"
+            className="mt-[0.6cqw] font-serif text-[3.3cqw] leading-none font-bold tracking-[0.14em]"
             style={{ color: EMERALD }}
           >
             SERTIFIKAT PENGHARGAAN
@@ -298,8 +298,8 @@ export function CertificateView(data: CertificateData) {
           <GoldRibbon>NO. REG: {data.noReg}</GoldRibbon>
         </header>
 
-        {/* TENGAH */}
-        <section className="flex flex-col items-center justify-center flex-1 my-[0.8cqw] gap-[0.6cqw]">
+        {/* TENGAH: Diatur proporsional mengisi ruang tengah tanpa celah kosong berlebih */}
+        <section className="flex flex-col items-center justify-center flex-1 my-[1.2cqw] gap-[0.8cqw]">
           <div>
             <p
               className="text-[0.95cqw] font-semibold tracking-[0.3em]"
@@ -308,7 +308,7 @@ export function CertificateView(data: CertificateData) {
               DIBERIKAN KEPADA:
             </p>
             <p
-              className="mt-[0.15cqw] font-serif text-[3.8cqw] leading-tight font-bold"
+              className="mt-[0.15cqw] font-serif text-[3.9cqw] leading-tight font-bold"
               style={{ color: EMERALD }}
             >
               {data.nama}
@@ -341,10 +341,10 @@ export function CertificateView(data: CertificateData) {
           </p>
         </section>
 
-        {/* FOOTER: Tanda tangan besar transparan */}
-        <footer className="grid grid-cols-3 items-end w-full pt-[0.2cqw]">
+        {/* FOOTER: Hologram, QR Code, dan Tanda Tangan Besar Tebal Sejajar Presisi */}
+        <footer className="grid grid-cols-3 items-end w-full pt-[0.5cqw]">
           <div className="flex items-end justify-start pl-[0.5cqw]">
-            <HologramSeal className="h-[12cqw] w-[12cqw]" />
+            <HologramSeal className="h-[13cqw] w-[13cqw]" />
           </div>
 
           <div className="flex flex-col items-center gap-[0.2cqw]">
@@ -375,11 +375,13 @@ export function CertificateView(data: CertificateData) {
               Malang, {data.tanggal}
             </p>
 
-            <div className="relative my-[-3cqw] flex justify-center items-center">
+            {/* Tanda tangan diperbesar selebar ukuran hologram (h-[13cqw] w-[18cqw]) dan dipertebal kontrasnya */}
+            <div className="relative my-[-1.8cqw] flex justify-center items-center">
               <img
                 src={signature}
                 alt="Tanda tangan Ahmad Wildan Afif, M.Pd."
-                className="object-contain h-[19cqw] w-[32cqw]"
+                className="object-contain h-[13cqw] w-[18cqw]"
+                style={{ filter: "contrast(220%) brightness(90%)" }}
               />
             </div>
 
