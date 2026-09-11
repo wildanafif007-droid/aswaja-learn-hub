@@ -285,7 +285,7 @@ export function CertificateView(data: CertificateData) {
       />
 
       <div className="relative z-10 flex h-full flex-col justify-between px-[8cqw] pt-[4.5cqw] pb-[4cqw] text-center">
-        {/* ================= HEADER ATAS ================= */}
+        {/* HEADER */}
         <header className="flex flex-col items-center">
           <LogoALH className="h-[8.5cqw] w-[8.5cqw]" />
           <h2
@@ -297,7 +297,7 @@ export function CertificateView(data: CertificateData) {
           <GoldRibbon>NO. REG: {data.noReg}</GoldRibbon>
         </header>
 
-        {/* ================= KONTEN TENGAH ================= */}
+        {/* TENGAH */}
         <section className="flex flex-col items-center justify-center flex-1 my-[1.5cqw] gap-[0.8cqw]">
           <div>
             <p
@@ -337,7 +337,7 @@ export function CertificateView(data: CertificateData) {
           </p>
         </section>
 
-        {/* ================= FOOTER BAWAH ================= */}
+        {/* FOOTER */}
         <footer className="grid grid-cols-3 items-end w-full">
           <div className="flex items-end justify-start pl-[1cqw] mb-[2.5cqw]">
             <HologramSeal className="h-[14cqw] w-[14cqw]" />
@@ -371,12 +371,18 @@ export function CertificateView(data: CertificateData) {
               Malang, {data.tanggal}
             </p>
 
-            {/* Tanda Tangan: Diberi style inline mixBlendMode: 'multiply' agar bg putih tembus pandang 100% */}
+            {/* INI KODE TTD RAKSASA & BG TEMBUS PANDANG MUTLAK */}
             <img
               src={signature}
               alt="Tanda tangan Ahmad Wildan Afif, M.Pd."
-              className="h-[15cqw] w-[28cqw] object-contain my-[-0.5cqw] contrast-125 brightness-95"
-              style={{ mixBlendMode: "multiply" }}
+              className="object-contain relative z-10"
+              style={{
+                height: "24cqw",
+                width: "40cqw",
+                margin: "-2cqw 0",
+                mixBlendMode: "multiply",
+                filter: "contrast(120%)",
+              }}
             />
 
             <div

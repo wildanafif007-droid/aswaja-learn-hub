@@ -218,7 +218,9 @@ function KuisPage() {
 
       {!started && !selesai && (
         <section className="rounded-3xl border border-border bg-card p-6 shadow-soft sm:p-8">
-          <h1 className="font-display text-2xl font-bold sm:text-3xl">Kuis Aswaja & Ke-NU-an</h1>
+          <h1 className="font-display text-2xl font-bold sm:text-3xl">
+            Kuis Aswaja & Ke-NU-an (UPDATE)
+          </h1>
           <p className="mt-2 text-sm text-muted-foreground">
             Pilih kelas, bab materi, lalu nama murid. Setiap kuis berisi 10 soal pilihan ganda acak
             dengan maksimal {MAKS_PERCOBAAN} kali percobaan — nilai tertinggi yang dicatat.
