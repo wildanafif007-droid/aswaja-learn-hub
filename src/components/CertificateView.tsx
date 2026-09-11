@@ -176,6 +176,7 @@ function HologramSeal({ className }: { className?: string }) {
             <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
           </linearGradient>
         </defs>
+
         <circle cx="60" cy="60" r="56" fill="url(#holo-ring)" />
         <circle
           cx="60"
@@ -199,6 +200,7 @@ function HologramSeal({ className }: { className?: string }) {
           opacity="0.9"
         />
         <NineStars cx={60} cy={60} r={30} size={3.4} fill="url(#holo-ring)" />
+
         <g fill="url(#holo-ring)">
           <Star x={60} y={50} s={7.5} />
         </g>
@@ -282,7 +284,7 @@ export function CertificateView(data: CertificateData) {
         style={{ border: `1px solid ${GOLD}`, opacity: 0.6 }}
       />
 
-      <div className="relative z-10 flex h-full flex-col justify-between px-[8cqw] pt-[4.5cqw] pb-[4.5cqw] text-center">
+      <div className="relative z-10 flex h-full flex-col justify-between px-[8cqw] pt-[4.5cqw] pb-[4cqw] text-center">
         {/* ================= HEADER ATAS ================= */}
         <header className="flex flex-col items-center">
           <LogoALH className="h-[8.5cqw] w-[8.5cqw]" />
@@ -296,7 +298,7 @@ export function CertificateView(data: CertificateData) {
         </header>
 
         {/* ================= KONTEN TENGAH ================= */}
-        <section className="flex flex-col items-center justify-center flex-1 my-[1cqw] gap-[1cqw]">
+        <section className="flex flex-col items-center justify-center flex-1 my-[1.5cqw] gap-[0.8cqw]">
           <div>
             <p
               className="text-[1.05cqw] font-semibold tracking-[0.3em]"
@@ -336,19 +338,19 @@ export function CertificateView(data: CertificateData) {
         </section>
 
         {/* ================= FOOTER BAWAH ================= */}
-        <footer className="grid grid-cols-3 items-end w-full gap-[2cqw]">
-          <div className="flex items-end justify-start pl-[1cqw] pb-[1cqw]">
+        <footer className="grid grid-cols-3 items-end w-full">
+          <div className="flex items-end justify-start pl-[1cqw] mb-[2.5cqw]">
             <HologramSeal className="h-[14cqw] w-[14cqw]" />
           </div>
 
-          <div className="flex flex-col items-center justify-end pb-[1cqw] gap-[0.4cqw]">
+          <div className="flex flex-col items-center gap-[0.4cqw] mb-[1.5cqw]">
             <QRCodeSVG
               value={data.verifyUrl}
               size={130}
               bgColor="transparent"
               fgColor={EMERALD}
               level="M"
-              className="h-[12cqw] w-[12cqw] mb-[0.2cqw]"
+              className="h-[12cqw] w-[12cqw]"
             />
             <span
               className="text-[0.95cqw] font-semibold tracking-[0.24em]"
@@ -364,21 +366,22 @@ export function CertificateView(data: CertificateData) {
             </span>
           </div>
 
-          <div className="flex flex-col items-center justify-end pr-[1cqw]">
+          <div className="flex flex-col items-center pr-[1cqw]">
             <p className="text-[1.1cqw]" style={{ color: "#3a4741" }}>
               Malang, {data.tanggal}
             </p>
 
+            {/* Tanda Tangan: Diberi style inline mixBlendMode: 'multiply' agar bg putih tembus pandang 100% */}
             <img
               src={signature}
               alt="Tanda tangan Ahmad Wildan Afif, M.Pd."
-              className="h-[15cqw] w-[28cqw] object-contain my-[-0.5cqw] contrast-125 brightness-95 mix-blend-multiply"
+              className="h-[15cqw] w-[28cqw] object-contain my-[-0.5cqw] contrast-125 brightness-95"
               style={{ mixBlendMode: "multiply" }}
             />
 
             <div
               className="w-full text-center pt-[0.3cqw]"
-              style={{ borderTop: `1.5px solid ${GOLD}` }}
+              style={{ borderTop: `1.2px solid ${GOLD}` }}
             >
               <p className="font-serif text-[1.4cqw] font-bold" style={{ color: EMERALD }}>
                 Ahmad Wildan Afif, M.Pd.
