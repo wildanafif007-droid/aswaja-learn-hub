@@ -240,7 +240,7 @@ function CornerWave({ position }: { position: "tl" | "br" }) {
 
 function GoldRibbon({ children }: { children: React.ReactNode }) {
   return (
-    <div className="relative mt-[0.5cqw] inline-flex items-center justify-center">
+    <div className="relative mt-[0.8cqw] inline-flex items-center justify-center">
       <svg
         viewBox="0 0 220 44"
         preserveAspectRatio="none"
@@ -250,7 +250,7 @@ function GoldRibbon({ children }: { children: React.ReactNode }) {
         <path d="M10 0 H210 L220 22 L210 44 H10 L0 22 Z" fill={GOLD} />
       </svg>
       <span
-        className="relative z-10 px-[3cqw] py-[0.2cqw] text-[1.05cqw] font-semibold tracking-[0.22em]"
+        className="relative z-10 px-[3cqw] py-[0.25cqw] text-[1.1cqw] font-semibold tracking-[0.22em]"
         style={{ color: "#3f2d05" }}
       >
         {children}
@@ -284,12 +284,13 @@ export function CertificateView(data: CertificateData) {
         style={{ border: `1px solid ${GOLD}`, opacity: 0.6 }}
       />
 
-      <div className="relative z-10 flex h-full flex-col justify-between px-[8cqw] pt-[3.8cqw] pb-[3.2cqw] text-center">
-        {/* HEADER: Posisi stabil standar aman */}
+      {/* Padding atas diturunkan (pt-[4.8cqw]) agar judul sertifikat dan no reg tidak terlalu ke atas */}
+      <div className="relative z-10 flex h-full flex-col justify-between px-[8cqw] pt-[4.8cqw] pb-[3.2cqw] text-center">
+        {/* HEADER */}
         <header className="flex flex-col items-center">
-          <LogoALH className="h-[7.5cqw] w-[7.5cqw]" />
+          <LogoALH className="h-[7.2cqw] w-[7.2cqw]" />
           <h2
-            className="mt-[0.2cqw] font-serif text-[3.2cqw] leading-none font-bold tracking-[0.14em]"
+            className="mt-[0.5cqw] font-serif text-[3.3cqw] leading-none font-bold tracking-[0.14em]"
             style={{ color: EMERALD }}
           >
             SERTIFIKAT PENGHARGAAN
@@ -340,7 +341,7 @@ export function CertificateView(data: CertificateData) {
           </p>
         </section>
 
-        {/* FOOTER: TTD Transparan murni tanpa filter background */}
+        {/* FOOTER: Ukuran TTD diperbesar substansial (tinggi 19cqw, lebar 32cqw) sesuai referensi besar */}
         <footer className="grid grid-cols-3 items-end w-full pt-[0.2cqw]">
           <div className="flex items-end justify-start pl-[0.5cqw]">
             <HologramSeal className="h-[12cqw] w-[12cqw]" />
@@ -356,7 +357,7 @@ export function CertificateView(data: CertificateData) {
               className="h-[10.5cqw] w-[10.5cqw]"
             />
             <span
-              className="text-[0.95cqw] font-semibold tracking-[0.24em]"
+              className="text-[0.9cqw] font-semibold tracking-[0.24em]"
               style={{ color: "#5b6a63" }}
             >
               ASWAJA LEARN HUB
@@ -374,12 +375,12 @@ export function CertificateView(data: CertificateData) {
               Malang, {data.tanggal}
             </p>
 
-            {/* Tanda tangan transparan asli */}
-            <div className="relative my-[-1.2cqw] flex justify-center items-center">
+            {/* Tanda tangan transparan diperbesar optimal (19cqw x 32cqw) dengan margin negatif agar proporsional di dalam footer */}
+            <div className="relative my-[-3cqw] flex justify-center items-center">
               <img
                 src={signature}
                 alt="Tanda tangan Ahmad Wildan Afif, M.Pd."
-                className="object-contain h-[14cqw] w-[25cqw]"
+                className="object-contain h-[19cqw] w-[32cqw]"
               />
             </div>
 
