@@ -240,7 +240,7 @@ function CornerWave({ position }: { position: "tl" | "br" }) {
 
 function GoldRibbon({ children }: { children: React.ReactNode }) {
   return (
-    <div className="relative mt-[0.8cqw] inline-flex items-center justify-center">
+    <div className="relative mt-[0.9cqw] inline-flex items-center justify-center">
       <svg
         viewBox="0 0 220 44"
         preserveAspectRatio="none"
@@ -284,13 +284,13 @@ export function CertificateView(data: CertificateData) {
         style={{ border: `1px solid ${GOLD}`, opacity: 0.6 }}
       />
 
-      {/* Padding atas diturunkan (pt-[4.8cqw]) agar judul sertifikat dan no reg tidak terlalu ke atas */}
-      <div className="relative z-10 flex h-full flex-col justify-between px-[8cqw] pt-[4.8cqw] pb-[3.2cqw] text-center">
-        {/* HEADER */}
+      {/* Padding atas diturunkan jauh lebih longgar (pt-[6.2cqw]) agar judul turun ke bawah */}
+      <div className="relative z-10 flex h-full flex-col justify-between px-[8cqw] pt-[6.2cqw] pb-[3.2cqw] text-center">
+        {/* HEADER: Jarak logo dan judul diturunkan secara proporsional */}
         <header className="flex flex-col items-center">
-          <LogoALH className="h-[7.2cqw] w-[7.2cqw]" />
+          <LogoALH className="h-[7cqw] w-[7cqw]" />
           <h2
-            className="mt-[0.5cqw] font-serif text-[3.3cqw] leading-none font-bold tracking-[0.14em]"
+            className="mt-[1.2cqw] font-serif text-[3.2cqw] leading-none font-bold tracking-[0.14em]"
             style={{ color: EMERALD }}
           >
             SERTIFIKAT PENGHARGAAN
@@ -299,7 +299,7 @@ export function CertificateView(data: CertificateData) {
         </header>
 
         {/* TENGAH */}
-        <section className="flex flex-col items-center justify-center flex-1 my-[1cqw] gap-[0.7cqw]">
+        <section className="flex flex-col items-center justify-center flex-1 my-[0.8cqw] gap-[0.6cqw]">
           <div>
             <p
               className="text-[0.95cqw] font-semibold tracking-[0.3em]"
@@ -341,7 +341,7 @@ export function CertificateView(data: CertificateData) {
           </p>
         </section>
 
-        {/* FOOTER: Ukuran TTD diperbesar substansial (tinggi 19cqw, lebar 32cqw) sesuai referensi besar */}
+        {/* FOOTER: Tanda tangan besar transparan */}
         <footer className="grid grid-cols-3 items-end w-full pt-[0.2cqw]">
           <div className="flex items-end justify-start pl-[0.5cqw]">
             <HologramSeal className="h-[12cqw] w-[12cqw]" />
@@ -375,7 +375,6 @@ export function CertificateView(data: CertificateData) {
               Malang, {data.tanggal}
             </p>
 
-            {/* Tanda tangan transparan diperbesar optimal (19cqw x 32cqw) dengan margin negatif agar proporsional di dalam footer */}
             <div className="relative my-[-3cqw] flex justify-center items-center">
               <img
                 src={signature}
