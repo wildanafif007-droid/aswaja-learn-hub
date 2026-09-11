@@ -284,13 +284,13 @@ export function CertificateView(data: CertificateData) {
         style={{ border: `1px solid ${GOLD}`, opacity: 0.6 }}
       />
 
-      {/* Padding dan tata letak utama dioptimalkan agar tidak ada elemen keluar batas */}
-      <div className="relative z-10 flex h-full flex-col justify-between px-[7.5cqw] pt-[3.5cqw] pb-[3cqw] text-center">
-        {/* HEADER */}
+      {/* Padding proporsional kembali normal agar header tidak berdempetan */}
+      <div className="relative z-10 flex h-full flex-col justify-between px-[8cqw] pt-[4.2cqw] pb-[3.2cqw] text-center">
+        {/* HEADER: Dikembalikan jaraknya agar longgar dan rapi */}
         <header className="flex flex-col items-center">
-          <LogoALH className="h-[7.2cqw] w-[7.2cqw]" />
+          <LogoALH className="h-[7.5cqw] w-[7.5cqw]" />
           <h2
-            className="mt-[0.2cqw] font-serif text-[3.2cqw] leading-none font-bold tracking-[0.14em]"
+            className="mt-[0.3cqw] font-serif text-[3.3cqw] leading-none font-bold tracking-[0.14em]"
             style={{ color: EMERALD }}
           >
             SERTIFIKAT PENGHARGAAN
@@ -298,8 +298,8 @@ export function CertificateView(data: CertificateData) {
           <GoldRibbon>NO. REG: {data.noReg}</GoldRibbon>
         </header>
 
-        {/* TENGAH: Jarak vertikal dirapatkan proporsional untuk mengisi kekosongan ruang secara elegan */}
-        <section className="flex flex-col items-center justify-center flex-1 my-[0.8cqw] gap-[0.7cqw]">
+        {/* TENGAH */}
+        <section className="flex flex-col items-center justify-center flex-1 my-[1.2cqw] gap-[0.7cqw]">
           <div>
             <p
               className="text-[0.95cqw] font-semibold tracking-[0.3em]"
@@ -341,7 +341,7 @@ export function CertificateView(data: CertificateData) {
           </p>
         </section>
 
-        {/* FOOTER: Proporsional di dalam batas bingkai, TTD besar, background putih lenyap */}
+        {/* FOOTER: Ukuran TTD disesuaikan pas (13cqw x 23cqw) agar tidak keluar batas dan menggunakan mix-blend-mode: multiply */}
         <footer className="grid grid-cols-3 items-end w-full pt-[0.2cqw]">
           <div className="flex items-end justify-start pl-[0.5cqw]">
             <HologramSeal className="h-[12cqw] w-[12cqw]" />
@@ -375,17 +375,17 @@ export function CertificateView(data: CertificateData) {
               Malang, {data.tanggal}
             </p>
 
-            {/* TTD Diperbesar ideal (15cqw x 26cqw) dengan mix-blend-mode multiply & contrast murni untuk hilangkan kotak abu-abu */}
-            <div className="relative my-[-1.5cqw] flex justify-center items-center">
+            {/* TTD diatur proporsional (tinggi 13cqw, lebar 23cqw) agar kotak putih bawaan gambar tidak menabrak batas bawah */}
+            <div className="relative my-[-1.2cqw] flex justify-center items-center">
               <img
                 src={signature}
                 alt="Tanda tangan Ahmad Wildan Afif, M.Pd."
                 className="object-contain"
                 style={{
-                  height: "15cqw",
-                  width: "26cqw",
+                  height: "13cqw",
+                  width: "23cqw",
                   mixBlendMode: "multiply",
-                  filter: "contrast(200%) brightness(95%)",
+                  filter: "contrast(170%) brightness(98%)",
                 }}
               />
             </div>
