@@ -131,6 +131,7 @@ function LogoALH({ className }: { className?: string }) {
   );
 }
 
+// Watermark aman, tanpa kotak hijau
 function NuWatermark({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 200 200" className={className} aria-hidden="true">
@@ -282,9 +283,9 @@ export function CertificateView(data: CertificateData) {
         style={{ border: `1px solid ${GOLD}`, opacity: 0.6 }}
       />
 
-      {/* Kontainer presisi dengan alokasi ruang atas-bawah yang seimbang proporsional */}
-      <div className="relative z-10 flex h-full flex-col justify-between px-[8cqw] pt-[4.5cqw] pb-[3.2cqw] text-center">
-        {/* HEADER: Posisi seimbang ideal */}
+      {/* Padding atas diturunkan presisi (pt-[5.5cqw]) agar Header renggang dari batas atas */}
+      <div className="relative z-10 flex h-full flex-col justify-between px-[8cqw] pt-[5.5cqw] pb-[3.2cqw] text-center">
+        {/* HEADER */}
         <header className="flex flex-col items-center">
           <LogoALH className="h-[7.2cqw] w-[7.2cqw]" />
           <h2
@@ -296,7 +297,7 @@ export function CertificateView(data: CertificateData) {
           <GoldRibbon>NO. REG: {data.noReg}</GoldRibbon>
         </header>
 
-        {/* TENGAH: Jarak vertikal dirapatkan pas tanpa celah kosong berlebih */}
+        {/* TENGAH */}
         <section className="flex flex-col items-center justify-center flex-1 my-[1cqw] gap-[0.7cqw]">
           <div>
             <p
@@ -339,7 +340,7 @@ export function CertificateView(data: CertificateData) {
           </p>
         </section>
 
-        {/* FOOTER: Hologram, QR Code, dan Tanda Tangan Besar Tebal Sejajar Presisi */}
+        {/* FOOTER */}
         <footer className="grid grid-cols-3 items-end w-full pt-[0.2cqw]">
           <div className="flex items-end justify-start pl-[0.5cqw]">
             <HologramSeal className="h-[13cqw] w-[13cqw]" />
@@ -373,13 +374,16 @@ export function CertificateView(data: CertificateData) {
               Malang, {data.tanggal}
             </p>
 
-            {/* Tanda tangan diperbesar seukuran hologram (h-[15cqw] w-[21cqw]) dan dipertebal kontrasnya secara maksimal */}
-            <div className="relative my-[-2.2cqw] flex justify-center items-center">
+            {/* 
+              Tanda tangan diatur ukurannya menyesuaikan hologram. 
+              mixBlendMode: 'multiply' akan menghapus background putih secara magis.
+            */}
+            <div className="relative my-[-2.5cqw] flex justify-center items-center pointer-events-none">
               <img
                 src={signature}
                 alt="Tanda tangan Ahmad Wildan Afif, M.Pd."
-                className="object-contain h-[15cqw] w-[21cqw]"
-                style={{ filter: "contrast(300%) brightness(75%)" }}
+                className="object-contain h-[16cqw] w-[24cqw]"
+                style={{ mixBlendMode: "multiply" }}
               />
             </div>
 
