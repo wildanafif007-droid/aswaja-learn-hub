@@ -131,17 +131,16 @@ function LogoALH({ className }: { className?: string }) {
   );
 }
 
+// Watermark disterilkan agar transparan murni tanpa kotak hijau latar belakang
 function NuWatermark({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 200 200" className={className} aria-hidden="true">
-      <g fill="none" stroke={EMERALD} strokeWidth="2.5">
-        <ellipse cx="100" cy="105" rx="58" ry="58" />
-        <ellipse cx="100" cy="105" rx="24" ry="58" />
-        <ellipse cx="100" cy="105" rx="58" ry="22" />
-        <path d="M42 105 q58 34 116 0" />
+      <g fill="none" stroke={EMERALD} strokeWidth="2.2" opacity="0.35">
+        <path d="M100 35 C135 35 160 60 160 95 C160 130 135 155 100 155 C65 155 40 130 40 95 C40 60 65 35 100 35 Z" />
+        <path d="M100 45 C125 45 145 65 145 95 C145 125 125 145 100 145 C75 145 55 125 55 95 C55 65 75 45 100 45 Z" />
       </g>
-      <g fill={EMERALD}>
-        <NineStars cx="100" cy="100" r={80} size={9} />
+      <g fill={EMERALD} opacity="0.4">
+        <NineStars cx={100} cy={95} r={72} size={8} />
       </g>
     </svg>
   );
@@ -240,7 +239,7 @@ function CornerWave({ position }: { position: "tl" | "br" }) {
 
 function GoldRibbon({ children }: { children: React.ReactNode }) {
   return (
-    <div className="relative mt-[0.6cqw] inline-flex items-center justify-center">
+    <div className="relative mt-[0.8cqw] inline-flex items-center justify-center">
       <svg
         viewBox="0 0 220 44"
         preserveAspectRatio="none"
@@ -250,7 +249,7 @@ function GoldRibbon({ children }: { children: React.ReactNode }) {
         <path d="M10 0 H210 L220 22 L210 44 H10 L0 22 Z" fill={GOLD} />
       </svg>
       <span
-        className="relative z-10 px-[3cqw] py-[0.25cqw] text-[1.05cqw] font-semibold tracking-[0.22em]"
+        className="relative z-10 px-[3cqw] py-[0.25cqw] text-[1.1cqw] font-semibold tracking-[0.22em]"
         style={{ color: "#3f2d05" }}
       >
         {children}
@@ -273,7 +272,7 @@ export function CertificateView(data: CertificateData) {
       <CornerWave position="br" />
       <SecurityGrid className="pointer-events-none absolute inset-0 z-0 h-full w-full opacity-[0.03]" />
       <YellowWaves className="pointer-events-none absolute inset-0 z-0 h-full w-full" />
-      <NuWatermark className="pointer-events-none absolute top-1/2 left-1/2 z-0 h-[60%] w-[60%] -translate-x-1/2 -translate-y-1/2 opacity-[0.08]" />
+      <NuWatermark className="pointer-events-none absolute top-1/2 left-1/2 z-0 h-[55%] w-[55%] -translate-x-1/2 -translate-y-1/2 opacity-25" />
 
       <div
         className="pointer-events-none absolute inset-[2.2cqw] z-0 rounded-sm"
@@ -284,9 +283,11 @@ export function CertificateView(data: CertificateData) {
         style={{ border: `1px solid ${GOLD}`, opacity: 0.6 }}
       />
 
-      <div className="relative z-10 flex h-full flex-col justify-between px-[8cqw] pt-[4cqw] pb-[3cqw] text-center">
-        <header className="flex flex-col items-center pt-[1.2cqw]">
-          <LogoALH className="h-[7cqw] w-[7cqw]" />
+      {/* Kontainer utama dengan jarak padding atas yang diturunkan lega */}
+      <div className="relative z-10 flex h-full flex-col justify-between px-[8cqw] pt-[4.8cqw] pb-[3.2cqw] text-center">
+        {/* HEADER: Diturunkan posisinya agar tidak terlalu ke atas */}
+        <header className="flex flex-col items-center">
+          <LogoALH className="h-[7.2cqw] w-[7.2cqw]" />
           <h2
             className="mt-[0.6cqw] font-serif text-[3.3cqw] leading-none font-bold tracking-[0.14em]"
             style={{ color: EMERALD }}
@@ -296,7 +297,8 @@ export function CertificateView(data: CertificateData) {
           <GoldRibbon>NO. REG: {data.noReg}</GoldRibbon>
         </header>
 
-        <section className="flex flex-col items-center justify-center flex-1 my-[1.2cqw] gap-[0.8cqw]">
+        {/* TENGAH: Distribusi ruang seimbang */}
+        <section className="flex flex-col items-center justify-center flex-1 my-[1cqw] gap-[0.7cqw]">
           <div>
             <p
               className="text-[0.95cqw] font-semibold tracking-[0.3em]"
@@ -338,7 +340,8 @@ export function CertificateView(data: CertificateData) {
           </p>
         </section>
 
-        <footer className="grid grid-cols-3 items-end w-full pt-[0.5cqw]">
+        {/* FOOTER: Hologram, QR Code, dan Tanda Tangan Besar Sejajar Presisi */}
+        <footer className="grid grid-cols-3 items-end w-full pt-[0.2cqw]">
           <div className="flex items-end justify-start pl-[0.5cqw]">
             <HologramSeal className="h-[13cqw] w-[13cqw]" />
           </div>
@@ -371,12 +374,13 @@ export function CertificateView(data: CertificateData) {
               Malang, {data.tanggal}
             </p>
 
+            {/* Tanda tangan diperbesar seukuran hologram (h-[13cqw] w-[18cqw]) dan dipertebal */}
             <div className="relative my-[-1.8cqw] flex justify-center items-center">
               <img
                 src={signature}
                 alt="Tanda tangan Ahmad Wildan Afif, M.Pd."
                 className="object-contain h-[13cqw] w-[18cqw]"
-                style={{ filter: "contrast(220%) brightness(90%)" }}
+                style={{ filter: "contrast(240%) brightness(85%)" }}
               />
             </div>
 
