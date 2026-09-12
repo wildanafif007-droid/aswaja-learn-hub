@@ -71,6 +71,7 @@ function SecurityGrid({ className }: { className?: string }) {
   );
 }
 
+/** Ombak latar belakang diubah opacity-nya menjadi jauh lebih samar/transparan */
 function YellowWaves({ className }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 1200 850" preserveAspectRatio="none" aria-hidden="true">
@@ -91,7 +92,8 @@ function YellowWaves({ className }: { className?: string }) {
             fill="none"
             stroke="#d4c391"
             strokeWidth={i % 3 === 0 ? "2" : "1"}
-            opacity={i % 2 === 0 ? "0.4" : "0.2"}
+            // Opacity diubah dari 0.4/0.2 menjadi 0.15/0.08
+            opacity={i % 2 === 0 ? "0.15" : "0.08"}
           />
         ))}
       </g>
@@ -287,12 +289,21 @@ export function CertificateView(data: CertificateData) {
         style={{ border: `1px solid ${GOLD}`, opacity: 0.6 }}
       />
 
-      {/* pb-[6.5cqw] Ditingkatkan untuk memastikan jarak aman absolut dari bingkai bawah */}
       <div className="relative z-10 flex h-full flex-col justify-between px-[8cqw] pt-[4.8cqw] pb-[6.5cqw] text-center">
+        {/* HEADER BARU: Logo dan Teks Website Berdampingan */}
         <header className="flex flex-col items-center">
-          <LogoALH className="h-[10cqw] w-[10cqw]" />
+          <div className="flex flex-row items-center justify-center gap-[1.2cqw]">
+            <LogoALH className="h-[6cqw] w-[6cqw]" />
+            <h1
+              className="font-serif text-[2.2cqw] font-bold italic tracking-wide"
+              style={{ color: EMERALD }}
+            >
+              ASWAJALEARNHUB.COM
+            </h1>
+          </div>
+
           <h2
-            className="mt-[0.6cqw] font-serif text-[3.8cqw] leading-none font-bold tracking-[0.14em]"
+            className="mt-[1cqw] font-serif text-[3.8cqw] leading-none font-bold tracking-[0.14em]"
             style={{ color: EMERALD }}
           >
             SERTIFIKAT PENGHARGAAN
@@ -338,14 +349,12 @@ export function CertificateView(data: CertificateData) {
           </p>
         </section>
 
-        {/* POLA V-SHAPE SEMPURNA */}
+        {/* FOOTER V-SHAPE */}
         <footer className="grid w-full grid-cols-3 items-start gap-[1cqw]">
-          {/* KIRI (Atas) - Hologram tetap di atas, sejajar persis dengan teks Malang */}
           <div className="flex flex-col justify-start items-start pl-[1cqw]">
             <HologramSeal className="h-[16cqw] w-[16cqw]" />
           </div>
 
-          {/* TENGAH (Bawah) - QR Code didorong turun dengan mt-[8cqw] tapi 100% AMAN karena pb kontainer sudah besar */}
           <div className="flex flex-col items-center gap-[0.4cqw] mt-[8cqw]">
             <QRCodeSVG
               value={data.verifyUrl}
@@ -372,16 +381,11 @@ export function CertificateView(data: CertificateData) {
             </a>
           </div>
 
-          {/* KANAN (Atas) - Tanda Tangan */}
           <div className="flex flex-col justify-start items-center pr-[1cqw]">
             <p className="relative z-10 text-[1.15cqw] leading-tight" style={{ color: "#3a4741" }}>
               Malang, {data.tanggal}
             </p>
 
-            {/* 
-              TTD DIPERBESAR EKSTREM: w-[40cqw], h-[25cqw]
-              MENARIK GARIS KE ATAS: mb-[-6cqw] akan menyedot nama Guru secara agresif ke atas
-            */}
             <div className="relative mt-[-5cqw] mb-[-6cqw] flex justify-center items-center pointer-events-none z-0">
               <img
                 src={signature}
