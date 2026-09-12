@@ -287,7 +287,8 @@ export function CertificateView(data: CertificateData) {
         style={{ border: `1px solid ${GOLD}`, opacity: 0.6 }}
       />
 
-      <div className="relative z-10 flex h-full flex-col justify-between px-[8cqw] pt-[4.8cqw] pb-[5.5cqw] text-center">
+      {/* pb-[6.5cqw] Ditingkatkan untuk memastikan jarak aman absolut dari bingkai bawah */}
+      <div className="relative z-10 flex h-full flex-col justify-between px-[8cqw] pt-[4.8cqw] pb-[6.5cqw] text-center">
         <header className="flex flex-col items-center">
           <LogoALH className="h-[10cqw] w-[10cqw]" />
           <h2
@@ -337,18 +338,15 @@ export function CertificateView(data: CertificateData) {
           </p>
         </section>
 
-        {/* KONSEP SEGITIGA TERBALIK (V-SHAPE) */}
-        {/* Menggunakan items-start agar kiri & kanan sejajar di garis atas */}
+        {/* POLA V-SHAPE SEMPURNA */}
         <footer className="grid w-full grid-cols-3 items-start gap-[1cqw]">
-          {/* KOLOM KIRI (Titik Atas Segitiga) */}
+          {/* KIRI (Atas) - Hologram tetap di atas, sejajar persis dengan teks Malang */}
           <div className="flex flex-col justify-start items-start pl-[1cqw]">
-            {/* Hologram ukuran raksasa (16cqw). Ujung atasnya akan sejajar dengan teks Malang */}
             <HologramSeal className="h-[16cqw] w-[16cqw]" />
           </div>
 
-          {/* KOLOM TENGAH (Titik Bawah/Lembah Segitiga) */}
-          {/* Sengaja diberi margin-top besar (mt-[6cqw]) agar posisinya turun ke bawah membentuk V */}
-          <div className="flex flex-col items-center gap-[0.4cqw] mt-[6cqw]">
+          {/* TENGAH (Bawah) - QR Code didorong turun dengan mt-[8cqw] tapi 100% AMAN karena pb kontainer sudah besar */}
+          <div className="flex flex-col items-center gap-[0.4cqw] mt-[8cqw]">
             <QRCodeSVG
               value={data.verifyUrl}
               size={80}
@@ -374,19 +372,21 @@ export function CertificateView(data: CertificateData) {
             </a>
           </div>
 
-          {/* KOLOM KANAN (Titik Atas Segitiga) */}
+          {/* KANAN (Atas) - Tanda Tangan */}
           <div className="flex flex-col justify-start items-center pr-[1cqw]">
-            <p className="text-[1.15cqw] leading-tight" style={{ color: "#3a4741" }}>
+            <p className="relative z-10 text-[1.15cqw] leading-tight" style={{ color: "#3a4741" }}>
               Malang, {data.tanggal}
             </p>
 
-            {/* TTD Diperbesar SUPER MASIF (w-36cqw, h-22cqw). Margin negatif dilipatgandakan agar
-                tidak menjebol bingkai dan sukses menyedot ruang kosong di atas/bawahnya. */}
-            <div className="relative mt-[-4cqw] mb-[-3cqw] flex justify-center items-center pointer-events-none">
+            {/* 
+              TTD DIPERBESAR EKSTREM: w-[40cqw], h-[25cqw]
+              MENARIK GARIS KE ATAS: mb-[-6cqw] akan menyedot nama Guru secara agresif ke atas
+            */}
+            <div className="relative mt-[-5cqw] mb-[-6cqw] flex justify-center items-center pointer-events-none z-0">
               <img
                 src={signature}
                 alt="Tanda tangan Ahmad Wildan Afif, M.Pd."
-                className="h-[22cqw] w-[36cqw] object-contain"
+                className="h-[25cqw] w-[40cqw] object-contain"
                 style={{
                   mixBlendMode: "multiply",
                   filter: "grayscale(100%) contrast(300%) brightness(90%)",
@@ -394,15 +394,17 @@ export function CertificateView(data: CertificateData) {
               />
             </div>
 
-            <p
-              className="w-full pt-[0.45cqw] text-center font-serif text-[1.4cqw] font-bold"
-              style={{ color: EMERALD, borderTop: `1px solid ${GOLD}` }}
+            <div
+              className="relative z-10 w-full pt-[0.45cqw] text-center"
+              style={{ borderTop: `1.2px solid ${GOLD}` }}
             >
-              Ahmad Wildan Afif, M.Pd.
-            </p>
-            <p className="text-[1.1cqw]" style={{ color: "#6b7770" }}>
-              Guru Pengampu
-            </p>
+              <p className="font-serif text-[1.4cqw] font-bold" style={{ color: EMERALD }}>
+                Ahmad Wildan Afif, M.Pd.
+              </p>
+              <p className="text-[1.1cqw]" style={{ color: "#6b7770" }}>
+                Guru Pengampu
+              </p>
+            </div>
           </div>
         </footer>
       </div>
