@@ -16,7 +16,6 @@ export type CertificateData = {
   verifyUrl: string;
 };
 
-/** Sembilan bintang khas ALH/NU pada lingkaran. */
 function NineStars({
   r,
   size,
@@ -59,7 +58,6 @@ function Star({ x, y, s, rot = 0 }: { x: number; y: number; s: number; rot?: num
   return <polygon points={pts} transform={`rotate(${rot} ${x} ${y})`} />;
 }
 
-/** Kisi pengaman samar di latar belakang. */
 function SecurityGrid({ className }: { className?: string }) {
   return (
     <svg className={className} aria-hidden="true">
@@ -73,7 +71,6 @@ function SecurityGrid({ className }: { className?: string }) {
   );
 }
 
-/** Ombak latar belakang berwarna Champagne Gold. */
 function YellowWaves({ className }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 1200 850" preserveAspectRatio="none" aria-hidden="true">
@@ -102,7 +99,6 @@ function YellowWaves({ className }: { className?: string }) {
   );
 }
 
-/** Logo ALH presisi */
 function LogoALH({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 120 120" className={className} aria-hidden="true">
@@ -136,7 +132,6 @@ function LogoALH({ className }: { className?: string }) {
   );
 }
 
-/** Watermark lambang NU. */
 function NuWatermark({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 200 200" className={className} aria-hidden="true">
@@ -153,7 +148,6 @@ function NuWatermark({ className }: { className?: string }) {
   );
 }
 
-/** Segel Hologram Modern. */
 function HologramSeal({ className }: { className?: string }) {
   return (
     <div
@@ -183,7 +177,6 @@ function HologramSeal({ className }: { className?: string }) {
             <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
           </linearGradient>
         </defs>
-
         <circle cx="60" cy="60" r="56" fill="url(#holo-ring)" />
         <circle
           cx="60"
@@ -207,7 +200,6 @@ function HologramSeal({ className }: { className?: string }) {
           opacity="0.9"
         />
         <NineStars cx={60} cy={60} r={30} size={3.4} fill="url(#holo-ring)" />
-
         <g fill="url(#holo-ring)">
           <Star x={60} y={50} s={7.5} />
         </g>
@@ -234,9 +226,7 @@ function CornerWave({ position }: { position: "tl" | "br" }) {
   return (
     <svg
       viewBox="0 0 200 200"
-      className={`pointer-events-none absolute h-[13cqw] w-[13cqw] ${
-        position === "tl" ? "top-0 left-0" : "right-0 bottom-0"
-      }`}
+      className={`pointer-events-none absolute h-[13cqw] w-[13cqw] ${position === "tl" ? "top-0 left-0" : "right-0 bottom-0"}`}
       aria-hidden="true"
     >
       <g transform={flip}>
@@ -284,7 +274,6 @@ export function CertificateView(data: CertificateData) {
     >
       <CornerWave position="tl" />
       <CornerWave position="br" />
-
       <SecurityGrid className="pointer-events-none absolute inset-0 z-0 h-full w-full opacity-[0.03]" />
       <YellowWaves className="pointer-events-none absolute inset-0 z-0 h-full w-full" />
       <NuWatermark className="pointer-events-none absolute top-1/2 left-1/2 z-0 h-[70%] w-[70%] -translate-x-1/2 -translate-y-1/2 opacity-[0.1]" />
@@ -321,7 +310,6 @@ export function CertificateView(data: CertificateData) {
             {data.nama}
           </p>
           <div className="mx-auto mt-[0.4cqw] h-px w-2/3" style={{ backgroundColor: GOLD }} />
-
           <p
             className="mt-[0.8cqw] max-w-[74cqw] text-[1.4cqw] leading-relaxed"
             style={{ color: "#3a4741" }}
@@ -333,7 +321,6 @@ export function CertificateView(data: CertificateData) {
             </strong>{" "}
             dengan skor <strong style={{ color: EMERALD }}>{data.bestSkor}</strong>.
           </p>
-
           <p
             className="mx-auto mt-[0.8cqw] max-w-[76cqw] text-[1.1cqw] leading-relaxed italic"
             style={{ color: "#6b7770" }}
@@ -350,18 +337,18 @@ export function CertificateView(data: CertificateData) {
           </p>
         </section>
 
-        <footer className="grid w-full grid-cols-3 items-end gap-[1cqw]">
-          {/* KOLOM KIRI: Hologram */}
-          {/* Trik pb-[3.5cqw] mengangkat kolom ini agar sejajar dengan TTD/QR Code, bukan teks bawah */}
-          <div className="flex flex-col justify-end items-start pl-[1cqw] pb-[3.5cqw]">
-            {/* Hologram diperbesar raksasa (16cqw) dan diberi margin negatif agar atasnya tidak merusak layout */}
-            <div className="relative mt-[-3cqw]">
-              <HologramSeal className="h-[16cqw] w-[16cqw]" />
-            </div>
+        {/* KONSEP SEGITIGA TERBALIK (V-SHAPE) */}
+        {/* Menggunakan items-start agar kiri & kanan sejajar di garis atas */}
+        <footer className="grid w-full grid-cols-3 items-start gap-[1cqw]">
+          {/* KOLOM KIRI (Titik Atas Segitiga) */}
+          <div className="flex flex-col justify-start items-start pl-[1cqw]">
+            {/* Hologram ukuran raksasa (16cqw). Ujung atasnya akan sejajar dengan teks Malang */}
+            <HologramSeal className="h-[16cqw] w-[16cqw]" />
           </div>
 
-          {/* KOLOM TENGAH: QR Code */}
-          <div className="flex flex-col items-center gap-[0.4cqw]">
+          {/* KOLOM TENGAH (Titik Bawah/Lembah Segitiga) */}
+          {/* Sengaja diberi margin-top besar (mt-[6cqw]) agar posisinya turun ke bawah membentuk V */}
+          <div className="flex flex-col items-center gap-[0.4cqw] mt-[6cqw]">
             <QRCodeSVG
               value={data.verifyUrl}
               size={80}
@@ -370,7 +357,6 @@ export function CertificateView(data: CertificateData) {
               level="M"
               className="h-[7cqw] w-[7cqw]"
             />
-
             <span
               className="text-[0.95cqw] font-semibold tracking-[0.24em]"
               style={{ color: "#5b6a63" }}
@@ -388,17 +374,19 @@ export function CertificateView(data: CertificateData) {
             </a>
           </div>
 
-          {/* KOLOM KANAN: Tanda Tangan */}
-          <div className="flex flex-col items-center pr-[1cqw]">
-            <p className="text-[1.15cqw]" style={{ color: "#3a4741" }}>
+          {/* KOLOM KANAN (Titik Atas Segitiga) */}
+          <div className="flex flex-col justify-start items-center pr-[1cqw]">
+            <p className="text-[1.15cqw] leading-tight" style={{ color: "#3a4741" }}>
               Malang, {data.tanggal}
             </p>
 
-            <div className="relative mt-[-2cqw] mb-[-1.5cqw] flex justify-center items-center pointer-events-none">
+            {/* TTD Diperbesar SUPER MASIF (w-36cqw, h-22cqw). Margin negatif dilipatgandakan agar
+                tidak menjebol bingkai dan sukses menyedot ruang kosong di atas/bawahnya. */}
+            <div className="relative mt-[-4cqw] mb-[-3cqw] flex justify-center items-center pointer-events-none">
               <img
                 src={signature}
                 alt="Tanda tangan Ahmad Wildan Afif, M.Pd."
-                className="h-[14cqw] w-[24cqw] object-contain"
+                className="h-[22cqw] w-[36cqw] object-contain"
                 style={{
                   mixBlendMode: "multiply",
                   filter: "grayscale(100%) contrast(300%) brightness(90%)",
