@@ -16,6 +16,7 @@ export type CertificateData = {
   verifyUrl: string;
 };
 
+/** Sembilan bintang khas ALH/NU pada lingkaran. */
 function NineStars({
   r,
   size,
@@ -58,6 +59,7 @@ function Star({ x, y, s, rot = 0 }: { x: number; y: number; s: number; rot?: num
   return <polygon points={pts} transform={`rotate(${rot} ${x} ${y})`} />;
 }
 
+/** Kisi pengaman samar di latar belakang. */
 function SecurityGrid({ className }: { className?: string }) {
   return (
     <svg className={className} aria-hidden="true">
@@ -71,6 +73,9 @@ function SecurityGrid({ className }: { className?: string }) {
   );
 }
 
+/**
+ * Ombak latar belakang berwarna Champagne Gold.
+ */
 function YellowWaves({ className }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 1200 850" preserveAspectRatio="none" aria-hidden="true">
@@ -99,6 +104,7 @@ function YellowWaves({ className }: { className?: string }) {
   );
 }
 
+/** Logo ALH (Atas): Ukuran Teks dan Logo diperbesar. */
 function LogoALH({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 120 120" className={className} aria-hidden="true">
@@ -132,6 +138,7 @@ function LogoALH({ className }: { className?: string }) {
   );
 }
 
+/** Watermark lambang NU. */
 function NuWatermark({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 200 200" className={className} aria-hidden="true">
@@ -148,9 +155,10 @@ function NuWatermark({ className }: { className?: string }) {
   );
 }
 
+/** Segel Hologram Modern - Ukuran Diperbesar. */
 function HologramSeal() {
   return (
-    <div className="relative h-[12cqw] w-[12cqw] shrink-0 drop-shadow-[0_0.5cqw_1cqw_rgba(120,84,5,0.3)]">
+    <div className="relative h-[14cqw] w-[14cqw] shrink-0 drop-shadow-[0_0.5cqw_1cqw_rgba(120,84,5,0.3)]">
       <svg viewBox="0 0 120 120" className="h-full w-full">
         <defs>
           <linearGradient id="holo-ring" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -290,7 +298,8 @@ export function CertificateView(data: CertificateData) {
         style={{ border: `1px solid ${GOLD}`, opacity: 0.6 }}
       />
 
-      <div className="relative z-10 flex h-full flex-col justify-between px-[8cqw] pt-[5.5cqw] pb-[4.5cqw] text-center">
+      {/* pb-[7cqw] menarik seluruh footer naik agar aman dari garis batas bawah */}
+      <div className="relative z-10 flex h-full flex-col justify-between px-[8cqw] pt-[5.5cqw] pb-[7cqw] text-center">
         <header className="flex flex-col items-center">
           <LogoALH className="h-[10cqw] w-[10cqw]" />
           <h2
@@ -302,7 +311,8 @@ export function CertificateView(data: CertificateData) {
           <GoldRibbon>NO. REG: {data.noReg}</GoldRibbon>
         </header>
 
-        <section className="flex flex-col items-center">
+        {/* flex-1 dan justify-center membuat bagian ini menempati sisa ruang kosong di tengah secara imbang */}
+        <section className="flex flex-1 flex-col items-center justify-center my-[1cqw]">
           <p className="text-[1.25cqw] font-semibold tracking-[0.3em]" style={{ color: "#5b6a63" }}>
             DIBERIKAN KEPADA:
           </p>
@@ -315,7 +325,7 @@ export function CertificateView(data: CertificateData) {
           <div className="mx-auto mt-[0.6cqw] h-px w-2/3" style={{ backgroundColor: GOLD }} />
 
           <p
-            className="mt-[0.8cqw] max-w-[74cqw] text-[1.7cqw] leading-relaxed"
+            className="mt-[1cqw] max-w-[74cqw] text-[1.7cqw] leading-relaxed"
             style={{ color: "#3a4741" }}
           >
             Atas keberhasilannya dalam memenuhi standar kelulusan evaluasi capaian belajar
@@ -327,7 +337,7 @@ export function CertificateView(data: CertificateData) {
           </p>
 
           <p
-            className="mx-auto mt-[0.8cqw] max-w-[76cqw] text-[1.3cqw] leading-relaxed italic"
+            className="mx-auto mt-[1cqw] max-w-[76cqw] text-[1.3cqw] leading-relaxed italic"
             style={{ color: "#6b7770" }}
           >
             E-Sertifikat ini diterbitkan secara sah oleh sistem e-learning berdasarkan pemenuhan
@@ -335,26 +345,27 @@ export function CertificateView(data: CertificateData) {
             penguatan akidah, fikih ibadah, serta implementasi amaliyah Ahlussunnah wal Jamaah.
           </p>
           <p
-            className="mt-[0.8cqw] text-[1.1cqw] font-semibold tracking-[0.22em]"
+            className="mt-[1cqw] text-[1.1cqw] font-semibold tracking-[0.22em]"
             style={{ color: "#8a9490" }}
           >
             LKS TAQWA — CV. KARYA DIGITAL PUSTAKA
           </p>
         </section>
 
-        <footer className="grid grid-cols-3 items-end gap-[2cqw]">
-          <div className="flex items-end justify-start pl-[1cqw]">
+        {/* Footer disejajarkan secara presisi dari baselinenya (items-end) */}
+        <footer className="grid w-full grid-cols-3 items-end gap-[1cqw]">
+          <div className="flex items-end justify-start pl-[1cqw] pb-[0.5cqw]">
             <HologramSeal />
           </div>
 
           <div className="flex flex-col items-center gap-[0.6cqw]">
             <QRCodeSVG
               value={data.verifyUrl}
-              size={80}
+              size={90}
               bgColor="transparent"
               fgColor={EMERALD}
               level="M"
-              className="h-[7cqw] w-[7cqw]"
+              className="h-[8cqw] w-[8cqw]"
             />
 
             <span
@@ -379,7 +390,7 @@ export function CertificateView(data: CertificateData) {
               Malang, {data.tanggal}
             </p>
 
-            <div className="relative my-[-3cqw] flex justify-center items-center pointer-events-none">
+            <div className="relative my-[-2.5cqw] flex justify-center items-center pointer-events-none">
               <img
                 src={signature}
                 alt="Tanda tangan Ahmad Wildan Afif, M.Pd."
