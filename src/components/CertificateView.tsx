@@ -112,6 +112,7 @@ function LogoALH({ className }: { className?: string }) {
       <circle cx="60" cy="60" r="56" fill="none" stroke="url(#alh-gold)" strokeWidth="3" />
       <circle cx="60" cy="60" r="48" fill="none" stroke={EMERALD} strokeWidth="1.2" />
       <NineStars cx={60} cy={60} r={41} size={5.4} fill="url(#alh-gold)" />
+
       <g fill={EMERALD}>
         <path d="M60 34 L68 52 L64 88 L60 96 L56 88 L52 52 Z" />
         <path d="M60 34 L64 44 L56 44 Z" fill="url(#alh-gold)" />
@@ -131,26 +132,25 @@ function LogoALH({ className }: { className?: string }) {
   );
 }
 
-// Watermark aman, tanpa kotak hijau
 function NuWatermark({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 200 200" className={className} aria-hidden="true">
-      <g fill="none" stroke={EMERALD} strokeWidth="2.2" opacity="0.35">
-        <path d="M100 35 C135 35 160 60 160 95 C160 130 135 155 100 155 C65 155 40 130 40 95 C40 60 65 35 100 35 Z" />
-        <path d="M100 45 C125 45 145 65 145 95 C145 125 125 145 100 145 C75 145 55 125 55 95 C55 65 75 45 100 45 Z" />
+      <g fill="none" stroke={EMERALD} strokeWidth="2.5">
+        <ellipse cx="100" cy="105" rx="58" ry="58" />
+        <ellipse cx="100" cy="105" rx="24" ry="58" />
+        <ellipse cx="100" cy="105" rx="58" ry="22" />
+        <path d="M42 105 q58 34 116 0" />
       </g>
-      <g fill={EMERALD} opacity="0.4">
-        <NineStars cx={100} cy={95} r={72} size={8} />
+      <g fill={EMERALD}>
+        <NineStars cx={100} cy={100} r={80} size={9} />
       </g>
     </svg>
   );
 }
 
-function HologramSeal({ className }: { className?: string }) {
+function HologramSeal() {
   return (
-    <div
-      className={`relative shrink-0 drop-shadow-[0_0.5cqw_1cqw_rgba(120,84,5,0.3)] ${className || "h-[13cqw] w-[13cqw]"}`}
-    >
+    <div className="relative h-[12cqw] w-[12cqw] shrink-0 drop-shadow-[0_0.5cqw_1cqw_rgba(120,84,5,0.3)]">
       <svg viewBox="0 0 120 120" className="h-full w-full">
         <defs>
           <linearGradient id="holo-ring" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -226,12 +226,16 @@ function CornerWave({ position }: { position: "tl" | "br" }) {
   return (
     <svg
       viewBox="0 0 200 200"
-      className={`pointer-events-none absolute h-[12cqw] w-[12cqw] ${position === "tl" ? "top-0 left-0" : "right-0 bottom-0"}`}
+      className={`pointer-events-none absolute h-[13cqw] w-[13cqw] ${
+        position === "tl" ? "top-0 left-0" : "right-0 bottom-0"
+      }`}
       aria-hidden="true"
     >
       <g transform={flip}>
         <path d="M0 0 H140 Q60 20 44 130 Q30 176 0 200 Z" fill={EMERALD} />
+        <path d="M0 0 H92 Q34 26 24 132 Q16 172 0 190 Z" fill="#065f46" opacity="0.55" />
         <path d="M150 0 Q66 26 52 140 Q40 186 6 200" fill="none" stroke={GOLD} strokeWidth="4" />
+        <path d="M172 0 Q84 30 70 148 Q58 190 26 200" fill="none" stroke={GOLD} strokeWidth="1.6" />
       </g>
     </svg>
   );
@@ -239,7 +243,7 @@ function CornerWave({ position }: { position: "tl" | "br" }) {
 
 function GoldRibbon({ children }: { children: React.ReactNode }) {
   return (
-    <div className="relative mt-[0.8cqw] inline-flex items-center justify-center">
+    <div className="relative mt-[1.2cqw] inline-flex items-center justify-center">
       <svg
         viewBox="0 0 220 44"
         preserveAspectRatio="none"
@@ -247,9 +251,11 @@ function GoldRibbon({ children }: { children: React.ReactNode }) {
         aria-hidden="true"
       >
         <path d="M10 0 H210 L220 22 L210 44 H10 L0 22 Z" fill={GOLD} />
+        <path d="M10 0 L0 22 L10 44" fill="#ca8a04" opacity="0.35" />
+        <path d="M210 0 L220 22 L210 44" fill="#fde047" opacity="0.45" />
       </svg>
       <span
-        className="relative z-10 px-[3cqw] py-[0.25cqw] text-[1.05cqw] font-semibold tracking-[0.22em]"
+        className="relative z-10 px-[3cqw] py-[0.5cqw] text-[1.3cqw] font-semibold tracking-[0.22em]"
         style={{ color: "#3f2d05" }}
       >
         {children}
@@ -270,26 +276,25 @@ export function CertificateView(data: CertificateData) {
     >
       <CornerWave position="tl" />
       <CornerWave position="br" />
+
       <SecurityGrid className="pointer-events-none absolute inset-0 z-0 h-full w-full opacity-[0.03]" />
       <YellowWaves className="pointer-events-none absolute inset-0 z-0 h-full w-full" />
-      <NuWatermark className="pointer-events-none absolute top-1/2 left-1/2 z-0 h-[55%] w-[55%] -translate-x-1/2 -translate-y-1/2 opacity-25" />
+      <NuWatermark className="pointer-events-none absolute top-1/2 left-1/2 z-0 h-[70%] w-[70%] -translate-x-1/2 -translate-y-1/2 opacity-[0.1]" />
 
       <div
-        className="pointer-events-none absolute inset-[2.2cqw] z-0 rounded-sm"
+        className="pointer-events-none absolute inset-[2.5cqw] z-0 rounded-sm"
         style={{ border: `1px solid ${GOLD}` }}
       />
       <div
-        className="pointer-events-none absolute inset-[2.8cqw] z-0 rounded-sm"
+        className="pointer-events-none absolute inset-[3.2cqw] z-0 rounded-sm"
         style={{ border: `1px solid ${GOLD}`, opacity: 0.6 }}
       />
 
-      {/* Padding atas diturunkan presisi (pt-[5.5cqw]) agar Header renggang dari batas atas */}
-      <div className="relative z-10 flex h-full flex-col justify-between px-[8cqw] pt-[5.5cqw] pb-[3.2cqw] text-center">
-        {/* HEADER */}
+      <div className="relative z-10 flex h-full flex-col justify-between px-[8cqw] pt-[5.5cqw] pb-[4.5cqw] text-center">
         <header className="flex flex-col items-center">
-          <LogoALH className="h-[7.2cqw] w-[7.2cqw]" />
+          <LogoALH className="h-[10cqw] w-[10cqw]" />
           <h2
-            className="mt-[0.6cqw] font-serif text-[3.3cqw] leading-none font-bold tracking-[0.14em]"
+            className="mt-[1cqw] font-serif text-[4.2cqw] leading-none font-bold tracking-[0.14em]"
             style={{ color: EMERALD }}
           >
             SERTIFIKAT PENGHARGAAN
@@ -297,25 +302,22 @@ export function CertificateView(data: CertificateData) {
           <GoldRibbon>NO. REG: {data.noReg}</GoldRibbon>
         </header>
 
-        {/* TENGAH */}
-        <section className="flex flex-col items-center justify-center flex-1 my-[1cqw] gap-[0.7cqw]">
-          <div>
-            <p
-              className="text-[0.95cqw] font-semibold tracking-[0.3em]"
-              style={{ color: "#5b6a63" }}
-            >
-              DIBERIKAN KEPADA:
-            </p>
-            <p
-              className="mt-[0.15cqw] font-serif text-[3.9cqw] leading-tight font-bold"
-              style={{ color: EMERALD }}
-            >
-              {data.nama}
-            </p>
-            <div className="mx-auto mt-[0.15cqw] h-px w-4/5" style={{ backgroundColor: GOLD }} />
-          </div>
+        <section className="flex flex-col items-center">
+          <p className="text-[1.25cqw] font-semibold tracking-[0.3em]" style={{ color: "#5b6a63" }}>
+            DIBERIKAN KEPADA:
+          </p>
+          <p
+            className="mt-[0.6cqw] font-serif text-[4.6cqw] leading-tight font-bold"
+            style={{ color: EMERALD }}
+          >
+            {data.nama}
+          </p>
+          <div className="mx-auto mt-[0.6cqw] h-px w-2/3" style={{ backgroundColor: GOLD }} />
 
-          <p className="max-w-[70cqw] text-[1.3cqw] leading-relaxed" style={{ color: "#3a4741" }}>
+          <p
+            className="mt-[0.8cqw] max-w-[74cqw] text-[1.7cqw] leading-relaxed"
+            style={{ color: "#3a4741" }}
+          >
             Atas keberhasilannya dalam memenuhi standar kelulusan evaluasi capaian belajar
             Pendidikan Aswaja & Ke-NU-an pada{" "}
             <strong style={{ color: EMERALD }}>
@@ -325,7 +327,7 @@ export function CertificateView(data: CertificateData) {
           </p>
 
           <p
-            className="max-w-[72cqw] text-[1.02cqw] leading-relaxed italic"
+            className="mx-auto mt-[0.8cqw] max-w-[76cqw] text-[1.3cqw] leading-relaxed italic"
             style={{ color: "#6b7770" }}
           >
             E-Sertifikat ini diterbitkan secara sah oleh sistem e-learning berdasarkan pemenuhan
@@ -333,71 +335,71 @@ export function CertificateView(data: CertificateData) {
             penguatan akidah, fikih ibadah, serta implementasi amaliyah Ahlussunnah wal Jamaah.
           </p>
           <p
-            className="text-[0.85cqw] font-semibold tracking-[0.22em]"
+            className="mt-[0.8cqw] text-[1.1cqw] font-semibold tracking-[0.22em]"
             style={{ color: "#8a9490" }}
           >
             LKS TAQWA — CV. KARYA DIGITAL PUSTAKA
           </p>
         </section>
 
-        {/* FOOTER */}
-        <footer className="grid grid-cols-3 items-end w-full pt-[0.2cqw]">
-          <div className="flex items-end justify-start pl-[0.5cqw]">
-            <HologramSeal className="h-[13cqw] w-[13cqw]" />
+        <footer className="grid grid-cols-3 items-end gap-[2cqw]">
+          <div className="flex items-end justify-start pl-[1cqw]">
+            <HologramSeal />
           </div>
 
-          <div className="flex flex-col items-center gap-[0.2cqw]">
+          <div className="flex flex-col items-center gap-[0.6cqw]">
             <QRCodeSVG
               value={data.verifyUrl}
-              size={110}
+              size={80}
               bgColor="transparent"
               fgColor={EMERALD}
               level="M"
-              className="h-[10.5cqw] w-[10.5cqw]"
+              className="h-[7cqw] w-[7cqw]"
             />
+
             <span
-              className="text-[0.9cqw] font-semibold tracking-[0.24em]"
+              className="text-[1.05cqw] font-semibold tracking-[0.24em]"
               style={{ color: "#5b6a63" }}
             >
               ASWAJA LEARN HUB
             </span>
-            <span
-              className="rounded-full border border-gray-300 px-[1.2cqw] py-[0.1cqw] text-[0.78cqw] font-semibold tracking-wide"
+            <a
+              href={data.verifyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full border border-gray-300 px-[1.6cqw] py-[0.4cqw] text-[1.05cqw] font-semibold tracking-wide transition-colors hover:border-gray-400"
               style={{ color: EMERALD }}
             >
               Verifikasi Sertifikat
-            </span>
+            </a>
           </div>
 
-          <div className="flex flex-col items-center pr-[0.5cqw]">
-            <p className="text-[1.02cqw]" style={{ color: "#3a4741" }}>
+          <div className="flex flex-col items-center pr-[1cqw]">
+            <p className="text-[1.3cqw]" style={{ color: "#3a4741" }}>
               Malang, {data.tanggal}
             </p>
 
-            {/* 
-              Tanda tangan diatur ukurannya menyesuaikan hologram. 
-              mixBlendMode: 'multiply' akan menghapus background putih secara magis.
-            */}
-            <div className="relative my-[-2.5cqw] flex justify-center items-center pointer-events-none">
+            <div className="relative my-[-3cqw] flex justify-center items-center pointer-events-none">
               <img
                 src={signature}
                 alt="Tanda tangan Ahmad Wildan Afif, M.Pd."
-                className="object-contain h-[16cqw] w-[24cqw]"
-                style={{ mixBlendMode: "multiply" }}
+                className="h-[17cqw] w-[28cqw] object-contain"
+                style={{
+                  mixBlendMode: "multiply",
+                  filter: "grayscale(100%) contrast(300%) brightness(90%)",
+                }}
               />
             </div>
 
-            <div
-              className="w-full text-center pt-[0.2cqw]"
-              style={{ borderTop: `1.2px solid ${GOLD}` }}
+            <p
+              className="w-full pt-[0.45cqw] text-center font-serif text-[1.7cqw] font-bold"
+              style={{ color: EMERALD, borderTop: `1px solid ${GOLD}` }}
             >
-              <p className="font-serif text-[1.3cqw] font-bold" style={{ color: EMERALD }}>
-                Ahmad Wildan Afif, M.Pd.
-              </p>
-              <p className="text-[0.95cqw]" style={{ color: "#6b7770" }}>
-                Guru Pengampu
-              </p>
-            </div>
+              Ahmad Wildan Afif, M.Pd.
+            </p>
+            <p className="text-[1.2cqw]" style={{ color: "#6b7770" }}>
+              Guru Pengampu
+            </p>
           </div>
         </footer>
       </div>
